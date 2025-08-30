@@ -1,19 +1,41 @@
 // Main products page functionality
-let filteredProducts = [...electronicsProducts];
+let filteredProducts = [];
+let allProducts = [];
 let currentCategory = 'all';
 let currentSort = 'featured';
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
     showLoading();
+    loadProductsFromAPI();
+});
+
+// Load products from API or fallback to static data
+async function loadProductsFromAPI() {
+    try {
+        const response = await fetch('/api/electronics');
+        if (response.ok) {
+            const data = await response.json();
+            allProducts = data.products || [];
+        } else {
+            throw new Error('API not available');
+        }
+    } catch (error) {
+        console.log('Using fallback data:', error.message);
+        // Fallback to static data if API fails
+        allProducts = electronicsProducts || [];
+    }
+    
+    filteredProducts = [...allProducts];
+    
     setTimeout(() => {
         hideLoading();
         renderProducts();
         renderFeaturedCarousel();
         updateProductCount();
         initializeEventListeners();
-    }, 1000);
-});
+    }, 500);
+}
 
 function showLoading() {
     const loadingSkeleton = document.getElementById('loading-skeleton');
@@ -122,7 +144,7 @@ function createProductCard(product) {
 }
 
 function renderFeaturedCarousel() {
-    const featuredProducts = electronicsProducts.filter(p => p.isFeatured);
+    const featuredProducts = allProducts.filter(p => p.isFeatured);
     const featuredCarousel = document.getElementById('featured-carousel');
     
     const carouselHTML = featuredProducts.map(product => `
@@ -188,7 +210,7 @@ function initializeEventListeners() {
 function handleSearch() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
     
-    filteredProducts = electronicsProducts.filter(product => {
+    filteredProducts = allProducts.filter(product => {
         const matchesCategory = currentCategory === 'all' || product.category === currentCategory;
         const matchesSearch = query === '' || 
             product.name.toLowerCase().includes(query) ||
@@ -236,7 +258,7 @@ function viewProduct(productId) {
 }
 
 function addToCart(productId) {
-    const product = electronicsProducts.find(p => p.id === productId);
+    const product = allProducts.find(p => p.id === productId);
     if (!product) return;
     
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');

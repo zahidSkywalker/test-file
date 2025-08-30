@@ -29,8 +29,21 @@ function hideLoading() {
     document.getElementById('product-content').classList.remove('hidden');
 }
 
-function loadProductDetails(productId) {
-    currentProduct = electronicsProducts.find(p => p.id === productId);
+async function loadProductDetails(productId) {
+    try {
+        // Try to load from API first
+        const response = await fetch(`/api/electronics?id=${productId}`);
+        if (response.ok) {
+            const data = await response.json();
+            currentProduct = data.product;
+        } else {
+            throw new Error('API not available');
+        }
+    } catch (error) {
+        console.log('Using fallback data:', error.message);
+        // Fallback to static data
+        currentProduct = electronicsProducts.find(p => p.id === productId);
+    }
     
     if (!currentProduct) {
         window.location.href = '/products-new';
