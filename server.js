@@ -71,6 +71,7 @@ const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/users');
 const paymentRoutes = require('./routes/payments');
+const electronicsRoutes = require('./routes/electronics');
 
 // API routes
 app.use('/api/auth', authRoutes);
@@ -78,6 +79,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/electronics', electronicsRoutes);
 
 // CSS test endpoint
 app.get('/css-test', (req, res) => {
@@ -142,6 +144,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'products-new.html'));
+});
+
+app.get('/products-enhanced', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'products-enhanced.html'));
 });
 
@@ -150,7 +156,11 @@ app.get('/products-old', (req, res) => {
 });
 
 app.get('/product/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
+  res.sendFile(path.join(__dirname, 'public', 'product-detail-new.html'));
+});
+
+app.get('/product-detail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'product-detail-new.html'));
 });
 
 app.get('/cart', (req, res) => {
