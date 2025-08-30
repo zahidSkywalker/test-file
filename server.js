@@ -140,47 +140,44 @@ app.get('/debug/css', (req, res) => {
 
 // Serve static pages
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index-new.html'));
-});
-
-app.get('/home-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'products-new.html'));
+  res.sendFile(path.join(__dirname, 'public', 'products-enhanced.html'));
 });
 
-app.get('/products-enhanced', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'products-enhanced.html'));
+app.get('/product/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
+});
+
+app.get('/product-detail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
+});
+
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cart.html'));
+});
+
+app.get('/checkout', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'checkout-enhanced.html'));
+});
+
+app.get('/checkout-enhanced', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'checkout-enhanced.html'));
+});
+
+// Old versions for backup
+app.get('/home-old', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index-old.html'));
 });
 
 app.get('/products-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'products.html'));
 });
 
-app.get('/product/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'product-detail-new.html'));
-});
-
-app.get('/product-detail', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'product-detail-new.html'));
-});
-
-app.get('/cart', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'cart-new.html'));
-});
-
 app.get('/cart-old', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'cart.html'));
-});
-
-app.get('/checkout', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'checkout-new.html'));
-});
-
-app.get('/checkout-enhanced', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'checkout-new.html'));
+  res.sendFile(path.join(__dirname, 'public', 'cart-old2.html'));
 });
 
 app.get('/checkout-old', (req, res) => {

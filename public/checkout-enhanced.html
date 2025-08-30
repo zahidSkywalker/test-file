@@ -3,341 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Trendy Mart Bangladesh</title>
+    <title>Secure Checkout - TrendyMart</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Complete your secure checkout at TrendyMart with multiple payment options and fast delivery.">
+    <meta name="keywords" content="checkout, secure payment, online shopping, electronics, fast delivery">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <!-- CSS -->
     <link href="/css/output.css" rel="stylesheet">
-    <link href="/css/fallback.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        .checkout-step {
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-step.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .checkout-step.completed {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .form-group {
+            transition: all 0.3s ease;
+        }
+        
+        .form-group:focus-within {
+            transform: translateY(-2px);
+        }
+        
+        .payment-method {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-method.selected {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .order-summary {
+            backdrop-filter: blur(10px);
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .success-animation {
+            animation: bounce 0.6s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-inter">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-2">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="Trendy Mart Logo" 
-                             class="w-10 h-10 rounded-lg object-cover">
-                        <span class="font-display font-bold text-xl text-gray-900">Trendy Mart</span>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            TrendyMart
+                        </span>
                     </a>
                 </div>
                 
                 <!-- Checkout Steps -->
-                <div class="hidden md:flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-6">
                     <div class="flex items-center">
-                        <div class="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                        <span class="ml-2 text-primary-600 font-medium">Checkout</span>
+                        <div class="checkout-step active w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <span class="ml-3 text-blue-600 font-medium">Checkout</span>
                     </div>
-                    <div class="w-8 border-t border-gray-300"></div>
+                    <div class="w-12 border-t-2 border-gray-300"></div>
                     <div class="flex items-center">
-                        <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                        <span class="ml-2 text-gray-500">Payment</span>
+                        <div class="checkout-step w-10 h-10 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <span class="ml-3 text-gray-500">Payment</span>
                     </div>
-                    <div class="w-8 border-t border-gray-300"></div>
+                    <div class="w-12 border-t-2 border-gray-300"></div>
                     <div class="flex items-center">
-                        <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                        <span class="ml-2 text-gray-500">Confirmation</span>
+                        <div class="checkout-step w-10 h-10 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span class="ml-3 text-gray-500">Complete</span>
                     </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-lock text-green-600"></i>
+                    <span class="text-sm text-gray-600 font-medium">Secure Checkout</span>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-            <!-- Order Summary -->
-            <div class="lg:col-span-2">
-                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
-                    
-                    <div id="orderItems">
-                        <!-- Order items will be loaded here -->
-                    </div>
-                </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Page Header -->
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                <i class="fas fa-shield-alt text-green-600 mr-3"></i>
+                Secure Checkout
+            </h1>
+            <p class="text-lg text-gray-600">Complete your order with confidence</p>
+        </div>
 
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Checkout Form -->
+            <div class="lg:col-span-2 space-y-8">
                 <!-- Shipping Information -->
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Shipping Information</h2>
+                <div class="bg-white rounded-2xl shadow-lg p-8" data-aos="fade-right">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                        <i class="fas fa-shipping-fast text-blue-600 mr-3"></i>
+                        Shipping Information
+                    </h2>
                     
-                    <form id="checkoutForm" class="space-y-6">
+                    <form id="checkout-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" id="fullName" required 
-                                       class="input-field" placeholder="Enter your full name">
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-user mr-2"></i>First Name *
+                                </label>
+                                <input type="text" id="firstName" required
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all">
                             </div>
                             
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                                <input type="tel" id="phoneNumber" required 
-                                       class="input-field" placeholder="+880 1XXX-XXXXXX">
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-user mr-2"></i>Last Name *
+                                </label>
+                                <input type="text" id="lastName" required
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all">
                             </div>
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" 
-                                   class="input-field" placeholder="your.email@example.com">
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-envelope mr-2"></i>Email Address *
+                            </label>
+                            <input type="email" id="email" required
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all">
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Complete Address *</label>
-                            <textarea id="address" required rows="3" 
-                                      class="input-field" placeholder="House/Flat, Road, Area, City, District"></textarea>
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-phone mr-2"></i>Phone Number *
+                            </label>
+                            <input type="tel" id="phone" required
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all"
+                                   placeholder="+880 1234-567890">
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
-                                <select id="city" required class="input-field">
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-map-marker-alt mr-2"></i>Full Address *
+                            </label>
+                            <textarea id="address" required rows="3"
+                                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all"
+                                      placeholder="House/Flat, Road, Area"></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-city mr-2"></i>City *
+                                </label>
+                                <select id="city" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all">
                                     <option value="">Select City</option>
-                                    <option value="Dhaka">Dhaka</option>
-                                    <option value="Chittagong">Chittagong</option>
-                                    <option value="Sylhet">Sylhet</option>
-                                    <option value="Rajshahi">Rajshahi</option>
-                                    <option value="Khulna">Khulna</option>
-                                    <option value="Barisal">Barisal</option>
-                                    <option value="Rangpur">Rangpur</option>
-                                    <option value="Mymensingh">Mymensingh</option>
+                                    <option value="dhaka">Dhaka</option>
+                                    <option value="chittagong">Chittagong</option>
+                                    <option value="sylhet">Sylhet</option>
+                                    <option value="khulna">Khulna</option>
+                                    <option value="rajshahi">Rajshahi</option>
+                                    <option value="barishal">Barishal</option>
+                                    <option value="rangpur">Rangpur</option>
+                                    <option value="mymensingh">Mymensingh</option>
                                 </select>
                             </div>
                             
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Postal Code</label>
-                                <input type="text" id="postalCode" 
-                                       class="input-field" placeholder="1000">
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-mail-bulk mr-2"></i>Postal Code
+                                </label>
+                                <input type="text" id="postalCode"
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-flag mr-2"></i>Country
+                                </label>
+                                <input type="text" value="Bangladesh" readonly
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50">
                             </div>
                         </div>
                     </form>
                 </div>
+
+                <!-- Payment Method -->
+                <div class="bg-white rounded-2xl shadow-lg p-8" data-aos="fade-right" data-aos-delay="200">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                        <i class="fas fa-credit-card text-green-600 mr-3"></i>
+                        Payment Method
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="payment-method border-2 border-gray-200 rounded-xl p-6 selected" data-method="cod">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 border-2 border-blue-500 rounded-full flex items-center justify-center mr-4">
+                                        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Cash on Delivery</h3>
+                                        <p class="text-sm text-gray-600">Pay when you receive your order</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-money-bill-wave text-3xl text-green-600"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method border-2 border-gray-200 rounded-xl p-6" data-method="card">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center mr-4">
+                                        <div class="w-3 h-3 bg-transparent rounded-full"></div>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Credit/Debit Card</h3>
+                                        <p class="text-sm text-gray-600">Visa, Mastercard, American Express</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
+                                    <i class="fab fa-cc-mastercard text-3xl text-red-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method border-2 border-gray-200 rounded-xl p-6" data-method="mobile">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center mr-4">
+                                        <div class="w-3 h-3 bg-transparent rounded-full"></div>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Mobile Banking</h3>
+                                        <p class="text-sm text-gray-600">bKash, Nagad, Rocket</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <span class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-bold">bKash</span>
+                                    <span class="bg-orange-600 text-white px-2 py-1 rounded text-xs font-bold">Nagad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Payment Summary -->
-            <div class="lg:col-span-1 mt-6 lg:mt-0">
-                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Payment Summary</h3>
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-lg p-8 sticky top-24 order-summary" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                        <i class="fas fa-receipt text-purple-600 mr-3"></i>
+                        Order Summary
+                    </h3>
                     
-                    <div class="space-y-4 border-b border-gray-200 pb-4 mb-4">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span id="subtotal" class="font-semibold">৳0</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Delivery Fee</span>
-                            <span id="deliveryFee" class="font-semibold">৳60</span>
-                        </div>
-                        <div class="flex justify-between text-green-600">
-                            <span>Discount</span>
-                            <span id="discount">-৳0</span>
-                        </div>
+                    <!-- Order Items -->
+                    <div id="order-items" class="space-y-4 mb-6">
+                        <!-- Items will be loaded here -->
                     </div>
                     
-                    <div class="flex justify-between text-xl font-bold text-gray-900 mb-6">
-                        <span>Total</span>
-                        <span id="totalAmount">৳0</span>
-                    </div>
+                    <hr class="border-gray-200 my-6">
                     
-                    <!-- Payment Methods -->
-                    <div class="mb-6">
-                        <h4 class="font-semibold text-gray-900 mb-4">Payment Method</h4>
-                        <div class="space-y-3">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="payment" value="cod" checked class="mr-3">
-                                <div class="flex items-center">
-                                    <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
-                                    <span>Cash on Delivery</span>
-                                </div>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="payment" value="bkash" class="mr-3">
-                                <div class="flex items-center">
-                                    <i class="fas fa-mobile-alt text-pink-600 mr-2"></i>
-                                    <span>bKash</span>
-                                </div>
-                            </label>
-                            <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="payment" value="nagad" class="mr-3">
-                                <div class="flex items-center">
-                                    <i class="fas fa-credit-card text-orange-600 mr-2"></i>
-                                    <span>Nagad</span>
-                                </div>
-                            </label>
+                    <!-- Order Totals -->
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Subtotal:</span>
+                            <span class="font-semibold" id="order-subtotal">৳0</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Shipping:</span>
+                            <span class="font-semibold text-green-600" id="order-shipping">Free</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Tax (5%):</span>
+                            <span class="font-semibold" id="order-tax">৳0</span>
+                        </div>
+                        
+                        <hr class="border-gray-200">
+                        
+                        <div class="flex justify-between items-center text-xl">
+                            <span class="font-bold text-gray-900">Total:</span>
+                            <span class="font-bold text-blue-600" id="order-total">৳0</span>
                         </div>
                     </div>
                     
                     <!-- Place Order Button -->
-                    <button id="placeOrderBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-bold text-lg transition-colors">
-                        <i class="fas fa-lock mr-2"></i>
-                        Place Order Securely
+                    <button id="place-order-btn" class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-check-circle mr-3"></i>
+                        <span id="place-order-text">Place Order</span>
                     </button>
                     
-                    <div class="mt-4 text-center">
-                        <p class="text-xs text-gray-500">
-                            <i class="fas fa-shield-alt mr-1"></i>
-                            Your order is secured with SSL encryption
-                        </p>
+                    <!-- Security Badges -->
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="grid grid-cols-2 gap-4 text-center text-sm text-gray-500">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-shield-alt text-2xl text-green-600 mb-2"></i>
+                                <span>SSL Secured</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-undo text-2xl text-blue-600 mb-2"></i>
+                                <span>Easy Returns</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center">
-            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-check text-green-600 text-2xl"></i>
+    <!-- Order Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-12 max-w-md mx-4 text-center success-animation">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-4xl text-green-600"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Order Placed Successfully!</h3>
-            <p class="text-gray-600 mb-6">Thank you for your order. You will receive a confirmation call within 30 minutes.</p>
-            <div class="space-y-3">
-                <button onclick="window.location.href='/'" class="w-full btn-primary py-3">
+            
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Order Placed Successfully!</h2>
+            <p class="text-gray-600 mb-6">Thank you for your order. You'll receive a confirmation email shortly.</p>
+            
+            <div class="space-y-4">
+                <div class="bg-gray-50 rounded-xl p-4">
+                    <p class="text-sm text-gray-600">Order Number</p>
+                    <p class="font-bold text-lg" id="order-number">#TM-2024-001</p>
+                </div>
+                
+                <button onclick="window.location.href='/'" class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
                     Continue Shopping
-                </button>
-                <button onclick="window.location.href='/orders'" class="w-full btn-secondary py-3">
-                    Track Order
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="/js/products-data.js"></script>
+    <script src="/js/checkout.js"></script>
+    
     <script>
-        class CheckoutManager {
-            constructor() {
-                this.orderData = null;
-                this.init();
-            }
-
-            init() {
-                this.loadOrderData();
-                this.setupEventListeners();
-                this.updatePriceSummary();
-            }
-
-            loadOrderData() {
-                const stored = localStorage.getItem('orderData');
-                if (stored) {
-                    this.orderData = JSON.parse(stored);
-                    this.renderOrderItems();
-                } else {
-                    // Redirect back if no order data
-                    window.location.href = '/products';
-                }
-            }
-
-            renderOrderItems() {
-                const container = document.getElementById('orderItems');
-                if (!container || !this.orderData) return;
-
-                const product = this.orderData.product;
-                
-                container.innerHTML = `
-                    <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                        <img src="${product.images[0]}" 
-                             alt="${product.name}"
-                             class="w-20 h-20 object-cover rounded-lg">
-                        
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-900">${product.name}</h3>
-                            <p class="text-sm text-gray-600">Color: ${this.orderData.color}</p>
-                            <p class="text-sm text-gray-600">Quantity: ${this.orderData.quantity}</p>
-                            <p class="text-lg font-bold text-primary-600">৳${this.orderData.totalPrice.toLocaleString()}</p>
-                        </div>
-                        
-                        <button class="text-red-500 hover:text-red-700" onclick="checkoutManager.removeItem()">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-            }
-
-            updatePriceSummary() {
-                if (!this.orderData) return;
-
-                const subtotal = this.orderData.totalPrice;
-                const deliveryFee = subtotal > 5000 ? 0 : 60; // Free delivery over ৳5000
-                const discount = 0;
-                const total = subtotal + deliveryFee - discount;
-
-                document.getElementById('subtotal').textContent = `৳${subtotal.toLocaleString()}`;
-                document.getElementById('deliveryFee').textContent = deliveryFee === 0 ? 'FREE' : `৳${deliveryFee}`;
-                document.getElementById('discount').textContent = `-৳${discount}`;
-                document.getElementById('totalAmount').textContent = `৳${total.toLocaleString()}`;
-            }
-
-            setupEventListeners() {
-                document.getElementById('placeOrderBtn').addEventListener('click', () => {
-                    this.placeOrder();
-                });
-
-                // City change handler for delivery fee
-                document.getElementById('city').addEventListener('change', (e) => {
-                    this.updatePriceSummary();
-                });
-            }
-
-            placeOrder() {
-                const form = document.getElementById('checkoutForm');
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
-                }
-
-                const orderDetails = {
-                    ...this.orderData,
-                    customer: {
-                        fullName: document.getElementById('fullName').value,
-                        phoneNumber: document.getElementById('phoneNumber').value,
-                        email: document.getElementById('email').value,
-                        address: document.getElementById('address').value,
-                        city: document.getElementById('city').value,
-                        postalCode: document.getElementById('postalCode').value
-                    },
-                    paymentMethod: document.querySelector('input[name="payment"]:checked').value,
-                    orderDate: new Date().toISOString(),
-                    orderId: 'TM' + Date.now()
-                };
-
-                // Simulate order processing
-                document.getElementById('placeOrderBtn').innerHTML = `
-                    <i class="fas fa-spinner fa-spin mr-2"></i>
-                    Processing Order...
-                `;
-                document.getElementById('placeOrderBtn').disabled = true;
-
-                setTimeout(() => {
-                    this.showSuccessModal();
-                    localStorage.removeItem('orderData');
-                }, 2000);
-            }
-
-            showSuccessModal() {
-                document.getElementById('successModal').classList.remove('hidden');
-                
-                if (typeof gsap !== 'undefined') {
-                    gsap.from('#successModal > div', {
-                        duration: 0.5,
-                        scale: 0.8,
-                        opacity: 0,
-                        ease: 'power2.out'
-                    });
-                }
-            }
-
-            removeItem() {
-                localStorage.removeItem('orderData');
-                window.location.href = '/products';
-            }
-        }
-
-        let checkoutManager;
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            checkoutManager = new CheckoutManager();
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
         });
     </script>
 </body>

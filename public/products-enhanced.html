@@ -3,226 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronics & Gadgets - Trendy Mart Bangladesh</title>
-    <meta name="description" content="Browse premium electronics and gadgets in Bangladesh. Hair trimmers, electric zappers, stun guns, and more with secure delivery.">
+    <title>Electronics Store - Premium Products | TrendyMart</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover premium electronics at TrendyMart. Smartphones, laptops, headphones, smart TVs and more with fast delivery across Bangladesh.">
+    <meta name="keywords" content="electronics, smartphones, laptops, headphones, cameras, gaming, appliances, bangladesh">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <!-- CSS -->
     <link href="/css/output.css" rel="stylesheet">
-    <link href="/css/fallback.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@11.0.8/dist/framer-motion.js"></script>
     
     <style>
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
-        .cursor-zoom-in {
-            cursor: zoom-in;
+        .price-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .category-chip {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
         
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        .discount-badge {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
         
-        ::-webkit-scrollbar-thumb {
-            background: #0ea5e9;
-            border-radius: 10px;
+        .search-glow {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0284c7;
+        .filter-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-inter">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-40">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-2">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="Trendy Mart Logo" 
-                             class="w-10 h-10 rounded-lg object-cover">
-                        <span class="font-display font-bold text-xl text-gray-900">Trendy Mart</span>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        TrendyMart
                     </a>
                 </div>
-
-                <!-- Search Bar -->
-                <div class="hidden md:flex flex-1 max-w-lg mx-8">
-                    <div class="relative w-full">
-                        <input type="text" id="searchInput" placeholder="Search electronics & gadgets..." 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                    </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="/products-new" class="text-blue-600 font-medium">Products</a>
+                    <a href="/cart" class="text-gray-700 hover:text-blue-600 transition-colors">Cart</a>
+                    <a href="/login" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Login</a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/products" class="nav-link text-primary-600">Products</a>
-                    <a href="/categories" class="nav-link">Categories</a>
-                    <a href="/seller-dashboard" class="nav-link">Sell</a>
-                    <a href="/cart" class="relative">
-                        <i class="fas fa-shopping-cart text-xl text-gray-700 hover:text-primary-600 transition-colors"></i>
-                        <span class="absolute -top-2 -right-2 bg-primary-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cartCount">0</span>
-                    </a>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">
-                    Electronics & Gadgets
-                </h1>
-                <p class="text-xl mb-8">Discover premium electronics and accessories in Bangladesh</p>
-                
-                <!-- Quick Category Pills -->
-                <div class="flex flex-wrap justify-center gap-3">
-                    <button class="category-filter bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all" 
-                            data-category="">All Products</button>
-                    <button class="category-filter bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all" 
-                            data-category="Personal Care">Personal Care</button>
-                    <button class="category-filter bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all" 
-                            data-category="Mobile Phones">Mobile Phones</button>
-                    <button class="category-filter bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all" 
-                            data-category="Audio & Headphones">Audio</button>
-                    <button class="category-filter bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-full transition-all" 
-                            data-category="Security & Safety">Security</button>
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Premium Electronics
+                <span class="block text-yellow-300">Just for You</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">
+                Discover the latest smartphones, laptops, and gadgets with unbeatable prices
+            </p>
+            <div class="flex justify-center">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md">
+                    <div class="text-3xl font-bold text-yellow-300">15+</div>
+                    <div class="text-lg">Premium Products</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filters -->
+    <section class="bg-white py-8 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-6 items-center">
+                <!-- Search Bar -->
+                <div class="relative flex-1 max-w-2xl">
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Search for smartphones, laptops, headphones..." 
+                        class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none search-glow transition-all"
+                    >
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+                </div>
+                
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-btn filter-active px-6 py-3 rounded-full text-sm font-medium transition-all" data-category="all">
+                        All Products
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-all" data-category="Mobile Phones">
+                        Smartphones
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-all" data-category="Laptops & Computers">
+                        Laptops
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition-all" data-category="Audio & Headphones">
+                        Audio
+                    </button>
+                </div>
+                
+                <!-- Sort Dropdown -->
+                <select id="sort-select" class="px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="newest">Newest First</option>
+                </select>
             </div>
         </div>
     </section>
 
     <!-- Featured Products Carousel -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-display font-bold text-gray-900 mb-4">Featured Products</h2>
-                <p class="text-lg text-gray-600">Handpicked deals you don't want to miss</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    🌟 Featured Products
+                </h2>
+                <p class="text-lg text-gray-600">Hand-picked premium electronics with special offers</p>
             </div>
             
-            <div id="featuredCarousel" class="mb-8">
-                <!-- Carousel will be rendered here -->
+            <div class="relative">
+                <div id="featured-carousel" class="flex overflow-x-auto space-x-6 pb-6 snap-x snap-mandatory scrollbar-hide">
+                    <!-- Featured products will be loaded here -->
+                </div>
+                
+                <button id="carousel-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-chevron-left text-gray-600"></i>
+                </button>
+                <button id="carousel-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all">
+                    <i class="fas fa-chevron-right text-gray-600"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="lg:flex lg:space-x-8">
-            <!-- Filters Sidebar -->
-            <div class="lg:w-1/4 mb-8 lg:mb-0">
-                <div id="filtersContainer">
-                    <!-- Filters will be rendered here -->
-                </div>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="lg:w-3/4">
-                <!-- Toolbar -->
-                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                        <div>
-                            <span id="resultsCount" class="text-gray-600 font-medium">Loading products...</span>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4">
-                            <label class="text-sm font-medium text-gray-700">Sort by:</label>
-                            <select id="sortSelect" class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                <option value="featured">Featured</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Highest Rated</option>
-                                <option value="newest">Newest First</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Products Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="productsGrid">
-                    <!-- Products will be rendered here -->
-                    <div class="col-span-full text-center py-12">
-                        <div class="animate-spin w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-4"></div>
-                        <p class="text-gray-600">Loading amazing products...</p>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div id="pagination">
-                    <!-- Pagination will be rendered here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16 mt-16">
+    <!-- Products Grid -->
+    <section class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="Trendy Mart Logo" 
-                             class="w-10 h-10 rounded-lg object-cover">
-                        <span class="font-display font-bold text-xl">Trendy Mart</span>
-                    </div>
-                    <p class="text-gray-400 mb-6 max-w-md">Your trusted marketplace for premium electronics and gadgets in Bangladesh.</p>
-                </div>
-                
-                <div>
-                    <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/products" class="text-gray-400 hover:text-white transition-colors">All Products</a></li>
-                        <li><a href="/categories" class="text-gray-400 hover:text-white transition-colors">Categories</a></li>
-                        <li><a href="/seller-dashboard" class="text-gray-400 hover:text-white transition-colors">Sell on Trendy Mart</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="font-semibold text-lg mb-4">Support</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="/faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900">All Products</h2>
+                <div class="text-gray-600">
+                    <span id="product-count">Loading...</span> products found
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2024 Trendy Mart. All rights reserved. Made in Bangladesh 🇧🇩</p>
+            <!-- Loading Skeleton -->
+            <div id="loading-skeleton" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Skeleton cards will be generated by JavaScript -->
+            </div>
+            
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 hidden">
+                <!-- Products will be loaded here -->
+            </div>
+            
+            <!-- No Results -->
+            <div id="no-results" class="text-center py-16 hidden">
+                <div class="text-6xl mb-4">🔍</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+                <p class="text-gray-600">Try adjusting your search or filters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        TrendyMart
+                    </h3>
+                    <p class="text-gray-400">Your trusted partner for premium electronics in Bangladesh.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="/" class="text-gray-400 hover:text-white block transition-colors">Home</a>
+                        <a href="/products-new" class="text-gray-400 hover:text-white block transition-colors">Products</a>
+                        <a href="/cart" class="text-gray-400 hover:text-white block transition-colors">Cart</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Categories</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Smartphones</a>
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Laptops</a>
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Audio</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Contact Us</a>
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Shipping Info</a>
+                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">Returns</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 TrendyMart. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="/js/auth.js"></script>
-    <script src="/js/cart.js"></script>
-    <script src="/js/products-new.js"></script>
+    <script src="/js/products-data.js"></script>
+    <script src="/js/products-main.js"></script>
 </body>
 </html>
