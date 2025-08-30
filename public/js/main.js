@@ -63,43 +63,43 @@ function displayDemoProducts() {
     const demoProducts = [
         {
             _id: 'demo1',
-            title: 'iPhone 14 Pro Max',
-            price: 999,
-            originalPrice: 1199,
+            title: 'Professional Hair Trimmer - Rechargeable',
+            price: 2500,
+            originalPrice: 3500,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=400&q=80', alt: 'iPhone 14 Pro Max Deep Purple' }],
-            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
-            rating: { average: 4.7, count: 23 }
+            images: [{ url: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80', alt: 'Professional Hair Trimmer' }],
+            seller: { name: 'Electronics BD', sellerInfo: { businessName: 'Electronics BD', rating: 4.8 } },
+            rating: { average: 4.7, count: 156 }
         },
         {
             _id: 'demo2',
-            title: 'Sony WH-1000XM5 Headphones',
-            price: 299,
-            originalPrice: 399,
-            condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&q=80', alt: 'Sony WH-1000XM5 headphones' }],
-            seller: { name: 'Audio Pro', sellerInfo: { businessName: 'Audio Pro', rating: 4.9 } },
-            rating: { average: 4.8, count: 31 }
+            title: 'Electric Mosquito Killer Zapper - UV Light',
+            price: 1200,
+            originalPrice: 1800,
+            condition: 'new',
+            images: [{ url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', alt: 'Electric Mosquito Zapper' }],
+            seller: { name: 'Home Gadgets BD', sellerInfo: { businessName: 'Home Gadgets BD', rating: 4.9 } },
+            rating: { average: 4.8, count: 89 }
         },
         {
             _id: 'demo3',
-            title: 'PlayStation 5 Console',
-            price: 449,
-            originalPrice: 499,
-            condition: 'good',
-            images: [{ url: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80', alt: 'PlayStation 5 console' }],
-            seller: { name: 'Gaming World', sellerInfo: { businessName: 'Gaming World', rating: 4.7 } },
-            rating: { average: 4.6, count: 45 }
+            title: 'High Voltage Stun Gun - Self Defense',
+            price: 3200,
+            originalPrice: 4500,
+            condition: 'new',
+            images: [{ url: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80', alt: 'Electric Stun Gun' }],
+            seller: { name: 'Security Pro BD', sellerInfo: { businessName: 'Security Pro BD', rating: 4.7 } },
+            rating: { average: 4.6, count: 67 }
         },
         {
             _id: 'demo4',
-            title: 'Apple Watch Series 8',
-            price: 349,
-            originalPrice: 499,
+            title: 'Wireless Gaming Earbuds - RGB LED',
+            price: 1800,
+            originalPrice: 2800,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=400&q=80', alt: 'Apple Watch Series 8' }],
-            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
-            rating: { average: 4.5, count: 18 }
+            images: [{ url: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&q=80', alt: 'Gaming Earbuds' }],
+            seller: { name: 'Gaming Zone BD', sellerInfo: { businessName: 'Gaming Zone BD', rating: 4.8 } },
+            rating: { average: 4.5, count: 124 }
         }
     ];
 
@@ -163,9 +163,9 @@ function createProductCard(product) {
                 
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center space-x-2">
-                        <span class="text-xl font-bold text-primary-600">$${product.price}</span>
+                        <span class="text-xl font-bold text-primary-600">৳${product.price.toLocaleString()}</span>
                         ${product.originalPrice ? `
-                            <span class="text-sm text-gray-500 line-through">$${product.originalPrice}</span>
+                            <span class="text-sm text-gray-500 line-through">৳${product.originalPrice.toLocaleString()}</span>
                         ` : ''}
                     </div>
                 </div>

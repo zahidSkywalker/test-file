@@ -247,9 +247,9 @@ function createListProductCard(product) {
                     
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <span class="text-2xl font-bold text-primary-600">$${product.price}</span>
+                            <span class="text-2xl font-bold text-primary-600">৳${product.price.toLocaleString()}</span>
                             ${product.originalPrice ? `
-                                <span class="text-lg text-gray-500 line-through">$${product.originalPrice}</span>
+                                <span class="text-lg text-gray-500 line-through">৳${product.originalPrice.toLocaleString()}</span>
                             ` : ''}
                         </div>
                         
@@ -282,91 +282,91 @@ function displayDemoProducts() {
     const demoProducts = [
         {
             _id: 'demo1',
-            title: 'iPhone 14 Pro Max - Deep Purple',
-            description: 'Excellent condition iPhone 14 Pro Max with original box and accessories. Features A16 Bionic chip and Pro camera system.',
-            price: 999,
-            originalPrice: 1199,
+            title: 'Professional Hair Trimmer - Cordless',
+            description: 'High-quality rechargeable hair trimmer with titanium blades. Perfect for professional and home use.',
+            price: 2500,
+            originalPrice: 3500,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=400&q=80', alt: 'iPhone 14 Pro Max Deep Purple' }],
-            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
-            rating: { average: 4.7, count: 23 }
+            images: [{ url: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80', alt: 'Professional Hair Trimmer' }],
+            seller: { name: 'Electronics BD', sellerInfo: { businessName: 'Electronics BD', rating: 4.8 } },
+            rating: { average: 4.7, count: 156 }
         },
         {
             _id: 'demo2',
-            title: 'Samsung Galaxy S23 Ultra',
-            description: 'Premium Samsung Galaxy S23 Ultra with 200MP camera and S Pen. Pristine condition with original accessories.',
-            price: 849,
-            originalPrice: 1199,
-            condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&q=80', alt: 'Samsung Galaxy S23 Ultra' }],
-            seller: { name: 'Mobile World', sellerInfo: { businessName: 'Mobile World', rating: 4.6 } },
-            rating: { average: 4.6, count: 28 }
+            title: 'Electric Mosquito Killer Zapper',
+            description: 'Powerful UV light mosquito zapper. Chemical-free insect control for home and office use.',
+            price: 1200,
+            originalPrice: 1800,
+            condition: 'new',
+            images: [{ url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', alt: 'Electric Mosquito Zapper' }],
+            seller: { name: 'Home Gadgets BD', sellerInfo: { businessName: 'Home Gadgets BD', rating: 4.9 } },
+            rating: { average: 4.8, count: 89 }
         },
         {
             _id: 'demo3',
-            title: 'MacBook Pro 16" M2 Max',
-            description: 'Powerful MacBook Pro with M2 Max chip, 32GB RAM, and 1TB SSD. Perfect for professionals and creators.',
-            price: 2299,
-            originalPrice: 2699,
-            condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&q=80', alt: 'MacBook Pro 16 inch' }],
-            seller: { name: 'Apple Reseller', sellerInfo: { businessName: 'Apple Reseller', rating: 4.9 } },
-            rating: { average: 4.8, count: 31 }
+            title: 'High Voltage Stun Gun - Rechargeable',
+            description: 'Compact self-defense electric stun gun with LED flashlight. Rechargeable battery with safety features.',
+            price: 3200,
+            originalPrice: 4500,
+            condition: 'new',
+            images: [{ url: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80', alt: 'Electric Stun Gun' }],
+            seller: { name: 'Security Pro BD', sellerInfo: { businessName: 'Security Pro BD', rating: 4.7 } },
+            rating: { average: 4.6, count: 67 }
         },
         {
             _id: 'demo4',
-            title: 'Sony WH-1000XM5 Headphones',
-            description: 'Premium wireless headphones with industry-leading noise cancellation. Like new with original case.',
-            price: 299,
-            originalPrice: 399,
+            title: 'Gaming Earbuds - RGB LED Wireless',
+            description: 'Premium gaming earbuds with RGB lighting, low latency, and crystal clear audio for gaming.',
+            price: 1800,
+            originalPrice: 2800,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&q=80', alt: 'Sony WH-1000XM5 headphones' }],
-            seller: { name: 'Audio Pro', sellerInfo: { businessName: 'Audio Pro', rating: 4.7 } },
-            rating: { average: 4.7, count: 42 }
+            images: [{ url: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&q=80', alt: 'Gaming Earbuds' }],
+            seller: { name: 'Gaming Zone BD', sellerInfo: { businessName: 'Gaming Zone BD', rating: 4.8 } },
+            rating: { average: 4.5, count: 124 }
         },
         {
             _id: 'demo5',
-            title: 'iPad Pro 12.9" M2',
-            description: 'Latest iPad Pro with M2 chip and Liquid Retina XDR display. Includes Apple Pencil and Magic Keyboard.',
-            price: 999,
-            originalPrice: 1399,
+            title: 'Electric Beard Trimmer - Precision Cut',
+            description: 'Professional beard trimmer with multiple length settings. Waterproof design with fast charging.',
+            price: 1500,
+            originalPrice: 2200,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&q=80', alt: 'iPad Pro with Apple Pencil' }],
-            seller: { name: 'Apple Reseller', sellerInfo: { businessName: 'Apple Reseller', rating: 4.9 } },
-            rating: { average: 4.8, count: 19 }
+            images: [{ url: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&q=80', alt: 'Electric Beard Trimmer' }],
+            seller: { name: 'Grooming Pro BD', sellerInfo: { businessName: 'Grooming Pro BD', rating: 4.9 } },
+            rating: { average: 4.8, count: 89 }
         },
         {
             _id: 'demo6',
-            title: 'Canon EOS R6 Mark II',
-            description: 'Professional mirrorless camera with 24.2MP full-frame sensor. Low shutter count, excellent condition.',
-            price: 1899,
-            originalPrice: 2499,
-            condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&q=80', alt: 'Canon EOS R6 Mark II' }],
-            seller: { name: 'Camera Pro', sellerInfo: { businessName: 'Camera Pro', rating: 4.7 } },
-            rating: { average: 4.6, count: 12 }
+            title: 'Portable Power Bank - 20000mAh',
+            description: 'High-capacity power bank with fast charging support. Multiple USB ports for charging multiple devices.',
+            price: 2200,
+            originalPrice: 3000,
+            condition: 'new',
+            images: [{ url: 'https://images.unsplash.com/photo-1609592869615-f5d4f0e1df3d?w=400&q=80', alt: 'Portable Power Bank' }],
+            seller: { name: 'Power Tech BD', sellerInfo: { businessName: 'Power Tech BD', rating: 4.7 } },
+            rating: { average: 4.6, count: 134 }
         },
         {
             _id: 'demo7',
-            title: 'Apple AirPods Pro 2nd Gen',
-            description: 'Latest AirPods Pro with H2 chip and improved noise cancellation. Includes MagSafe charging case.',
-            price: 199,
-            originalPrice: 249,
+            title: 'Wireless Phone Charger - Fast Charge',
+            description: 'Qi wireless charging pad with LED indicator. Compatible with all wireless charging phones.',
+            price: 800,
+            originalPrice: 1200,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&q=80', alt: 'Apple AirPods Pro' }],
-            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
-            rating: { average: 4.7, count: 35 }
+            images: [{ url: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&q=80', alt: 'Wireless Phone Charger' }],
+            seller: { name: 'Charge Pro BD', sellerInfo: { businessName: 'Charge Pro BD', rating: 4.8 } },
+            rating: { average: 4.7, count: 78 }
         },
         {
             _id: 'demo8',
-            title: 'DJI Mini 3 Pro Drone',
-            description: 'Compact drone with 4K HDR video and 48MP photos. Includes remote, case, and extra battery.',
-            price: 649,
-            originalPrice: 759,
+            title: 'Electric Hair Straightener - Ceramic',
+            description: 'Professional ceramic hair straightener with temperature control. Fast heating with safety features.',
+            price: 1800,
+            originalPrice: 2500,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&q=80', alt: 'DJI Mini 3 Pro drone' }],
-            seller: { name: 'Drone Hub', sellerInfo: { businessName: 'Drone Hub', rating: 4.6 } },
-            rating: { average: 4.5, count: 14 }
+            images: [{ url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80', alt: 'Hair Straightener' }],
+            seller: { name: 'Beauty Tech BD', sellerInfo: { businessName: 'Beauty Tech BD', rating: 4.6 } },
+            rating: { average: 4.5, count: 92 }
         },
         {
             _id: 'demo9',
