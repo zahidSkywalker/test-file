@@ -173,6 +173,10 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
 
+app.get('/scroll-debug', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'scroll-debug.html'));
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

@@ -1,10 +1,22 @@
 // Main JavaScript functionality for the homepage
 document.addEventListener('DOMContentLoaded', function() {
-    loadFeaturedProducts();
-    initializeSearch();
-    
-    // Initialize animations for homepage
-    initHomepageAnimations();
+    try {
+        console.log('Initializing homepage...');
+        loadFeaturedProducts();
+        initializeSearch();
+        
+        // Initialize animations for homepage with delay
+        setTimeout(() => {
+            try {
+                initHomepageAnimations();
+            } catch (animError) {
+                console.error('Animation initialization failed:', animError);
+            }
+        }, 100);
+        
+    } catch (error) {
+        console.error('Main initialization failed:', error);
+    }
 });
 
 async function loadFeaturedProducts() {
@@ -417,38 +429,53 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Parallax effect for hero section
+// Parallax effect for hero section with error handling
 window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const heroContent = document.getElementById('heroContent');
-    
-    if (heroContent && scrolled < window.innerHeight) {
-        const speed = scrolled * 0.5;
-        heroContent.style.transform = `translateY(${speed}px)`;
+    try {
+        const scrolled = window.pageYOffset;
+        const heroContent = document.getElementById('heroContent');
+        
+        if (heroContent && scrolled < window.innerHeight) {
+            const speed = scrolled * 0.5;
+            heroContent.style.transform = `translateY(${speed}px)`;
+        }
+    } catch (error) {
+        console.error('Scroll animation error:', error);
+        // Remove the event listener if it's causing issues
+        window.removeEventListener('scroll', arguments.callee);
     }
 });
 
-// Initialize Intersection Observer for animations
-const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-            
-            if (typeof gsap !== 'undefined') {
-                gsap.from(entry.target, {
-                    duration: 0.8,
-                    y: 30,
-                    opacity: 0,
-                    ease: 'power2.out'
-                });
+// Initialize Intersection Observer for animations with error handling
+try {
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                try {
+                    entry.target.classList.add('animate-fade-in');
+                    
+                    if (typeof gsap !== 'undefined') {
+                        gsap.from(entry.target, {
+                            duration: 0.8,
+                            y: 30,
+                            opacity: 0,
+                            ease: 'power2.out'
+                        });
+                    }
+                } catch (animError) {
+                    console.error('Animation error:', animError);
+                }
             }
-        }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10px 0px'
     });
-}, {
-    threshold: 0.1
-});
 
-// Observe sections for animation
-document.querySelectorAll('section').forEach(section => {
-    animationObserver.observe(section);
-});
+    // Observe sections for animation
+    document.querySelectorAll('section').forEach(section => {
+        animationObserver.observe(section);
+    });
+} catch (error) {
+    console.error('Failed to initialize animation observer:', error);
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Debug - ResellerHub</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="/css/fallback.css" rel="stylesheet">
+    <style>
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+            max-width: 200px;
+        }
+        .section-marker {
+            border: 2px solid red;
+            margin: 10px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="debug-info" id="debugInfo">
+        <div>Scroll: <span id="scrollPos">0</span>px</div>
+        <div>Viewport: <span id="viewport">0x0</span></div>
+        <div>Elements: <span id="elementCount">0</span></div>
+        <div>Errors: <span id="errorCount">0</span></div>
+    </div>
+
+    <!-- Test Header -->
+    <header class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-gray-900">Scroll Debug Test</h1>
+            <p class="text-gray-600">Testing scroll behavior and content visibility</p>
+        </div>
+    </header>
+
+    <!-- Test Sections -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <section class="section-marker bg-blue-100 mb-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-blue-800">Section 1 - Always Visible</h2>
+                <p class="text-blue-600">This section should always be visible</p>
+            </div>
+        </section>
+
+        <section class="section-marker bg-green-100 mb-8 animate-on-scroll">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-green-800">Section 2 - Animated</h2>
+                <p class="text-green-600">This section has scroll animations</p>
+            </div>
+        </section>
+
+        <section class="section-marker bg-yellow-100 mb-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-yellow-800">Section 3 - Static</h2>
+                <p class="text-yellow-600">This section is static</p>
+            </div>
+        </section>
+
+        <section class="section-marker bg-purple-100 mb-8 feature-card">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-purple-800">Section 4 - Feature Card</h2>
+                <p class="text-purple-600">This section uses feature-card class</p>
+            </div>
+        </section>
+
+        <section class="section-marker bg-red-100 mb-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-red-800">Section 5 - Final Test</h2>
+                <p class="text-red-600">If you can see this, scrolling works!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Debug Script -->
+    <script>
+        let errorCount = 0;
+        
+        // Track errors
+        window.addEventListener('error', (e) => {
+            errorCount++;
+            document.getElementById('errorCount').textContent = errorCount;
+            console.error('Page error:', e.error);
+        });
+
+        // Track scroll position
+        window.addEventListener('scroll', () => {
+            try {
+                document.getElementById('scrollPos').textContent = window.pageYOffset;
+                document.getElementById('viewport').textContent = `${window.innerWidth}x${window.innerHeight}`;
+                document.getElementById('elementCount').textContent = document.querySelectorAll('section').length;
+            } catch (e) {
+                errorCount++;
+                document.getElementById('errorCount').textContent = errorCount;
+            }
+        });
+
+        // Initialize
+        document.getElementById('viewport').textContent = `${window.innerWidth}x${window.innerHeight}`;
+        document.getElementById('elementCount').textContent = document.querySelectorAll('section').length;
+        
+        console.log('Scroll debug page loaded');
+    </script>
+
+    <!-- Load animation scripts with error handling -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onerror="console.error('GSAP failed to load')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onerror="console.error('ScrollTrigger failed to load')"></script>
+    <script src="/js/animations.js" onerror="console.error('Animations.js failed to load')"></script>
+</body>
+</html>

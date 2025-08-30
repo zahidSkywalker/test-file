@@ -11,53 +11,99 @@ class AnimationManager {
     }
 
     initScrollAnimations() {
-        // Register ScrollTrigger if available
-        if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+        // Wait for GSAP to load before registering ScrollTrigger
+        if (typeof gsap !== 'undefined') {
             try {
-                gsap.registerPlugin(ScrollTrigger);
+                // Check if ScrollTrigger is available
+                if (typeof ScrollTrigger !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
+                    console.log('ScrollTrigger registered successfully');
+                } else {
+                    console.log('ScrollTrigger not loaded, using basic animations');
+                }
             } catch (e) {
-                console.log('ScrollTrigger not available, using basic animations');
+                console.log('ScrollTrigger registration failed, using basic animations:', e);
             }
+        } else {
+            console.log('GSAP not loaded, using CSS animations only');
         }
 
-        // Animate elements on scroll
-        this.observeElements();
+        // Animate elements on scroll with error handling
+        try {
+            this.observeElements();
+        } catch (e) {
+            console.error('Animation initialization failed:', e);
+        }
     }
 
     observeElements() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateElement(entry.target);
+        try {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        try {
+                            this.animateElement(entry.target);
+                        } catch (animError) {
+                            console.error('Element animation failed:', animError);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            // Observe elements with animation classes
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll, .feature-card, .product-card, .stat-item');
+            elementsToAnimate.forEach(el => {
+                if (el) {
+                    observer.observe(el);
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        // Observe elements with animation classes
-        document.querySelectorAll('.animate-on-scroll, .feature-card, .product-card, .stat-item').forEach(el => {
-            observer.observe(el);
-        });
+            
+            console.log(`Observing ${elementsToAnimate.length} elements for animations`);
+        } catch (error) {
+            console.error('Failed to initialize scroll observer:', error);
+        }
     }
 
     animateElement(element) {
-        if (element.classList.contains('animated')) return;
+        if (!element || element.classList.contains('animated')) return;
         
-        element.classList.add('animated');
-        
-        if (typeof gsap !== 'undefined') {
-            gsap.from(element, {
-                duration: 0.8,
-                y: 30,
-                opacity: 0,
-                ease: 'power2.out',
-                delay: Math.random() * 0.3
-            });
-        } else {
-            // Fallback CSS animation
-            element.style.animation = 'slideUp 0.8s ease-out forwards';
+        try {
+            element.classList.add('animated');
+            
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(element, 
+                    {
+                        y: 30,
+                        opacity: 0
+                    },
+                    {
+                        duration: 0.8,
+                        y: 0,
+                        opacity: 1,
+                        ease: 'power2.out',
+                        delay: Math.random() * 0.3,
+                        onComplete: () => {
+                            // Ensure element is visible after animation
+                            element.style.opacity = '';
+                            element.style.transform = '';
+                        }
+                    }
+                );
+            } else {
+                // Fallback CSS animation
+                element.style.animation = 'slideUp 0.8s ease-out forwards';
+                element.style.opacity = '1';
+            }
+        } catch (error) {
+            console.error('Failed to animate element:', error);
+            // Ensure element is visible even if animation fails
+            if (element) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
         }
     }
 
