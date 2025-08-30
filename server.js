@@ -34,8 +34,16 @@ app.use('/api/', limiter);
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(express.static('public'));
-app.use('/uploads', express.static('uploads'));
+
+// Static file serving with proper headers
+app.use(express.static('public', {
+  maxAge: '1d',
+  etag: true
+}));
+app.use('/uploads', express.static('uploads', {
+  maxAge: '1y',
+  etag: true
+}));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/reseller_ecommerce', {
@@ -62,6 +70,25 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
+
+// CSS test endpoint
+app.get('/css-test', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <link href="/css/output.css" rel="stylesheet">
+        <link href="/css/fallback.css" rel="stylesheet">
+      </head>
+      <body>
+        <div class="bg-blue-500 text-white p-8 text-center">
+          <h1 class="text-3xl font-bold mb-4">CSS Test Page</h1>
+          <p class="text-lg">If you see this styled (blue background, white text), CSS is working!</p>
+          <button class="bg-white text-blue-500 px-6 py-2 rounded-lg mt-4 font-semibold">Test Button</button>
+        </div>
+      </body>
+    </html>
+  `);
+});
 
 // Serve static pages
 app.get('/', (req, res) => {
