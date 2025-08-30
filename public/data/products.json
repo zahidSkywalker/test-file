@@ -1,0 +1,288 @@
+{
+  "electronics_products": [
+    {
+      "id": "prod_001",
+      "name": "Samsung Galaxy A54 5G",
+      "description": "6.4 inch Super AMOLED display, 50MP triple camera, 5000mAh battery. Perfect for photography enthusiasts and daily use.",
+      "colors": ["Awesome Graphite", "Awesome Violet", "Awesome White", "Awesome Lime"],
+      "images": [
+        "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80",
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80"
+      ],
+      "price": 42999,
+      "originalPrice": 52999,
+      "category": "Mobile Phones",
+      "featured": true,
+      "inStock": true,
+      "seller": "Samsung Official BD",
+      "rating": 4.7,
+      "reviews": 234
+    },
+    {
+      "id": "prod_002", 
+      "name": "Apple iPhone 14",
+      "description": "6.1 inch Super Retina XDR display, A15 Bionic chip, Dual camera system with advanced photography features.",
+      "colors": ["Blue", "Purple", "Midnight", "Starlight", "Product Red"],
+      "images": [
+        "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=800&q=80",
+        "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=800&q=80"
+      ],
+      "price": 89999,
+      "originalPrice": 99999,
+      "category": "Mobile Phones",
+      "featured": true,
+      "inStock": true,
+      "seller": "Apple Store BD",
+      "rating": 4.8,
+      "reviews": 156
+    },
+    {
+      "id": "prod_003",
+      "name": "Sony WH-1000XM4 Wireless Headphones",
+      "description": "Industry-leading noise canceling, 30-hour battery life, Touch sensor controls. Perfect for music lovers.",
+      "colors": ["Black", "Silver", "Blue", "Midnight Blue"],
+      "images": [
+        "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=800&q=80",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80"
+      ],
+      "price": 32500,
+      "originalPrice": 39999,
+      "category": "Audio & Headphones",
+      "featured": true,
+      "inStock": true,
+      "seller": "Sony Official BD",
+      "rating": 4.9,
+      "reviews": 89
+    },
+    {
+      "id": "prod_004",
+      "name": "Professional Hair Trimmer - Rechargeable",
+      "description": "High-quality rechargeable hair trimmer with titanium blades. Multiple length settings, waterproof design.",
+      "colors": ["Black", "Silver", "Blue"],
+      "images": [
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80",
+        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+      ],
+      "price": 2500,
+      "originalPrice": 3500,
+      "category": "Personal Care",
+      "featured": true,
+      "inStock": true,
+      "seller": "Grooming Pro BD",
+      "rating": 4.6,
+      "reviews": 267
+    },
+    {
+      "id": "prod_005",
+      "name": "Electric Mosquito Killer Zapper",
+      "description": "Powerful UV light mosquito zapper. Chemical-free insect control for home and office use. Safe and effective.",
+      "colors": ["White", "Black"],
+      "images": [
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
+      ],
+      "price": 1200,
+      "originalPrice": 1800,
+      "category": "Home Appliances",
+      "featured": false,
+      "inStock": true,
+      "seller": "Home Gadgets BD",
+      "rating": 4.8,
+      "reviews": 145
+    },
+    {
+      "id": "prod_006",
+      "name": "High Voltage Stun Gun - Self Defense",
+      "description": "Compact self-defense electric stun gun with LED flashlight. Rechargeable battery with safety features.",
+      "colors": ["Black", "Pink"],
+      "images": [
+        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80"
+      ],
+      "price": 3200,
+      "originalPrice": 4500,
+      "category": "Security & Safety",
+      "featured": false,
+      "inStock": true,
+      "seller": "Security Pro BD",
+      "rating": 4.5,
+      "reviews": 78
+    },
+    {
+      "id": "prod_007",
+      "name": "Dell Inspiron 15 3000 Laptop",
+      "description": "15.6 inch HD display, Intel Core i3, 8GB RAM, 256GB SSD. Perfect for students and professionals.",
+      "colors": ["Black", "Silver"],
+      "images": [
+        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&q=80",
+        "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&q=80"
+      ],
+      "price": 52000,
+      "originalPrice": 65000,
+      "category": "Laptops & Computers",
+      "featured": false,
+      "inStock": true,
+      "seller": "Dell Official BD",
+      "rating": 4.4,
+      "reviews": 92
+    },
+    {
+      "id": "prod_008",
+      "name": "LG 43 inch 4K Smart TV",
+      "description": "43 inch 4K UHD display, WebOS smart platform, HDR10 support. Entertainment at its finest.",
+      "colors": ["Black"],
+      "images": [
+        "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80",
+        "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=800&q=80"
+      ],
+      "price": 45999,
+      "originalPrice": 55999,
+      "category": "Television & Home Theater",
+      "featured": false,
+      "inStock": true,
+      "seller": "LG Official BD",
+      "rating": 4.6,
+      "reviews": 67
+    },
+    {
+      "id": "prod_009",
+      "name": "Canon EOS 1500D DSLR Camera",
+      "description": "24.1MP APS-C CMOS sensor, DIGIC 4+ processor, Full HD video recording. Perfect for photography beginners.",
+      "colors": ["Black"],
+      "images": [
+        "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=800&q=80",
+        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&q=80"
+      ],
+      "price": 38500,
+      "originalPrice": 45000,
+      "category": "Cameras & Photography",
+      "featured": false,
+      "inStock": true,
+      "seller": "Canon Official BD",
+      "rating": 4.7,
+      "reviews": 123
+    },
+    {
+      "id": "prod_010",
+      "name": "Xiaomi Mi Band 7",
+      "description": "1.62 inch AMOLED display, 14-day battery life, 110+ workout modes. Your fitness companion.",
+      "colors": ["Black", "Blue", "Orange", "Pink"],
+      "images": [
+        "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=800&q=80",
+        "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&q=80"
+      ],
+      "price": 4999,
+      "originalPrice": 6999,
+      "category": "Wearable Technology",
+      "featured": false,
+      "inStock": true,
+      "seller": "Xiaomi Official BD",
+      "rating": 4.5,
+      "reviews": 189
+    },
+    {
+      "id": "prod_011",
+      "name": "JBL Flip 6 Portable Speaker",
+      "description": "Waterproof portable speaker, 12-hour playtime, JBL Pro Sound. Take your music anywhere.",
+      "colors": ["Black", "Blue", "Red", "White", "Pink", "Teal"],
+      "images": [
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&q=80",
+        "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&q=80"
+      ],
+      "price": 12500,
+      "originalPrice": 15999,
+      "category": "Audio & Speakers",
+      "featured": false,
+      "inStock": true,
+      "seller": "JBL Official BD",
+      "rating": 4.8,
+      "reviews": 234
+    },
+    {
+      "id": "prod_012",
+      "name": "Electric Beard Trimmer - Precision Cut",
+      "description": "Professional beard trimmer with multiple length settings. Waterproof design with fast charging capability.",
+      "colors": ["Black", "Silver"],
+      "images": [
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80",
+        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+      ],
+      "price": 1500,
+      "originalPrice": 2200,
+      "category": "Personal Care",
+      "featured": false,
+      "inStock": true,
+      "seller": "Grooming Pro BD",
+      "rating": 4.7,
+      "reviews": 156
+    },
+    {
+      "id": "prod_013",
+      "name": "Anker PowerCore 10000 Power Bank",
+      "description": "10000mAh capacity, PowerIQ technology, compact design. Keep your devices charged on the go.",
+      "colors": ["Black", "White", "Blue"],
+      "images": [
+        "https://images.unsplash.com/photo-1609592869615-f5d4f0e1df3d?w=800&q=80",
+        "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=800&q=80"
+      ],
+      "price": 2999,
+      "originalPrice": 3999,
+      "category": "Power Banks & Chargers",
+      "featured": false,
+      "inStock": true,
+      "seller": "Anker Official BD",
+      "rating": 4.9,
+      "reviews": 345
+    },
+    {
+      "id": "prod_014",
+      "name": "Gaming Wireless Mouse - RGB LED",
+      "description": "Advanced wireless gaming mouse, RGB lighting, programmable buttons, 70-day battery life.",
+      "colors": ["Black", "White", "Red"],
+      "images": [
+        "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80",
+        "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&q=80"
+      ],
+      "price": 3500,
+      "originalPrice": 4500,
+      "category": "Computer Accessories",
+      "featured": false,
+      "inStock": true,
+      "seller": "Gaming Zone BD",
+      "rating": 4.6,
+      "reviews": 89
+    },
+    {
+      "id": "prod_015",
+      "name": "Wireless Gaming Earbuds - Low Latency",
+      "description": "Premium gaming earbuds with RGB lighting, low latency, crystal clear audio for competitive gaming.",
+      "colors": ["Black", "White", "RGB"],
+      "images": [
+        "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&q=80",
+        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&q=80"
+      ],
+      "price": 1800,
+      "originalPrice": 2800,
+      "category": "Audio & Headphones", 
+      "featured": true,
+      "inStock": true,
+      "seller": "Gaming Audio BD",
+      "rating": 4.5,
+      "reviews": 178
+    }
+  ],
+  "categories": [
+    "Mobile Phones",
+    "Audio & Headphones", 
+    "Laptops & Computers",
+    "Television & Home Theater",
+    "Cameras & Photography",
+    "Wearable Technology",
+    "Audio & Speakers",
+    "Personal Care",
+    "Power Banks & Chargers",
+    "Computer Accessories",
+    "Security & Safety",
+    "Home Appliances"
+  ]
+}

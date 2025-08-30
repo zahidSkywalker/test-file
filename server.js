@@ -142,6 +142,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'products-enhanced.html'));
+});
+
+app.get('/products-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'products.html'));
 });
 
@@ -154,6 +158,10 @@ app.get('/cart', (req, res) => {
 });
 
 app.get('/checkout', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'checkout-enhanced.html'));
+});
+
+app.get('/checkout-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
 });
 

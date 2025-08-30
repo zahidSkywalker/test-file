@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Trendy Mart Bangladesh</title>
+    
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="/css/fallback.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
+                             alt="Trendy Mart Logo" 
+                             class="w-10 h-10 rounded-lg object-cover">
+                        <span class="font-display font-bold text-xl text-gray-900">Trendy Mart</span>
+                    </a>
+                </div>
+                
+                <!-- Checkout Steps -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                        <span class="ml-2 text-primary-600 font-medium">Checkout</span>
+                    </div>
+                    <div class="w-8 border-t border-gray-300"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                        <span class="ml-2 text-gray-500">Payment</span>
+                    </div>
+                    <div class="w-8 border-t border-gray-300"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                        <span class="ml-2 text-gray-500">Confirmation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+            <!-- Order Summary -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
+                    
+                    <div id="orderItems">
+                        <!-- Order items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">Shipping Information</h2>
+                    
+                    <form id="checkoutForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" id="fullName" required 
+                                       class="input-field" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" required 
+                                       class="input-field" placeholder="+880 1XXX-XXXXXX">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" 
+                                   class="input-field" placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Complete Address *</label>
+                            <textarea id="address" required rows="3" 
+                                      class="input-field" placeholder="House/Flat, Road, Area, City, District"></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                                <select id="city" required class="input-field">
+                                    <option value="">Select City</option>
+                                    <option value="Dhaka">Dhaka</option>
+                                    <option value="Chittagong">Chittagong</option>
+                                    <option value="Sylhet">Sylhet</option>
+                                    <option value="Rajshahi">Rajshahi</option>
+                                    <option value="Khulna">Khulna</option>
+                                    <option value="Barisal">Barisal</option>
+                                    <option value="Rangpur">Rangpur</option>
+                                    <option value="Mymensingh">Mymensingh</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Postal Code</label>
+                                <input type="text" id="postalCode" 
+                                       class="input-field" placeholder="1000">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Payment Summary -->
+            <div class="lg:col-span-1 mt-6 lg:mt-0">
+                <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Payment Summary</h3>
+                    
+                    <div class="space-y-4 border-b border-gray-200 pb-4 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span id="subtotal" class="font-semibold">৳0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Delivery Fee</span>
+                            <span id="deliveryFee" class="font-semibold">৳60</span>
+                        </div>
+                        <div class="flex justify-between text-green-600">
+                            <span>Discount</span>
+                            <span id="discount">-৳0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between text-xl font-bold text-gray-900 mb-6">
+                        <span>Total</span>
+                        <span id="totalAmount">৳0</span>
+                    </div>
+                    
+                    <!-- Payment Methods -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">Payment Method</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="payment" value="cod" checked class="mr-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
+                                    <span>Cash on Delivery</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="payment" value="bkash" class="mr-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt text-pink-600 mr-2"></i>
+                                    <span>bKash</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="payment" value="nagad" class="mr-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-credit-card text-orange-600 mr-2"></i>
+                                    <span>Nagad</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Place Order Button -->
+                    <button id="placeOrderBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-lg font-bold text-lg transition-colors">
+                        <i class="fas fa-lock mr-2"></i>
+                        Place Order Securely
+                    </button>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-xs text-gray-500">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            Your order is secured with SSL encryption
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Order Placed Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your order. You will receive a confirmation call within 30 minutes.</p>
+            <div class="space-y-3">
+                <button onclick="window.location.href='/'" class="w-full btn-primary py-3">
+                    Continue Shopping
+                </button>
+                <button onclick="window.location.href='/orders'" class="w-full btn-secondary py-3">
+                    Track Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class CheckoutManager {
+            constructor() {
+                this.orderData = null;
+                this.init();
+            }
+
+            init() {
+                this.loadOrderData();
+                this.setupEventListeners();
+                this.updatePriceSummary();
+            }
+
+            loadOrderData() {
+                const stored = localStorage.getItem('orderData');
+                if (stored) {
+                    this.orderData = JSON.parse(stored);
+                    this.renderOrderItems();
+                } else {
+                    // Redirect back if no order data
+                    window.location.href = '/products';
+                }
+            }
+
+            renderOrderItems() {
+                const container = document.getElementById('orderItems');
+                if (!container || !this.orderData) return;
+
+                const product = this.orderData.product;
+                
+                container.innerHTML = `
+                    <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                        <img src="${product.images[0]}" 
+                             alt="${product.name}"
+                             class="w-20 h-20 object-cover rounded-lg">
+                        
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900">${product.name}</h3>
+                            <p class="text-sm text-gray-600">Color: ${this.orderData.color}</p>
+                            <p class="text-sm text-gray-600">Quantity: ${this.orderData.quantity}</p>
+                            <p class="text-lg font-bold text-primary-600">৳${this.orderData.totalPrice.toLocaleString()}</p>
+                        </div>
+                        
+                        <button class="text-red-500 hover:text-red-700" onclick="checkoutManager.removeItem()">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            }
+
+            updatePriceSummary() {
+                if (!this.orderData) return;
+
+                const subtotal = this.orderData.totalPrice;
+                const deliveryFee = subtotal > 5000 ? 0 : 60; // Free delivery over ৳5000
+                const discount = 0;
+                const total = subtotal + deliveryFee - discount;
+
+                document.getElementById('subtotal').textContent = `৳${subtotal.toLocaleString()}`;
+                document.getElementById('deliveryFee').textContent = deliveryFee === 0 ? 'FREE' : `৳${deliveryFee}`;
+                document.getElementById('discount').textContent = `-৳${discount}`;
+                document.getElementById('totalAmount').textContent = `৳${total.toLocaleString()}`;
+            }
+
+            setupEventListeners() {
+                document.getElementById('placeOrderBtn').addEventListener('click', () => {
+                    this.placeOrder();
+                });
+
+                // City change handler for delivery fee
+                document.getElementById('city').addEventListener('change', (e) => {
+                    this.updatePriceSummary();
+                });
+            }
+
+            placeOrder() {
+                const form = document.getElementById('checkoutForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                const orderDetails = {
+                    ...this.orderData,
+                    customer: {
+                        fullName: document.getElementById('fullName').value,
+                        phoneNumber: document.getElementById('phoneNumber').value,
+                        email: document.getElementById('email').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        postalCode: document.getElementById('postalCode').value
+                    },
+                    paymentMethod: document.querySelector('input[name="payment"]:checked').value,
+                    orderDate: new Date().toISOString(),
+                    orderId: 'TM' + Date.now()
+                };
+
+                // Simulate order processing
+                document.getElementById('placeOrderBtn').innerHTML = `
+                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                    Processing Order...
+                `;
+                document.getElementById('placeOrderBtn').disabled = true;
+
+                setTimeout(() => {
+                    this.showSuccessModal();
+                    localStorage.removeItem('orderData');
+                }, 2000);
+            }
+
+            showSuccessModal() {
+                document.getElementById('successModal').classList.remove('hidden');
+                
+                if (typeof gsap !== 'undefined') {
+                    gsap.from('#successModal > div', {
+                        duration: 0.5,
+                        scale: 0.8,
+                        opacity: 0,
+                        ease: 'power2.out'
+                    });
+                }
+            }
+
+            removeItem() {
+                localStorage.removeItem('orderData');
+                window.location.href = '/products';
+            }
+        }
+
+        let checkoutManager;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            checkoutManager = new CheckoutManager();
+        });
+    </script>
+</body>
+</html>

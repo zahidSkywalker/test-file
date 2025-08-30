@@ -21,11 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function loadFeaturedProducts() {
     try {
-        const response = await fetch('/api/products?featured=true&limit=4');
-        if (!response.ok) throw new Error('Failed to load products');
-        
-        const data = await response.json();
-        displayFeaturedProducts(data.products);
+        // Try to load from new products data
+        const response = await fetch('/data/products.json');
+        if (response.ok) {
+            const data = await response.json();
+            const featuredProducts = data.electronics_products.filter(p => p.featured).slice(0, 4);
+            displayFeaturedProducts(featuredProducts);
+            return;
+        }
+        throw new Error('Failed to load products');
     } catch (error) {
         console.error('Error loading featured products:', error);
         // Show demo products if API fails
@@ -42,7 +46,19 @@ function displayFeaturedProducts(products) {
         return;
     }
 
-    container.innerHTML = products.map(product => createProductCard(product)).join('');
+    // Convert new product format to old format for compatibility
+    const convertedProducts = products.map(product => ({
+        _id: product.id,
+        title: product.name,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        condition: 'like-new',
+        images: [{ url: product.images[0], alt: product.name }],
+        seller: { name: product.seller, sellerInfo: { businessName: product.seller, rating: 4.8 } },
+        rating: { average: product.rating, count: product.reviews }
+    }));
+
+    container.innerHTML = convertedProducts.map(product => createProductCard(product)).join('');
     
     // Animate product cards
     if (typeof gsap !== 'undefined') {
