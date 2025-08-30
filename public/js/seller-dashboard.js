@@ -505,36 +505,58 @@ function displayDemoSellerProducts() {
     const demoProducts = [
         {
             _id: 'demo1',
-            title: 'iPhone 13 Pro Max',
+            title: 'iPhone 14 Pro Max',
             category: 'electronics',
-            price: 899,
-            originalPrice: 1099,
-            inventory: { quantity: 3 },
+            price: 999,
+            originalPrice: 1199,
+            inventory: { quantity: 2 },
             status: 'active',
-            views: 245,
-            images: [{ url: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=100' }]
+            views: 312,
+            images: [{ url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=100&q=80' }]
         },
         {
             _id: 'demo2',
-            title: 'MacBook Air M2',
+            title: 'MacBook Pro 16" M2 Max',
             category: 'electronics',
-            price: 1099,
-            originalPrice: 1299,
+            price: 2299,
+            originalPrice: 2699,
             inventory: { quantity: 1 },
             status: 'active',
-            views: 189,
-            images: [{ url: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=100' }]
+            views: 198,
+            images: [{ url: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=100&q=80' }]
         },
         {
             _id: 'demo3',
-            title: 'Gaming Chair',
-            category: 'home',
+            title: 'Sony WH-1000XM5',
+            category: 'electronics',
             price: 299,
             originalPrice: 399,
+            inventory: { quantity: 4 },
+            status: 'active',
+            views: 278,
+            images: [{ url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=100&q=80' }]
+        },
+        {
+            _id: 'demo4',
+            title: 'Canon EOS R6 Mark II',
+            category: 'electronics',
+            price: 1899,
+            originalPrice: 2499,
+            inventory: { quantity: 1 },
+            status: 'active',
+            views: 189,
+            images: [{ url: 'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=100&q=80' }]
+        },
+        {
+            _id: 'demo5',
+            title: 'DJI Mini 3 Pro',
+            category: 'electronics',
+            price: 649,
+            originalPrice: 759,
             inventory: { quantity: 0 },
             status: 'sold',
-            views: 156,
-            images: [{ url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=100' }]
+            views: 267,
+            images: [{ url: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=100&q=80' }]
         }
     ];
 

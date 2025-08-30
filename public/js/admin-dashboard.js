@@ -255,41 +255,68 @@ function displayDemoAdminProducts() {
     const demoProducts = [
         {
             _id: 'admin-demo1',
-            title: 'iPhone 13 Pro Max',
+            title: 'iPhone 14 Pro Max',
             category: 'electronics',
             condition: 'like-new',
-            price: 899,
-            originalPrice: 1099,
-            inventory: { quantity: 3 },
+            price: 999,
+            originalPrice: 1199,
+            inventory: { quantity: 2 },
             status: 'active',
             featured: true,
-            images: [{ url: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=100' }],
+            images: [{ url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=100&q=80' }],
             seller: { name: 'TechStore Pro', email: 'tech@store.com', sellerInfo: { businessName: 'TechStore Pro' } }
         },
         {
             _id: 'admin-demo2',
-            title: 'MacBook Air M2',
+            title: 'Samsung Galaxy S23 Ultra',
             category: 'electronics',
             condition: 'like-new',
-            price: 1099,
-            originalPrice: 1299,
-            inventory: { quantity: 1 },
+            price: 849,
+            originalPrice: 1199,
+            inventory: { quantity: 3 },
             status: 'active',
-            featured: false,
-            images: [{ url: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=100' }],
-            seller: { name: 'Apple Reseller', email: 'apple@reseller.com', sellerInfo: { businessName: 'Apple Reseller' } }
+            featured: true,
+            images: [{ url: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=100&q=80' }],
+            seller: { name: 'Mobile World', email: 'mobile@world.com', sellerInfo: { businessName: 'Mobile World' } }
         },
         {
             _id: 'admin-demo3',
-            title: 'Gaming Chair',
-            category: 'home',
-            condition: 'good',
+            title: 'MacBook Pro 16" M2 Max',
+            category: 'electronics',
+            condition: 'like-new',
+            price: 2299,
+            originalPrice: 2699,
+            inventory: { quantity: 1 },
+            status: 'active',
+            featured: false,
+            images: [{ url: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=100&q=80' }],
+            seller: { name: 'Apple Reseller', email: 'apple@reseller.com', sellerInfo: { businessName: 'Apple Reseller' } }
+        },
+        {
+            _id: 'admin-demo4',
+            title: 'Sony WH-1000XM5',
+            category: 'electronics',
+            condition: 'like-new',
             price: 299,
-            inventory: { quantity: 5 },
+            originalPrice: 399,
+            inventory: { quantity: 4 },
+            status: 'active',
+            featured: true,
+            images: [{ url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=100&q=80' }],
+            seller: { name: 'Audio Pro', email: 'audio@pro.com', sellerInfo: { businessName: 'Audio Pro' } }
+        },
+        {
+            _id: 'admin-demo5',
+            title: 'DJI Mini 3 Pro',
+            category: 'electronics',
+            condition: 'like-new',
+            price: 649,
+            originalPrice: 759,
+            inventory: { quantity: 1 },
             status: 'pending',
             featured: false,
-            images: [{ url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=100' }],
-            seller: { name: 'Furniture World', email: 'furniture@world.com', sellerInfo: { businessName: 'Furniture World' } }
+            images: [{ url: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=100&q=80' }],
+            seller: { name: 'Drone Hub', email: 'drone@hub.com', sellerInfo: { businessName: 'Drone Hub' } }
         }
     ];
 

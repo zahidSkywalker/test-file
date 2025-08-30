@@ -51,43 +51,43 @@ function displayDemoProducts() {
     const demoProducts = [
         {
             _id: 'demo1',
-            title: 'iPhone 13 Pro Max',
-            price: 899,
-            originalPrice: 1099,
+            title: 'iPhone 14 Pro Max',
+            price: 999,
+            originalPrice: 1199,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=400', alt: 'iPhone 13 Pro Max' }],
+            images: [{ url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=400&q=80', alt: 'iPhone 14 Pro Max Deep Purple' }],
             seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
             rating: { average: 4.7, count: 23 }
         },
         {
             _id: 'demo2',
-            title: 'Nike Air Jordan 1',
-            price: 180,
-            originalPrice: 220,
-            condition: 'good',
-            images: [{ url: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=400', alt: 'Nike Air Jordan 1' }],
-            seller: { name: 'Sneaker World', sellerInfo: { businessName: 'Sneaker World', rating: 4.6 } },
-            rating: { average: 4.5, count: 15 }
-        },
-        {
-            _id: 'demo3',
-            title: 'MacBook Air M2',
-            price: 1099,
-            originalPrice: 1299,
+            title: 'Sony WH-1000XM5 Headphones',
+            price: 299,
+            originalPrice: 399,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400', alt: 'MacBook Air M2' }],
-            seller: { name: 'Apple Reseller', sellerInfo: { businessName: 'Apple Reseller', rating: 4.9 } },
+            images: [{ url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&q=80', alt: 'Sony WH-1000XM5 headphones' }],
+            seller: { name: 'Audio Pro', sellerInfo: { businessName: 'Audio Pro', rating: 4.9 } },
             rating: { average: 4.8, count: 31 }
         },
         {
-            _id: 'demo4',
-            title: 'Vintage Leather Jacket',
-            price: 85,
-            originalPrice: 150,
+            _id: 'demo3',
+            title: 'PlayStation 5 Console',
+            price: 449,
+            originalPrice: 499,
             condition: 'good',
-            images: [{ url: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400', alt: 'Vintage Leather Jacket' }],
-            seller: { name: 'Vintage Fashion', sellerInfo: { businessName: 'Vintage Fashion', rating: 4.4 } },
-            rating: { average: 4.3, count: 8 }
+            images: [{ url: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80', alt: 'PlayStation 5 console' }],
+            seller: { name: 'Gaming World', sellerInfo: { businessName: 'Gaming World', rating: 4.7 } },
+            rating: { average: 4.6, count: 45 }
+        },
+        {
+            _id: 'demo4',
+            title: 'Apple Watch Series 8',
+            price: 349,
+            originalPrice: 499,
+            condition: 'like-new',
+            images: [{ url: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=400&q=80', alt: 'Apple Watch Series 8' }],
+            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
+            rating: { average: 4.5, count: 18 }
         }
     ];
 

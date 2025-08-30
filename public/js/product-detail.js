@@ -133,16 +133,16 @@ function displayProductDetails(product) {
 function displayDemoProduct(productId) {
     const demoProduct = {
         _id: productId,
-        title: 'iPhone 13 Pro Max - Unlocked',
-        description: 'Excellent condition iPhone 13 Pro Max with original box and accessories. Features the A15 Bionic chip, Pro camera system, and stunning Super Retina XDR display. No scratches or dents, well-maintained device.',
-        price: 899,
-        originalPrice: 1099,
+        title: 'iPhone 14 Pro Max - Deep Purple',
+        description: 'Excellent condition iPhone 14 Pro Max with original box and accessories. Features the powerful A16 Bionic chip, Pro camera system with 3x optical zoom, and stunning 6.7-inch Super Retina XDR display. No scratches or dents, well-maintained device with 96% battery health. Includes original Lightning cable and documentation.',
+        price: 999,
+        originalPrice: 1199,
         condition: 'like-new',
         category: 'electronics',
         brand: 'Apple',
         images: [
-            { url: 'https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=600', alt: 'iPhone 13 Pro Max' },
-            { url: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600', alt: 'iPhone 13 Pro Max Back' }
+            { url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&q=80', alt: 'iPhone 14 Pro Max Deep Purple' },
+            { url: 'https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&q=80', alt: 'iPhone 14 Pro Max back view' }
         ],
         seller: {
             name: 'TechStore Pro',
@@ -151,30 +151,37 @@ function displayDemoProduct(productId) {
                 rating: 4.8
             }
         },
-        inventory: { quantity: 3 },
+        inventory: { quantity: 2 },
         rating: { average: 4.7, count: 23 },
         specifications: {
             weight: '240g',
-            color: 'Graphite',
+            color: 'Deep Purple',
             size: '6.7 inches',
-            material: 'Aluminum and Glass'
+            material: 'Surgical-grade stainless steel and glass',
+            dimensions: '160.8 x 78.1 x 7.85 mm'
         },
         shipping: {
-            freeShipping: false,
-            shippingCost: 9.99
+            freeShipping: true,
+            shippingCost: 0
         },
         reviews: [
             {
                 user: { name: 'John Doe' },
                 rating: 5,
-                comment: 'Excellent condition, exactly as described. Fast shipping!',
+                comment: 'Excellent condition, exactly as described. The Deep Purple color is stunning and the camera quality is amazing. Fast shipping and great packaging!',
                 createdAt: new Date().toISOString()
             },
             {
                 user: { name: 'Jane Smith' },
                 rating: 4,
-                comment: 'Great phone, minor wear but works perfectly.',
+                comment: 'Great phone, works perfectly. Minor wear on the case but the device itself is pristine. Battery life is excellent.',
                 createdAt: new Date(Date.now() - 86400000).toISOString()
+            },
+            {
+                user: { name: 'Mike Johnson' },
+                rating: 5,
+                comment: 'Perfect transaction! Phone arrived exactly as described. TechStore Pro is a reliable seller.',
+                createdAt: new Date(Date.now() - 172800000).toISOString()
             }
         ]
     };
@@ -602,21 +609,43 @@ function displayDemoRelatedProducts() {
     const demoRelated = [
         {
             _id: 'related1',
-            title: 'iPhone 12 Pro',
-            price: 699,
-            condition: 'good',
-            images: [{ url: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300' }],
+            title: 'Samsung Galaxy S23 Ultra',
+            price: 849,
+            originalPrice: 1199,
+            condition: 'like-new',
+            images: [{ url: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&q=80' }],
             seller: { name: 'Mobile World', sellerInfo: { businessName: 'Mobile World', rating: 4.6 } },
-            rating: { average: 4.5, count: 18 }
+            rating: { average: 4.6, count: 28 }
         },
         {
             _id: 'related2',
-            title: 'iPad Pro 12.9"',
-            price: 899,
+            title: 'iPad Pro 12.9" M2',
+            price: 999,
+            originalPrice: 1399,
             condition: 'like-new',
-            images: [{ url: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300' }],
+            images: [{ url: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&q=80' }],
             seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
-            rating: { average: 4.7, count: 14 }
+            rating: { average: 4.8, count: 19 }
+        },
+        {
+            _id: 'related3',
+            title: 'Apple Watch Series 8',
+            price: 349,
+            originalPrice: 499,
+            condition: 'like-new',
+            images: [{ url: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=300&q=80' }],
+            seller: { name: 'TechStore Pro', sellerInfo: { businessName: 'TechStore Pro', rating: 4.8 } },
+            rating: { average: 4.5, count: 18 }
+        },
+        {
+            _id: 'related4',
+            title: 'AirPods Pro 2nd Gen',
+            price: 199,
+            originalPrice: 249,
+            condition: 'like-new',
+            images: [{ url: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=300&q=80' }],
+            seller: { name: 'Audio Pro', sellerInfo: { businessName: 'Audio Pro', rating: 4.7 } },
+            rating: { average: 4.7, count: 35 }
         }
     ];
 
