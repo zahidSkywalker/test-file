@@ -36,11 +36,19 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Static file serving with proper headers
-app.use(express.static('public', {
+app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: '1d',
-  etag: true
+  etag: true,
+  setHeaders: (res, path) => {
+    if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    }
+    if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
 }));
-app.use('/uploads', express.static('uploads', {
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
   maxAge: '1y',
   etag: true
 }));
@@ -78,16 +86,54 @@ app.get('/css-test', (req, res) => {
       <head>
         <link href="/css/output.css" rel="stylesheet">
         <link href="/css/fallback.css" rel="stylesheet">
+        <style>
+          .test-fallback { background: #3b82f6; color: white; padding: 2rem; text-align: center; }
+        </style>
       </head>
       <body>
-        <div class="bg-blue-500 text-white p-8 text-center">
+        <div class="bg-blue-500 text-white p-8 text-center test-fallback">
           <h1 class="text-3xl font-bold mb-4">CSS Test Page</h1>
           <p class="text-lg">If you see this styled (blue background, white text), CSS is working!</p>
           <button class="bg-white text-blue-500 px-6 py-2 rounded-lg mt-4 font-semibold">Test Button</button>
+          <div style="margin-top: 20px; font-size: 14px;">
+            <p>CSS Files Status:</p>
+            <p>Tailwind Output: <span id="tailwind-status">Loading...</span></p>
+            <p>Fallback CSS: <span id="fallback-status">Loading...</span></p>
+          </div>
         </div>
+        <script>
+          // Check if CSS files loaded
+          const checkCSS = () => {
+            const tailwindLoaded = document.styleSheets.length > 0;
+            document.getElementById('tailwind-status').textContent = tailwindLoaded ? 'Loaded' : 'Failed';
+            document.getElementById('fallback-status').textContent = 'Available';
+          };
+          setTimeout(checkCSS, 100);
+        </script>
       </body>
     </html>
   `);
+});
+
+// Debug route for CSS file
+app.get('/debug/css', (req, res) => {
+  const fs = require('fs');
+  const cssPath = path.join(__dirname, 'public', 'css', 'output.css');
+  try {
+    const cssContent = fs.readFileSync(cssPath, 'utf8');
+    res.json({
+      status: 'success',
+      cssFileExists: true,
+      cssSize: cssContent.length,
+      firstChars: cssContent.substring(0, 200)
+    });
+  } catch (error) {
+    res.json({
+      status: 'error',
+      cssFileExists: false,
+      error: error.message
+    });
+  }
 });
 
 // Serve static pages
