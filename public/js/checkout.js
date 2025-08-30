@@ -1,293 +1,328 @@
-// Checkout page functionality
-let orderData = null;
+// Checkout functionality
+let orderItems = [];
+let selectedPaymentMethod = 'cod';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user is logged in
-    if (!isLoggedIn()) {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
-        return;
-    }
+    loadOrderItems();
+    renderOrderSummary();
+    initializeEventListeners();
+});
 
-    // Check if cart has items
-    const cart = getCart();
-    if (cart.length === 0) {
-        showToast('Your cart is empty', 'warning');
+// Load order items (from cart or quick order)
+function loadOrderItems() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isQuickOrder = urlParams.get('quick') === 'true';
+    
+    if (isQuickOrder) {
+        // Load from quick order
+        orderItems = JSON.parse(localStorage.getItem('quickOrder') || '[]');
+    } else {
+        // Load from regular cart
+        orderItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    }
+    
+    if (orderItems.length === 0) {
+        // Redirect to cart if no items
         window.location.href = '/cart';
         return;
     }
-
-    initializeCheckout();
-    loadOrderSummary();
-    initializeForms();
-});
-
-function initializeCheckout() {
-    // Load user data into form
-    const user = getCurrentUser();
-    if (user) {
-        document.getElementById('shippingName').value = user.name || '';
-        document.getElementById('shippingPhone').value = user.phone || '';
-        
-        if (user.address) {
-            document.getElementById('shippingStreet').value = user.address.street || '';
-            document.getElementById('shippingCity').value = user.address.city || '';
-            document.getElementById('shippingState').value = user.address.state || '';
-            document.getElementById('shippingZip').value = user.address.zipCode || '';
-            document.getElementById('shippingCountry').value = user.address.country || '';
-        }
-    }
-
-    // Same as shipping checkbox
-    document.getElementById('sameAsShipping').addEventListener('change', function() {
-        const billingFields = document.getElementById('billingFields');
-        
-        if (this.checked) {
-            billingFields.classList.add('hidden');
-        } else {
-            billingFields.classList.remove('hidden');
-        }
-    });
 }
 
-function loadOrderSummary() {
-    const cart = getCart();
-    const orderItemsContainer = document.getElementById('orderItems');
+// Render order summary
+function renderOrderSummary() {
+    const container = document.getElementById('order-items');
     
-    // Display order items
-    orderItemsContainer.innerHTML = cart.map(item => `
-        <div class="flex items-center space-x-3 py-3 border-b border-gray-100 last:border-b-0">
-            <img src="${item.image}" alt="${item.title}" class="w-12 h-12 object-cover rounded">
-            <div class="flex-1">
-                <p class="font-medium text-sm text-gray-900">${item.title}</p>
-                <p class="text-xs text-gray-600">Qty: ${item.quantity} • ${item.condition}</p>
+    const itemsHTML = orderItems.map(item => `
+        <div class="flex items-center space-x-4 bg-gray-50 rounded-xl p-4">
+            <img src="${item.image}" alt="${item.name}" 
+                 class="w-16 h-16 object-cover rounded-lg">
+            
+            <div class="flex-1 min-w-0">
+                <h4 class="font-semibold text-gray-900 text-sm">${item.name}</h4>
+                <div class="flex items-center space-x-2 mt-1">
+                    ${item.selectedColor ? `
+                        <div class="w-3 h-3 rounded-full border ${getColorClass(item.selectedColor)}" 
+                             title="${item.selectedColor}"></div>
+                    ` : ''}
+                    <span class="text-xs text-gray-600">Qty: ${item.quantity}</span>
+                </div>
             </div>
+            
             <div class="text-right">
-                <p class="font-medium text-sm">$${(item.price * item.quantity).toFixed(2)}</p>
+                <div class="font-bold text-blue-600">${item.price}</div>
             </div>
         </div>
     `).join('');
-
-    // Update totals
-    updateCheckoutTotals();
+    
+    container.innerHTML = itemsHTML;
+    
+    // Calculate totals
+    updateOrderTotals();
 }
 
-function updateCheckoutTotals() {
-    const cart = getCart();
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const shipping = subtotal > 50 ? 0 : 5.99;
-    const tax = subtotal * 0.08;
+// Update order totals
+function updateOrderTotals() {
+    const subtotal = orderItems.reduce((sum, item) => {
+        return sum + (getNumericPrice(item.price) * item.quantity);
+    }, 0);
     
-    // Apply promo code if any
-    const appliedPromo = JSON.parse(localStorage.getItem('appliedPromo') || 'null');
-    let discount = 0;
+    const shipping = subtotal > 5000 ? 0 : 100; // Free shipping over ৳5000
+    const tax = Math.round(subtotal * 0.05); // 5% tax
+    const total = subtotal + shipping + tax;
     
-    if (appliedPromo) {
-        discount = subtotal * appliedPromo.discount;
-        document.getElementById('discountRow').classList.remove('hidden');
-        document.getElementById('discountAmount').textContent = `-$${discount.toFixed(2)}`;
-    }
-
-    const total = subtotal + shipping + tax - discount;
-
-    document.getElementById('checkoutSubtotal').textContent = `$${subtotal.toFixed(2)}`;
-    document.getElementById('checkoutShipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
-    document.getElementById('checkoutTax').textContent = `$${tax.toFixed(2)}`;
-    document.getElementById('checkoutTotal').textContent = `$${total.toFixed(2)}`;
+    document.getElementById('order-subtotal').textContent = `৳${subtotal.toLocaleString()}`;
+    document.getElementById('order-shipping').textContent = shipping === 0 ? 'Free' : `৳${shipping}`;
+    document.getElementById('order-tax').textContent = `৳${tax.toLocaleString()}`;
+    document.getElementById('order-total').textContent = `৳${total.toLocaleString()}`;
 }
 
-function initializeForms() {
-    const checkoutForm = document.getElementById('checkoutForm');
-    const placeOrderBtn = document.getElementById('placeOrderBtn');
-
-    placeOrderBtn.addEventListener('click', async function(e) {
-        e.preventDefault();
-        
-        if (validateCheckoutForm()) {
-            await processOrder();
-        }
-    });
-
-    // Form validation on input
-    const requiredFields = checkoutForm.querySelectorAll('input[required], select[required]');
-    requiredFields.forEach(field => {
-        field.addEventListener('blur', function() {
-            validateField(this);
+// Initialize event listeners
+function initializeEventListeners() {
+    // Payment method selection
+    document.querySelectorAll('.payment-method').forEach(method => {
+        method.addEventListener('click', () => {
+            selectPaymentMethod(method.dataset.method);
         });
     });
+    
+    // Form validation
+    const form = document.getElementById('checkout-form');
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+    
+    // Place order button
+    document.getElementById('place-order-btn').addEventListener('click', handlePlaceOrder);
+    
+    // Phone number formatting
+    document.getElementById('phone').addEventListener('input', formatPhoneNumber);
 }
 
-function validateCheckoutForm() {
-    const form = document.getElementById('checkoutForm');
-    const requiredFields = form.querySelectorAll('input[required], select[required]');
-    let isValid = true;
+// Select payment method
+function selectPaymentMethod(method) {
+    selectedPaymentMethod = method;
+    
+    document.querySelectorAll('.payment-method').forEach(el => {
+        el.classList.remove('selected');
+        const radio = el.querySelector('.w-6.h-6 > div');
+        radio.classList.remove('bg-blue-500');
+        radio.classList.add('bg-transparent');
+    });
+    
+    const selectedElement = document.querySelector(`[data-method="${method}"]`);
+    selectedElement.classList.add('selected');
+    const selectedRadio = selectedElement.querySelector('.w-6.h-6 > div');
+    selectedRadio.classList.remove('bg-transparent');
+    selectedRadio.classList.add('bg-blue-500');
+}
 
-    requiredFields.forEach(field => {
-        if (!validateField(field)) {
+// Validate individual field
+function validateField(event) {
+    const field = event.target;
+    const value = field.value.trim();
+    
+    clearFieldError(field);
+    
+    if (field.hasAttribute('required') && !value) {
+        showFieldError(field, 'This field is required');
+        return false;
+    }
+    
+    // Email validation
+    if (field.type === 'email' && value && !isValidEmail(value)) {
+        showFieldError(field, 'Please enter a valid email address');
+        return false;
+    }
+    
+    // Phone validation
+    if (field.id === 'phone' && value && !isValidPhone(value)) {
+        showFieldError(field, 'Please enter a valid phone number');
+        return false;
+    }
+    
+    return true;
+}
+
+// Clear field error
+function clearFieldError(field) {
+    if (typeof field === 'object' && field.target) {
+        field = field.target;
+    }
+    
+    field.classList.remove('border-red-500');
+    const errorElement = field.parentNode.querySelector('.error-message');
+    if (errorElement) {
+        errorElement.remove();
+    }
+}
+
+// Show field error
+function showFieldError(field, message) {
+    field.classList.add('border-red-500');
+    
+    const errorElement = document.createElement('div');
+    errorElement.className = 'error-message text-red-500 text-sm mt-1';
+    errorElement.textContent = message;
+    
+    field.parentNode.appendChild(errorElement);
+}
+
+// Format phone number
+function formatPhoneNumber(event) {
+    let value = event.target.value.replace(/\D/g, '');
+    
+    if (value.startsWith('88')) {
+        value = value.substring(2);
+    }
+    
+    if (value.length > 0 && !value.startsWith('01')) {
+        if (value.length === 10) {
+            value = '0' + value;
+        }
+    }
+    
+    if (value.length > 11) {
+        value = value.substring(0, 11);
+    }
+    
+    // Format as +880 1234-567890
+    if (value.length >= 3) {
+        value = '+880 ' + value.substring(1, 5) + (value.length > 5 ? '-' + value.substring(5) : '');
+    } else if (value.length > 0) {
+        value = '+880 ' + value.substring(1);
+    }
+    
+    event.target.value = value;
+}
+
+// Handle place order
+async function handlePlaceOrder() {
+    if (!validateForm()) {
+        showNotification('Please fill in all required fields correctly', 'error');
+        return;
+    }
+    
+    const placeOrderBtn = document.getElementById('place-order-btn');
+    const placeOrderText = document.getElementById('place-order-text');
+    
+    // Show loading state
+    placeOrderBtn.disabled = true;
+    placeOrderText.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing Order...';
+    
+    try {
+        // Simulate order processing
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Generate order number
+        const orderNumber = `TM-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
+        
+        // Show success modal
+        document.getElementById('order-number').textContent = `#${orderNumber}`;
+        document.getElementById('success-modal').classList.remove('hidden');
+        
+        // Clear cart/quick order
+        const urlParams = new URLSearchParams(window.location.search);
+        const isQuickOrder = urlParams.get('quick') === 'true';
+        
+        if (isQuickOrder) {
+            localStorage.removeItem('quickOrder');
+        } else {
+            localStorage.removeItem('cart');
+        }
+        
+        // Update navigation cart count
+        updateNavCartCount();
+        
+    } catch (error) {
+        showNotification('Failed to place order. Please try again.', 'error');
+        
+        // Reset button
+        placeOrderBtn.disabled = false;
+        placeOrderText.innerHTML = '<i class="fas fa-check-circle mr-3"></i>Place Order';
+    }
+}
+
+// Validate entire form
+function validateForm() {
+    const form = document.getElementById('checkout-form');
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!validateField({ target: input })) {
             isValid = false;
         }
     });
-
+    
     return isValid;
 }
 
-function validateField(field) {
-    const value = field.value.trim();
+// Utility functions
+function getColorClass(color) {
+    const colorMap = {
+        'Black': 'bg-black',
+        'White': 'bg-white border-gray-400',
+        'Blue': 'bg-blue-500',
+        'Red': 'bg-red-500',
+        'Silver': 'bg-gray-300',
+        'Gray': 'bg-gray-500',
+        'Pink': 'bg-pink-500',
+        'Orange': 'bg-orange-500',
+        'Purple': 'bg-purple-500',
+        'Teal': 'bg-teal-500'
+    };
     
-    if (!value) {
-        field.classList.add('border-red-500');
-        if (typeof gsap !== 'undefined') {
-            gsap.to(field, {
-                duration: 0.1,
-                x: -5,
-                repeat: 3,
-                yoyo: true,
-                ease: 'power2.inOut'
-            });
+    for (const [key, value] of Object.entries(colorMap)) {
+        if (color.toLowerCase().includes(key.toLowerCase())) {
+            return value;
         }
-        return false;
-    } else {
-        field.classList.remove('border-red-500');
-        return true;
     }
+    return 'bg-gray-400';
 }
 
-async function processOrder() {
-    const cart = getCart();
-    if (cart.length === 0) {
-        showToast('Your cart is empty', 'warning');
-        return;
-    }
-
-    // Show processing modal
-    document.getElementById('processingModal').classList.remove('hidden');
-
-    try {
-        // Prepare order data
-        const shippingAddress = {
-            name: document.getElementById('shippingName').value,
-            phone: document.getElementById('shippingPhone').value,
-            street: document.getElementById('shippingStreet').value,
-            city: document.getElementById('shippingCity').value,
-            state: document.getElementById('shippingState').value,
-            zipCode: document.getElementById('shippingZip').value,
-            country: document.getElementById('shippingCountry').value
-        };
-
-        const sameAsShipping = document.getElementById('sameAsShipping').checked;
-        const billingAddress = sameAsShipping ? shippingAddress : {
-            name: document.getElementById('billingName').value,
-            street: document.getElementById('billingStreet').value,
-            city: document.getElementById('billingCity').value,
-            state: document.getElementById('billingState').value,
-            zipCode: document.getElementById('billingZip').value,
-            country: document.getElementById('billingCountry').value
-        };
-
-        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-
-        const orderPayload = {
-            items: cart.map(item => ({
-                productId: item.id,
-                quantity: item.quantity
-            })),
-            shippingAddress,
-            billingAddress,
-            paymentMethod
-        };
-
-        // Create order
-        const orderResponse = await apiRequest('/api/orders', {
-            method: 'POST',
-            body: JSON.stringify(orderPayload)
-        });
-
-        if (!orderResponse || !orderResponse.ok) {
-            throw new Error('Failed to create order');
-        }
-
-        const orderData = await orderResponse.json();
-        
-        if (paymentMethod === 'sslcommerz') {
-            // Initialize payment
-            const paymentResponse = await apiRequest('/api/payments/initialize', {
-                method: 'POST',
-                body: JSON.stringify({ orderId: orderData.order._id })
-            });
-
-            if (paymentResponse && paymentResponse.ok) {
-                const paymentData = await paymentResponse.json();
-                
-                // For demo, simulate payment process
-                setTimeout(async () => {
-                    const success = Math.random() > 0.1; // 90% success rate for demo
-                    
-                    const demoPaymentResponse = await apiRequest('/api/payments/demo-complete', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            orderId: orderData.order._id,
-                            success: success
-                        })
-                    });
-
-                    document.getElementById('processingModal').classList.add('hidden');
-
-                    if (success) {
-                        // Clear cart and redirect to success page
-                        clearCart();
-                        localStorage.removeItem('appliedPromo');
-                        window.location.href = `/checkout/success?order=${orderData.order._id}`;
-                    } else {
-                        showToast('Payment failed. Please try again.', 'error');
-                    }
-                }, 3000);
-                
-            } else {
-                throw new Error('Failed to initialize payment');
-            }
-        } else {
-            // Cash on delivery
-            document.getElementById('processingModal').classList.add('hidden');
-            clearCart();
-            localStorage.removeItem('appliedPromo');
-            window.location.href = `/checkout/success?order=${orderData.order._id}`;
-        }
-
-    } catch (error) {
-        console.error('Error processing order:', error);
-        document.getElementById('processingModal').classList.add('hidden');
-        showToast(error.message || 'Failed to process order', 'error');
-    }
+function getNumericPrice(priceString) {
+    return parseFloat(priceString.replace(/[^\d.-]/g, ''));
 }
 
-// Progress steps animation
-function updateProgress(step) {
-    const steps = ['shipping', 'payment', 'confirmation'];
-    
-    steps.forEach((stepName, index) => {
-        const circle = document.getElementById(`step${index + 1}Circle`);
-        const text = document.getElementById(`step${index + 1}Text`);
-        
-        if (index < step) {
-            // Completed step
-            circle.classList.remove('bg-gray-300', 'text-gray-600');
-            circle.classList.add('bg-green-500', 'text-white');
-            text.classList.remove('text-gray-500');
-            text.classList.add('text-green-600');
-        } else if (index === step) {
-            // Current step
-            circle.classList.remove('bg-gray-300', 'text-gray-600');
-            circle.classList.add('bg-primary-600', 'text-white');
-            text.classList.remove('text-gray-500');
-            text.classList.add('text-primary-600');
-        } else {
-            // Future step
-            circle.classList.add('bg-gray-300', 'text-gray-600');
-            circle.classList.remove('bg-primary-600', 'bg-green-500', 'text-white');
-            text.classList.add('text-gray-500');
-            text.classList.remove('text-primary-600', 'text-green-600');
-        }
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone) {
+    const cleanPhone = phone.replace(/\D/g, '');
+    return cleanPhone.length >= 10 && cleanPhone.length <= 13;
+}
+
+function updateNavCartCount() {
+    const cartCountElements = document.querySelectorAll('.cart-count');
+    cartCountElements.forEach(element => {
+        element.textContent = '0';
+        element.style.display = 'none';
     });
 }
 
-// Initialize progress
-updateProgress(0); // Start with shipping step
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-4 rounded-xl text-white font-medium transform translate-x-full transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500' : 
+        type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+    }`;
+    
+    notification.innerHTML = `
+        <div class="flex items-center space-x-3">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => document.body.removeChild(notification), 300);
+    }, 3000);
+}

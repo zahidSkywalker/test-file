@@ -140,6 +140,10 @@ app.get('/debug/css', (req, res) => {
 
 // Serve static pages
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index-new.html'));
+});
+
+app.get('/home-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -164,11 +168,19 @@ app.get('/product-detail', (req, res) => {
 });
 
 app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cart-new.html'));
+});
+
+app.get('/cart-old', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'cart.html'));
 });
 
 app.get('/checkout', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'checkout-enhanced.html'));
+  res.sendFile(path.join(__dirname, 'public', 'checkout-new.html'));
+});
+
+app.get('/checkout-enhanced', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'checkout-new.html'));
 });
 
 app.get('/checkout-old', (req, res) => {

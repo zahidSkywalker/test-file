@@ -201,10 +201,34 @@ function addToCart() {
 }
 
 function buyNow() {
-    addToCart();
+    if (!currentProduct || currentProduct.stock === 0) {
+        showNotification('Product is not available!', 'error');
+        return;
+    }
+    
+    // Create a temporary cart with just this product
+    const orderItem = {
+        id: currentProduct.id,
+        name: currentProduct.name,
+        price: currentProduct.price,
+        image: currentProduct.images[0],
+        quantity: selectedQuantity,
+        selectedColor: selectedColor || currentProduct.colors[0]
+    };
+    
+    // Store the order item for checkout
+    localStorage.setItem('quickOrder', JSON.stringify([orderItem]));
+    
+    // Show loading state
+    const buyNowBtn = document.getElementById('buy-now-btn');
+    const originalText = buyNowBtn.innerHTML;
+    buyNowBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>Processing...';
+    buyNowBtn.disabled = true;
+    
+    // Navigate to checkout after brief delay
     setTimeout(() => {
-        window.location.href = '/checkout-enhanced';
-    }, 1000);
+        window.location.href = '/checkout-enhanced?quick=true';
+    }, 800);
 }
 
 function showNotification(message, type = 'info') {
