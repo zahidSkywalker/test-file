@@ -81,6 +81,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/electronics', electronicsRoutes);
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    message: 'TrendyMart API is running perfectly! 🚀'
+  });
+});
+
 // CSS test endpoint
 app.get('/css-test', (req, res) => {
   res.send(`
