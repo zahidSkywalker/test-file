@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - ResellerHub</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-recycle text-white text-xl"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                    </a>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <i class="fas fa-lock mr-1"></i>
+                    Secure Payment
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Content -->
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-credit-card text-primary-600 text-2xl"></i>
+                </div>
+                <h1 class="text-2xl font-display font-bold text-gray-900 mb-2">Complete Your Payment</h1>
+                <p class="text-gray-600">Secure payment powered by SSLCommerz</p>
+            </div>
+
+            <!-- Demo Payment Interface -->
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="font-semibold text-gray-900 mb-4">Order Summary</h3>
+                    <div id="paymentOrderSummary">
+                        <!-- Order summary will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Payment Methods (Demo) -->
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-gray-900">Select Payment Method</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button class="payment-method-btn p-4 border-2 border-gray-300 rounded-lg hover:border-primary-500 transition-colors" data-method="card">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-credit-card text-2xl text-primary-600"></i>
+                                <div class="text-left">
+                                    <div class="font-medium">Credit/Debit Card</div>
+                                    <div class="text-sm text-gray-600">Visa, Mastercard, Amex</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button class="payment-method-btn p-4 border-2 border-gray-300 rounded-lg hover:border-primary-500 transition-colors" data-method="mobile">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-mobile-alt text-2xl text-green-600"></i>
+                                <div class="text-left">
+                                    <div class="font-medium">Mobile Banking</div>
+                                    <div class="text-sm text-gray-600">bKash, Rocket, Nagad</div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Payment Form -->
+                <div id="paymentForm" class="space-y-4 hidden">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                            <span class="text-blue-800 text-sm">This is a demo payment. No real transaction will be processed.</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" 
+                                   class="input-field" id="cardNumber">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
+                                <input type="text" placeholder="MM/YY" maxlength="5" 
+                                       class="input-field" id="expiryDate">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">CVV</label>
+                                <input type="text" placeholder="123" maxlength="4" 
+                                       class="input-field" id="cvv">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+                            <input type="text" placeholder="John Doe" 
+                                   class="input-field" id="cardholderName">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Buttons -->
+                <div class="flex space-x-4">
+                    <button id="completePaymentBtn" class="flex-1 btn-primary text-lg py-3 hidden">
+                        <span id="paymentBtnText">
+                            <i class="fas fa-lock mr-2"></i>
+                            Complete Payment
+                        </span>
+                        <span id="paymentBtnLoading" class="hidden">
+                            <i class="fas fa-spinner fa-spin mr-2"></i>
+                            Processing...
+                        </span>
+                    </button>
+                    
+                    <button id="simulateSuccessBtn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-check mr-2"></i>
+                        Simulate Success
+                    </button>
+                    
+                    <button id="simulateFailBtn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-times mr-2"></i>
+                        Simulate Failure
+                    </button>
+                </div>
+
+                <!-- Security Info -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                        <i class="fas fa-shield-alt text-green-500"></i>
+                        <span>Your payment information is protected by 256-bit SSL encryption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
+            const sessionId = urlParams.get('session');
+
+            if (orderId) {
+                loadPaymentOrderSummary(orderId);
+            }
+
+            initializePaymentMethods();
+            initializePaymentForm();
+            initializeDemoButtons();
+        });
+
+        function initializePaymentMethods() {
+            document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update selection
+                    document.querySelectorAll('.payment-method-btn').forEach(b => {
+                        b.classList.remove('border-primary-500', 'bg-primary-50');
+                        b.classList.add('border-gray-300');
+                    });
+                    
+                    this.classList.remove('border-gray-300');
+                    this.classList.add('border-primary-500', 'bg-primary-50');
+
+                    // Show payment form
+                    document.getElementById('paymentForm').classList.remove('hidden');
+                    document.getElementById('completePaymentBtn').classList.remove('hidden');
+
+                    // Animate form
+                    if (typeof gsap !== 'undefined') {
+                        gsap.from('#paymentForm', {
+                            duration: 0.5,
+                            y: 20,
+                            opacity: 0,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            });
+        }
+
+        function initializePaymentForm() {
+            // Card number formatting
+            document.getElementById('cardNumber').addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                value = value.replace(/(.{4})/g, '$1 ').trim();
+                this.value = value;
+            });
+
+            // Expiry date formatting
+            document.getElementById('expiryDate').addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                this.value = value;
+            });
+
+            // CVV formatting
+            document.getElementById('cvv').addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
+
+        function initializeDemoButtons() {
+            document.getElementById('simulateSuccessBtn').addEventListener('click', function() {
+                simulatePayment(true);
+            });
+
+            document.getElementById('simulateFailBtn').addEventListener('click', function() {
+                simulatePayment(false);
+            });
+
+            document.getElementById('completePaymentBtn').addEventListener('click', function() {
+                if (validatePaymentForm()) {
+                    simulatePayment(true);
+                }
+            });
+        }
+
+        function validatePaymentForm() {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const cardholderName = document.getElementById('cardholderName').value;
+
+            if (cardNumber.length < 13 || cardNumber.length > 19) {
+                showToast('Please enter a valid card number', 'warning');
+                return false;
+            }
+
+            if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                showToast('Please enter a valid expiry date (MM/YY)', 'warning');
+                return false;
+            }
+
+            if (cvv.length < 3 || cvv.length > 4) {
+                showToast('Please enter a valid CVV', 'warning');
+                return false;
+            }
+
+            if (!cardholderName.trim()) {
+                showToast('Please enter the cardholder name', 'warning');
+                return false;
+            }
+
+            return true;
+        }
+
+        async function simulatePayment(success) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
+
+            if (!orderId) {
+                showToast('Order not found', 'error');
+                return;
+            }
+
+            // Show processing state
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+
+            showToast('Processing payment...', 'info');
+
+            // Simulate processing time
+            setTimeout(async () => {
+                try {
+                    const response = await apiRequest('/api/payments/demo-complete', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            orderId: orderId,
+                            success: success
+                        })
+                    });
+
+                    if (response && response.ok) {
+                        if (success) {
+                            window.location.href = `/checkout/success?order=${orderId}`;
+                        } else {
+                            window.location.href = '/checkout/failed';
+                        }
+                    } else {
+                        throw new Error('Payment processing failed');
+                    }
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    showToast('Payment processing failed', 'error');
+                    buttons.forEach(btn => btn.disabled = false);
+                }
+            }, 2000);
+        }
+
+        async function loadPaymentOrderSummary(orderId) {
+            try {
+                const response = await apiRequest(`/api/orders/${orderId}`);
+                
+                if (response && response.ok) {
+                    const order = await response.json();
+                    displayPaymentOrderSummary(order);
+                } else {
+                    throw new Error('Failed to load order');
+                }
+            } catch (error) {
+                console.error('Error loading order for payment:', error);
+                document.getElementById('paymentOrderSummary').innerHTML = `
+                    <p class="text-red-600">Failed to load order details</p>
+                `;
+            }
+        }
+
+        function displayPaymentOrderSummary(order) {
+            const container = document.getElementById('paymentOrderSummary');
+            
+            container.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Order Number</span>
+                        <span class="font-medium">${order.orderNumber}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Items</span>
+                        <span class="font-medium">${order.items.length} item(s)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Subtotal</span>
+                        <span>$${order.totals.subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Shipping</span>
+                        <span>$${order.totals.shipping.toFixed(2)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Tax</span>
+                        <span>$${order.totals.tax.toFixed(2)}</span>
+                    </div>
+                    <hr>
+                    <div class="flex justify-between text-lg font-semibold">
+                        <span>Total</span>
+                        <span class="text-primary-600">$${order.totals.total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

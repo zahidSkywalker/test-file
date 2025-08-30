@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ResellerHub</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-primary-50 to-primary-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-recycle text-white text-xl"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/register" class="text-primary-600 hover:text-primary-700 font-medium">Don't have an account?</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="flex items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-display font-bold text-gray-900 mb-2">Welcome Back</h2>
+                <p class="text-gray-600">Sign in to your account to continue</p>
+            </div>
+
+            <!-- Demo Accounts Info -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 class="font-medium text-blue-900 mb-2">Demo Accounts</h4>
+                <div class="text-sm text-blue-800 space-y-1">
+                    <p><strong>Admin:</strong> admin@resellerhub.com / admin123</p>
+                    <p><strong>Seller:</strong> seller@resellerhub.com / seller123</p>
+                    <p><strong>Buyer:</strong> buyer@resellerhub.com / buyer123</p>
+                </div>
+            </div>
+
+            <form id="loginForm" class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+                <!-- Error Message -->
+                <div id="errorMessage" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg hidden">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span id="errorText"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-envelope mr-1"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="email" required 
+                           class="input-field" 
+                           placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-lock mr-1"></i>
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" required 
+                               class="input-field pr-10" 
+                               placeholder="Enter your password">
+                        <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="rememberMe" class="mr-2">
+                        <span class="text-sm text-gray-600">Remember me</span>
+                    </label>
+                    <a href="/forgot-password" class="text-sm text-primary-600 hover:text-primary-700">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit" id="loginBtn" class="w-full btn-primary text-lg py-3">
+                    <span id="loginBtnText">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Sign In
+                    </span>
+                    <span id="loginBtnLoading" class="hidden">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Signing In...
+                    </span>
+                </button>
+
+                <div class="text-center">
+                    <p class="text-gray-600">
+                        Don't have an account? 
+                        <a href="/register" class="text-primary-600 hover:text-primary-700 font-medium">Sign up here</a>
+                    </p>
+                </div>
+            </form>
+
+            <!-- Quick Login Buttons for Demo -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h4 class="font-medium text-gray-900 mb-4 text-center">Quick Demo Login</h4>
+                <div class="grid grid-cols-1 gap-3">
+                    <button class="demo-login w-full py-2 px-4 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors" 
+                            data-email="admin@resellerhub.com" data-password="admin123">
+                        <i class="fas fa-crown mr-2"></i>
+                        Login as Admin
+                    </button>
+                    <button class="demo-login w-full py-2 px-4 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors" 
+                            data-email="seller@resellerhub.com" data-password="seller123">
+                        <i class="fas fa-store mr-2"></i>
+                        Login as Seller
+                    </button>
+                    <button class="demo-login w-full py-2 px-4 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors" 
+                            data-email="buyer@resellerhub.com" data-password="buyer123">
+                        <i class="fas fa-user mr-2"></i>
+                        Login as Buyer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/animations.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password toggle
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('password');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            // Demo login buttons
+            document.querySelectorAll('.demo-login').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.getElementById('email').value = this.dataset.email;
+                    document.getElementById('password').value = this.dataset.password;
+                });
+            });
+
+            // Login form submission
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+
+                // Show loading state
+                const loginBtn = document.getElementById('loginBtn');
+                const loginBtnText = document.getElementById('loginBtnText');
+                const loginBtnLoading = document.getElementById('loginBtnLoading');
+                
+                loginBtn.disabled = true;
+                loginBtnText.classList.add('hidden');
+                loginBtnLoading.classList.remove('hidden');
+
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        // Store auth data
+                        localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('userData', JSON.stringify(data.user));
+                        
+                        if (rememberMe) {
+                            localStorage.setItem('rememberMe', 'true');
+                        }
+
+                        // Redirect based on role or redirect parameter
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const redirectUrl = urlParams.get('redirect');
+                        
+                        if (redirectUrl) {
+                            window.location.href = decodeURIComponent(redirectUrl);
+                        } else if (data.user.role === 'admin') {
+                            window.location.href = '/admin-dashboard';
+                        } else if (data.user.role === 'seller') {
+                            window.location.href = '/seller-dashboard';
+                        } else {
+                            window.location.href = '/';
+                        }
+                    } else {
+                        showError(data.message || 'Login failed');
+                    }
+                } catch (error) {
+                    showError('Network error. Please try again.');
+                } finally {
+                    // Reset button state
+                    loginBtn.disabled = false;
+                    loginBtnText.classList.remove('hidden');
+                    loginBtnLoading.classList.add('hidden');
+                }
+            });
+
+            function showError(message) {
+                const errorMessage = document.getElementById('errorMessage');
+                const errorText = document.getElementById('errorText');
+                
+                errorText.textContent = message;
+                errorMessage.classList.remove('hidden');
+                
+                // Hide error after 5 seconds
+                setTimeout(() => {
+                    errorMessage.classList.add('hidden');
+                }, 5000);
+            }
+
+            // Animate form on load
+            gsap.from('.max-w-md', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out'
+            });
+        });
+    </script>
+</body>
+</html>

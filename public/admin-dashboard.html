@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ResellerHub</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-recycle text-white text-xl"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home mr-1"></i>
+                        Home
+                    </a>
+                    <a href="/products" class="nav-link">
+                        <i class="fas fa-search mr-1"></i>
+                        Browse
+                    </a>
+                    <div class="relative">
+                        <button class="nav-link flex items-center" id="userMenuBtn">
+                            <i class="fas fa-user mr-2"></i>
+                            <span id="userMenuText">Admin</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden" id="userMenu">
+                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <hr class="my-2">
+                            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg h-screen sticky top-0">
+            <div class="p-6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-crown text-red-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900">Admin Dashboard</h3>
+                        <p class="text-sm text-gray-600">Full Control Panel</p>
+                    </div>
+                </div>
+
+                <nav class="space-y-2">
+                    <a href="#overview" class="sidebar-link active flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="overview">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        Overview
+                    </a>
+                    <a href="#products" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="products">
+                        <i class="fas fa-box mr-3"></i>
+                        Products
+                    </a>
+                    <a href="#orders" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="orders">
+                        <i class="fas fa-shopping-bag mr-3"></i>
+                        Orders
+                    </a>
+                    <a href="#users" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="users">
+                        <i class="fas fa-users mr-3"></i>
+                        Users
+                    </a>
+                    <a href="#analytics" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="analytics">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        Analytics
+                    </a>
+                    <a href="#settings" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="settings">
+                        <i class="fas fa-cog mr-3"></i>
+                        Settings
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-x-hidden">
+            <!-- Overview Section -->
+            <div id="overviewSection" class="dashboard-section p-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Admin Overview</h1>
+                    <p class="text-gray-600">Platform performance and key metrics</p>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Users</p>
+                                <p class="text-2xl font-bold text-gray-900" id="totalUsers">1,247</p>
+                                <p class="text-sm text-green-600">+12% this month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-users text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Products</p>
+                                <p class="text-2xl font-bold text-gray-900" id="adminTotalProducts">5,832</p>
+                                <p class="text-sm text-green-600">+8% this month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-box text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Orders</p>
+                                <p class="text-2xl font-bold text-gray-900" id="adminTotalOrders">12,456</p>
+                                <p class="text-sm text-green-600">+15% this month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-yellow-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Revenue</p>
+                                <p class="text-2xl font-bold text-gray-900" id="totalRevenue">$284,567</p>
+                                <p class="text-sm text-green-600">+22% this month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Revenue Trend</h3>
+                        <canvas id="revenueChart" class="w-full h-64"></canvas>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
+                        <div id="recentActivities" class="space-y-4 max-h-64 overflow-y-auto">
+                            <!-- Recent activities will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Management Section -->
+            <div id="productsSection" class="dashboard-section p-8 hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Products Management</h1>
+                        <p class="text-gray-600">Manage all products on the platform</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button id="bulkActionsBtn" class="btn-secondary">
+                            <i class="fas fa-tasks mr-2"></i>
+                            Bulk Actions
+                        </button>
+                        <button id="exportProductsBtn" class="btn-secondary">
+                            <i class="fas fa-download mr-2"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <select id="adminProductCategory" class="input-field">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="sports">Sports</option>
+                            <option value="books">Books</option>
+                            <option value="toys">Toys</option>
+                            <option value="beauty">Beauty</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <select id="adminProductStatus" class="input-field">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="sold">Sold</option>
+                            <option value="pending">Pending Review</option>
+                        </select>
+                        <input type="text" id="adminProductSearch" placeholder="Search products..." class="input-field">
+                        <button id="adminFilterProducts" class="btn-primary">
+                            <i class="fas fa-search mr-2"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left">
+                                        <input type="checkbox" id="selectAllProducts" class="rounded">
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Featured</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminProductsTableBody" class="bg-white divide-y divide-gray-200">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Products Pagination -->
+                <div id="adminProductsPagination" class="mt-6 flex justify-center">
+                    <!-- Pagination will be generated here -->
+                </div>
+            </div>
+
+            <!-- Orders Management Section -->
+            <div id="ordersSection" class="dashboard-section p-8 hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Orders Management</h1>
+                        <p class="text-gray-600">Monitor and manage all platform orders</p>
+                    </div>
+                    <button id="exportOrdersBtn" class="btn-secondary">
+                        <i class="fas fa-download mr-2"></i>
+                        Export Orders
+                    </button>
+                </div>
+
+                <!-- Orders Filter -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <select id="adminOrderStatus" class="input-field">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <input type="date" id="adminOrderDateFrom" class="input-field">
+                        <input type="date" id="adminOrderDateTo" class="input-field">
+                        <button id="adminFilterOrders" class="btn-primary">
+                            <i class="fas fa-filter mr-2"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrdersTableBody" class="bg-white divide-y divide-gray-200">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management Section -->
+            <div id="usersSection" class="dashboard-section p-8 hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Users Management</h1>
+                        <p class="text-gray-600">Manage platform users and permissions</p>
+                    </div>
+                    <button id="addUserBtn" class="btn-primary">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Add User
+                    </button>
+                </div>
+
+                <!-- Users Filter -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <select id="adminUserRole" class="input-field">
+                            <option value="">All Roles</option>
+                            <option value="buyer">Buyers</option>
+                            <option value="seller">Sellers</option>
+                            <option value="admin">Admins</option>
+                        </select>
+                        <select id="adminUserStatus" class="input-field">
+                            <option value="">All Status</option>
+                            <option value="verified">Verified</option>
+                            <option value="unverified">Unverified</option>
+                        </select>
+                        <input type="text" id="adminUserSearch" placeholder="Search users..." class="input-field">
+                        <button id="adminFilterUsers" class="btn-primary">
+                            <i class="fas fa-search mr-2"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUsersTableBody" class="bg-white divide-y divide-gray-200">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analyticsSection" class="dashboard-section p-8 hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Platform Analytics</h1>
+                    <p class="text-gray-600">Comprehensive insights and reports</p>
+                </div>
+
+                <!-- Analytics Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">Sales Performance</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Today</span>
+                                <span class="font-semibold text-green-600">$12,450</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">This Week</span>
+                                <span class="font-semibold">$87,230</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">This Month</span>
+                                <span class="font-semibold">$284,567</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">User Growth</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">New Users Today</span>
+                                <span class="font-semibold text-blue-600">23</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">This Week</span>
+                                <span class="font-semibold">156</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">This Month</span>
+                                <span class="font-semibold">847</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">Top Categories</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Electronics</span>
+                                <div class="flex items-center">
+                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                    <span class="text-sm">65%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Clothing</span>
+                                <div class="flex items-center">
+                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 35%"></div>
+                                    </div>
+                                    <span class="text-sm">35%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Home</span>
+                                <div class="flex items-center">
+                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 25%"></div>
+                                    </div>
+                                    <span class="text-sm">25%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Category Distribution</h3>
+                        <canvas id="categoryChart" class="w-full h-64"></canvas>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">User Registration Trend</h3>
+                        <canvas id="userRegistrationChart" class="w-full h-64"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settingsSection" class="dashboard-section p-8 hidden">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Platform Settings</h1>
+                    <p class="text-gray-600">Configure platform-wide settings</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- General Settings -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-6">General Settings</h3>
+                        <form id="generalSettingsForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
+                                    <input type="text" value="ResellerHub" class="input-field">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Support Email</label>
+                                    <input type="email" value="support@resellerhub.com" class="input-field">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Platform Description</label>
+                                <textarea rows="3" class="input-field">Your trusted marketplace for quality pre-owned items.</textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Settings
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Payment Settings -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-6">Payment Settings</h3>
+                        <form id="paymentSettingsForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">SSLCommerz Store ID</label>
+                                    <input type="text" id="sslcommerzStoreId" class="input-field" placeholder="Enter store ID">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Commission Rate (%)</label>
+                                    <input type="number" value="5" min="0" max="50" step="0.1" class="input-field">
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">Enable SSLCommerz</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-2" checked>
+                                    <span class="text-sm">Enable Cash on Delivery</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Payment Settings
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Email Settings -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-6">Email Settings</h3>
+                        <form id="emailSettingsForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Host</label>
+                                    <input type="text" class="input-field" placeholder="smtp.gmail.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Port</label>
+                                    <input type="number" value="587" class="input-field">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Username</label>
+                                    <input type="text" class="input-field" placeholder="your-email@gmail.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Password</label>
+                                    <input type="password" class="input-field" placeholder="Your app password">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Email Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="productDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold">Product Details</h3>
+                        <button id="closeProductDetailsModal" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="productDetailsContent">
+                        <!-- Product details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="userDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold">User Details</h3>
+                        <button id="closeUserDetailsModal" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="userDetailsContent">
+                        <!-- User details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/admin-dashboard.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>

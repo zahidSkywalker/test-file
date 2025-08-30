@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ResellerHub</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-recycle text-white text-xl"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                    </a>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <i class="fas fa-lock mr-1"></i>
+                    Secure Checkout
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Progress -->
+    <div class="bg-white border-b">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-center space-x-8">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-medium">1</div>
+                    <span class="ml-2 text-sm font-medium text-primary-600">Shipping</span>
+                </div>
+                <div class="w-16 h-0.5 bg-gray-300"></div>
+                <div class="flex items-center">
+                    <div id="step2Circle" class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-medium">2</div>
+                    <span id="step2Text" class="ml-2 text-sm font-medium text-gray-500">Payment</span>
+                </div>
+                <div class="w-16 h-0.5 bg-gray-300"></div>
+                <div class="flex items-center">
+                    <div id="step3Circle" class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-medium">3</div>
+                    <span id="step3Text" class="ml-2 text-sm font-medium text-gray-500">Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Checkout Form -->
+            <div class="lg:col-span-2">
+                <form id="checkoutForm" class="space-y-8">
+                    <!-- Shipping Information -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold mb-6">Shipping Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" id="shippingName" required class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="shippingPhone" required class="input-field">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
+                                <input type="text" id="shippingStreet" required class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                                <input type="text" id="shippingCity" required class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">State/Province *</label>
+                                <input type="text" id="shippingState" required class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ZIP/Postal Code *</label>
+                                <input type="text" id="shippingZip" required class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Country *</label>
+                                <select id="shippingCountry" required class="input-field">
+                                    <option value="">Select Country</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="India">India</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Information -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-semibold">Billing Information</h3>
+                            <label class="flex items-center">
+                                <input type="checkbox" id="sameAsShipping" class="mr-2" checked>
+                                <span class="text-sm">Same as shipping address</span>
+                            </label>
+                        </div>
+                        <div id="billingFields" class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" id="billingName" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="billingPhone" class="input-field">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
+                                <input type="text" id="billingStreet" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                                <input type="text" id="billingCity" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">State/Province *</label>
+                                <input type="text" id="billingState" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">ZIP/Postal Code *</label>
+                                <input type="text" id="billingZip" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Country *</label>
+                                <select id="billingCountry" class="input-field">
+                                    <option value="">Select Country</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="India">India</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-semibold mb-6">Payment Method</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="paymentMethod" value="sslcommerz" class="mr-3" checked>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-credit-card text-2xl text-primary-600"></i>
+                                    <div>
+                                        <div class="font-medium">SSLCommerz</div>
+                                        <div class="text-sm text-gray-600">Credit/Debit Card, Mobile Banking</div>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="paymentMethod" value="cod" class="mr-3">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-money-bill-wave text-2xl text-green-600"></i>
+                                    <div>
+                                        <div class="font-medium">Cash on Delivery</div>
+                                        <div class="text-sm text-gray-600">Pay when you receive your order</div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
+                    <h3 class="text-xl font-semibold mb-6">Order Summary</h3>
+                    
+                    <!-- Order Items -->
+                    <div class="space-y-4 mb-6" id="orderItems">
+                        <!-- Order items will be loaded here -->
+                    </div>
+
+                    <!-- Totals -->
+                    <div class="border-t pt-4 space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span id="checkoutSubtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping</span>
+                            <span id="checkoutShipping">$5.99</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Tax</span>
+                            <span id="checkoutTax">$0.00</span>
+                        </div>
+                        <div id="discountRow" class="flex justify-between text-green-600 hidden">
+                            <span>Discount</span>
+                            <span id="discountAmount">-$0.00</span>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between text-lg font-semibold">
+                            <span>Total</span>
+                            <span id="checkoutTotal" class="text-primary-600">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <button id="placeOrderBtn" class="w-full btn-primary text-lg py-3 mt-6">
+                        <i class="fas fa-credit-card mr-2"></i>
+                        Place Order
+                    </button>
+
+                    <!-- Security Info -->
+                    <div class="mt-6 pt-6 border-t">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-2">
+                            <i class="fas fa-shield-alt text-green-500"></i>
+                            <span>Your payment information is secure</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm text-gray-600">
+                            <i class="fas fa-lock text-green-500"></i>
+                            <span>SSL encrypted checkout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div id="processingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white rounded-lg p-8 text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+                <h3 class="text-lg font-semibold mb-2">Processing Your Order</h3>
+                <p class="text-gray-600">Please wait while we process your payment...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/checkout.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ResellerHub</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-primary-50 to-primary-100 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-recycle text-white text-xl"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/login" class="text-primary-600 hover:text-primary-700 font-medium">Already have an account?</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
+    <div class="flex items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-lg w-full space-y-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-display font-bold text-gray-900 mb-2">Create Your Account</h2>
+                <p class="text-gray-600">Join thousands of buyers and sellers</p>
+            </div>
+
+            <form id="registerForm" class="bg-white rounded-lg shadow-lg p-8 space-y-6">
+                <!-- Error Message -->
+                <div id="errorMessage" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg hidden">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span id="errorText"></span>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg hidden">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span id="successText"></span>
+                    </div>
+                </div>
+
+                <!-- Account Type -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">
+                        <i class="fas fa-user-tag mr-1"></i>
+                        Account Type
+                    </label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 account-type-option">
+                            <input type="radio" name="accountType" value="buyer" class="mr-3" checked>
+                            <div class="text-center w-full">
+                                <i class="fas fa-shopping-bag text-blue-600 text-lg mb-1"></i>
+                                <div class="font-medium text-sm">Buyer</div>
+                                <div class="text-xs text-gray-600">Shop & Purchase</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 account-type-option">
+                            <input type="radio" name="accountType" value="seller" class="mr-3">
+                            <div class="text-center w-full">
+                                <i class="fas fa-store text-green-600 text-lg mb-1"></i>
+                                <div class="font-medium text-sm">Seller</div>
+                                <div class="text-xs text-gray-600">List & Sell</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Basic Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
+                            First Name *
+                        </label>
+                        <input type="text" id="firstName" required class="input-field" placeholder="John">
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
+                            Last Name *
+                        </label>
+                        <input type="text" id="lastName" required class="input-field" placeholder="Doe">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-envelope mr-1"></i>
+                        Email Address *
+                    </label>
+                    <input type="email" id="regEmail" required class="input-field" placeholder="john@example.com">
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-phone mr-1"></i>
+                        Phone Number
+                    </label>
+                    <input type="tel" id="phone" class="input-field" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <div>
+                    <label for="regPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-lock mr-1"></i>
+                        Password *
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="regPassword" required 
+                               class="input-field pr-10" 
+                               placeholder="Create a strong password">
+                        <button type="button" id="toggleRegPassword" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-600">
+                        Password must be at least 6 characters long
+                    </div>
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-lock mr-1"></i>
+                        Confirm Password *
+                    </label>
+                    <input type="password" id="confirmPassword" required 
+                           class="input-field" 
+                           placeholder="Confirm your password">
+                </div>
+
+                <!-- Seller Information (hidden by default) -->
+                <div id="sellerFields" class="space-y-4 hidden">
+                    <hr>
+                    <h4 class="font-medium text-gray-900">Seller Information</h4>
+                    
+                    <div>
+                        <label for="businessName" class="block text-sm font-medium text-gray-700 mb-2">
+                            Business Name *
+                        </label>
+                        <input type="text" id="businessName" class="input-field" placeholder="Your Business Name">
+                    </div>
+
+                    <div>
+                        <label for="businessDescription" class="block text-sm font-medium text-gray-700 mb-2">
+                            Business Description
+                        </label>
+                        <textarea id="businessDescription" rows="3" class="input-field" 
+                                  placeholder="Tell us about your business..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-start">
+                    <input type="checkbox" id="agreeTerms" required class="mt-1 mr-3">
+                    <label for="agreeTerms" class="text-sm text-gray-600">
+                        I agree to the 
+                        <a href="/terms" class="text-primary-600 hover:text-primary-700">Terms of Service</a> 
+                        and 
+                        <a href="/privacy" class="text-primary-600 hover:text-primary-700">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" id="registerBtn" class="w-full btn-primary text-lg py-3">
+                    <span id="registerBtnText">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Create Account
+                    </span>
+                    <span id="registerBtnLoading" class="hidden">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Creating Account...
+                    </span>
+                </button>
+
+                <div class="text-center">
+                    <p class="text-gray-600">
+                        Already have an account? 
+                        <a href="/login" class="text-primary-600 hover:text-primary-700 font-medium">Sign in here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Account type toggle
+            document.querySelectorAll('input[name="accountType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const sellerFields = document.getElementById('sellerFields');
+                    const businessName = document.getElementById('businessName');
+                    
+                    if (this.value === 'seller') {
+                        sellerFields.classList.remove('hidden');
+                        businessName.required = true;
+                    } else {
+                        sellerFields.classList.add('hidden');
+                        businessName.required = false;
+                    }
+                    
+                    // Update visual state
+                    document.querySelectorAll('.account-type-option').forEach(option => {
+                        option.classList.remove('border-primary-500', 'bg-primary-50');
+                        option.classList.add('border-gray-300');
+                    });
+                    
+                    this.closest('.account-type-option').classList.remove('border-gray-300');
+                    this.closest('.account-type-option').classList.add('border-primary-500', 'bg-primary-50');
+                });
+            });
+
+            // Password toggle
+            document.getElementById('toggleRegPassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('regPassword');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            // Password confirmation validation
+            document.getElementById('confirmPassword').addEventListener('input', function() {
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    this.setCustomValidity('Passwords do not match');
+                    this.classList.add('border-red-500');
+                } else {
+                    this.setCustomValidity('');
+                    this.classList.remove('border-red-500');
+                }
+            });
+
+            // Registration form submission
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                    email: document.getElementById('regEmail').value,
+                    password: document.getElementById('regPassword').value,
+                    phone: document.getElementById('phone').value,
+                    role: document.querySelector('input[name="accountType"]:checked').value
+                };
+
+                // Add seller info if applicable
+                if (formData.role === 'seller') {
+                    formData.sellerInfo = {
+                        businessName: document.getElementById('businessName').value,
+                        businessDescription: document.getElementById('businessDescription').value
+                    };
+                }
+
+                // Validate password confirmation
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (formData.password !== confirmPassword) {
+                    showError('Passwords do not match');
+                    return;
+                }
+
+                // Show loading state
+                const registerBtn = document.getElementById('registerBtn');
+                const registerBtnText = document.getElementById('registerBtnText');
+                const registerBtnLoading = document.getElementById('registerBtnLoading');
+                
+                registerBtn.disabled = true;
+                registerBtnText.classList.add('hidden');
+                registerBtnLoading.classList.remove('hidden');
+
+                try {
+                    const response = await fetch('/api/auth/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showSuccess('Account created successfully! Redirecting...');
+                        
+                        // Store auth data
+                        localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('userData', JSON.stringify(data.user));
+
+                        // Redirect after 2 seconds
+                        setTimeout(() => {
+                            if (data.user.role === 'seller') {
+                                window.location.href = '/seller-dashboard';
+                            } else {
+                                window.location.href = '/';
+                            }
+                        }, 2000);
+                    } else {
+                        showError(data.message || 'Registration failed');
+                    }
+                } catch (error) {
+                    showError('Network error. Please try again.');
+                } finally {
+                    // Reset button state
+                    registerBtn.disabled = false;
+                    registerBtnText.classList.remove('hidden');
+                    registerBtnLoading.classList.add('hidden');
+                }
+            });
+
+            function showError(message) {
+                const errorMessage = document.getElementById('errorMessage');
+                const errorText = document.getElementById('errorText');
+                
+                errorText.textContent = message;
+                errorMessage.classList.remove('hidden');
+                document.getElementById('successMessage').classList.add('hidden');
+                
+                setTimeout(() => {
+                    errorMessage.classList.add('hidden');
+                }, 5000);
+            }
+
+            function showSuccess(message) {
+                const successMessage = document.getElementById('successMessage');
+                const successText = document.getElementById('successText');
+                
+                successText.textContent = message;
+                successMessage.classList.remove('hidden');
+                document.getElementById('errorMessage').classList.add('hidden');
+            }
+
+            // Animate form on load
+            gsap.from('.max-w-lg', {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power2.out'
+            });
+
+            // Set initial account type visual state
+            document.querySelector('.account-type-option').classList.add('border-primary-500', 'bg-primary-50');
+        });
+    </script>
+</body>
+</html>
