@@ -8,8 +8,35 @@
     <link href="/css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        .hamburger-line {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation (same as index) -->
@@ -17,11 +44,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-recycle text-white text-xl"></i>
+                    <a href="/" class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-bolt text-white text-xl"></i>
                         </div>
-                        <span class="font-display font-bold text-xl text-gray-900">ResellerHub</span>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TrendyMart</span>
                     </a>
                 </div>
 
@@ -34,39 +61,58 @@
                 </div>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/products" class="nav-link text-primary-600">Products</a>
-                    <a href="/categories" class="nav-link">Categories</a>
-                    <a href="/seller-dashboard" class="nav-link">Sell</a>
-                    <div class="relative">
-                        <button class="nav-link flex items-center" id="userMenuBtn">
-                            <i class="fas fa-user mr-2"></i>
-                            <span id="userMenuText">Account</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </button>
-                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden" id="userMenu">
-                            <a href="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="loginLink">Login</a>
-                            <a href="/register" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="registerLink">Register</a>
-                        </div>
-                    </div>
-                    <a href="/cart" class="relative">
-                        <i class="fas fa-shopping-cart text-xl text-gray-700 hover:text-primary-600 transition-colors"></i>
-                        <span class="absolute -top-2 -right-2 bg-primary-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cartCount">0</span>
+                    <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors font-semibold">Home</a>
+                    <a href="/products" class="text-blue-600 font-semibold">Products</a>
+                    <a href="/about" class="text-gray-700 hover:text-blue-600 transition-colors font-semibold">About</a>
+                    <a href="/contact" class="text-gray-700 hover:text-blue-600 transition-colors font-semibold">Contact</a>
+                    <a href="/cart" class="text-gray-700 hover:text-blue-600 transition-colors relative font-semibold">
+                        <i class="fas fa-shopping-cart mr-2"></i>Cart
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-1" id="cartCount">0</span>
                     </a>
+                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl font-semibold">Login</a>
                 </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-700 hover:text-blue-600 transition-colors">
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-700 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-700 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-700"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 hidden transform transition-all duration-300">
+            <div class="px-6 py-6 space-y-4">
+                <a href="/" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">Home</a>
+                <a href="/products" class="block text-blue-600 font-medium py-2">Products</a>
+                <a href="/about" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">About</a>
+                <a href="/contact" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">Contact</a>
+                <a href="/cart" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">Cart</a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">Login</a>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="bg-white py-8 border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">All Products</h1>
-                    <p class="text-gray-600">Discover amazing deals from verified sellers</p>
-                </div>
-                <div class="mt-4 md:mt-0">
+    <section class="bg-gradient-to-r from-blue-50 to-purple-50 py-16 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 gradient-text" data-aos="fade-up" data-aos-duration="800">
+                Discover Amazing Products
+            </h1>
+            <p class="text-2xl text-gray-600 font-medium mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Explore our curated collection of premium electronics from verified sellers across Bangladesh
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
                     <span class="text-sm text-gray-500" id="productCount">Loading products...</span>
+                </div>
+                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
+                    <span class="text-sm text-gray-500">Premium Quality</span>
+                </div>
+                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
+                    <span class="text-sm text-gray-500">Fast Delivery</span>
                 </div>
             </div>
         </div>
@@ -217,5 +263,47 @@
     <script src="/js/cart.js"></script>
     <script src="/js/products.js"></script>
     <script src="/js/animations.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger = document.querySelector('.hamburger');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Update cart count on load
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+                element.style.display = totalItems > 0 ? 'block' : 'none';
+            });
+        }
+
+        updateCartCount();
+    </script>
 </body>
 </html>
