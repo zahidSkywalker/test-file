@@ -130,6 +130,25 @@
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
         }
+        
+        @keyframes dancing-letters {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(2deg); }
+            50% { transform: translateY(-4px) rotate(-1deg); }
+            75% { transform: translateY(-6px) rotate(1deg); }
+        }
+        
+        .dancing-brand span {
+            animation: dancing-letters 3s ease-in-out infinite;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .dancing-brand:hover span {
+            animation-play-state: paused;
+            transform: scale(1.1);
+            color: #3b82f6;
+        }
     </style>
 </head>
 <body class="glassmorphism-bg font-inter">
@@ -150,8 +169,17 @@
                             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
                         </div>
                         <div class="relative">
-                            <span class="text-4xl font-black bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:via-purple-600 group-hover:to-pink-600 transition-all duration-500 tracking-tight">
-                                TrendyMart
+                            <span class="text-3xl font-black bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:via-purple-600 group-hover:to-pink-600 transition-all duration-500 tracking-tight dancing-brand">
+                                <span class="inline-block animate-bounce" style="animation-delay: 0s;">T</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.1s;">r</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.2s;">e</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.3s;">n</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.4s;">d</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.5s;">y</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.6s;">M</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.7s;">a</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.8s;">r</span>
+                                <span class="inline-block animate-bounce" style="animation-delay: 0.9s;">t</span>
                             </span>
                             <div class="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-500 rounded-full"></div>
                         </div>
