@@ -5,7 +5,7 @@
     "description": "Latest Apple flagship with A16 Bionic chip, 48MP camera system, Dynamic Island",
     "price": 189999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1661961110671-77b01a53ca70?q=80&w=1000&auto=format&fit=crop",
     "discount": 6
   },
   {
@@ -14,7 +14,7 @@
     "description": "Premium Android flagship with S Pen, 200MP camera, 120Hz AMOLED display",
     "price": 169999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop",
     "discount": 14
   },
   {
@@ -23,7 +23,7 @@
     "description": "Flagship performance with Snapdragon 8 Gen 2, Leica camera system",
     "price": 89999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop",
     "discount": 10
   },
   {
@@ -41,7 +41,7 @@
     "description": "Ultra-fast charging smartphone with flagship performance",
     "price": 54999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop",
     "discount": 9
   },
   {
@@ -50,7 +50,7 @@
     "description": "Portrait photography expert with 50MP selfie camera, color changing design",
     "price": 64999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop",
     "discount": 6
   },
   {
@@ -68,7 +68,7 @@
     "description": "Gaming powerhouse with AMD Ryzen 7, RTX 4060, 144Hz display",
     "price": 179999,
     "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1000&auto=format&fit=crop",
     "discount": 7
   },
   {
@@ -77,7 +77,7 @@
     "description": "Ultra-portable premium laptop with InfinityEdge display, 16GB RAM",
     "price": 189999,
     "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1000&auto=format&fit=crop",
     "discount": 7
   },
   {
@@ -86,7 +86,7 @@
     "description": "Affordable gaming laptop with GTX 1650, AMD Ryzen 5, 512GB SSD",
     "price": 109999,
     "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=1000&auto=format&fit=crop",
     "discount": 6
   },
   {
@@ -95,7 +95,7 @@
     "description": "Business laptop with Intel i5, 8GB RAM, professional design",
     "price": 89999,
     "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1000&auto=format&fit=crop",
     "discount": 3
   },
   {
@@ -104,7 +104,7 @@
     "description": "Everyday laptop with Intel i5, 8GB RAM, Full HD display, lightweight design",
     "price": 69999,
     "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=1000&auto=format&fit=crop",
     "discount": 5
   },
   {
@@ -122,7 +122,7 @@
     "description": "Active noise cancellation with MagSafe charging case",
     "price": 28999,
     "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1606229365485-9369fa0ecdc7?q=80&w=1000&auto=format&fit=crop",
     "discount": 19
   },
   {
@@ -131,7 +131,7 @@
     "description": "Waterproof Bluetooth speaker with PartyBoost technology",
     "price": 12999,
     "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1545127398-14699f92334e?q=80&w=1000&auto=format&fit=crop",
     "discount": 8
   },
   {
@@ -140,7 +140,7 @@
     "description": "Professional studio monitor headphones with exceptional clarity",
     "price": 18999,
     "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1000&auto=format&fit=crop",
     "discount": 12
   },
   {
@@ -149,7 +149,7 @@
     "description": "Premium compact Bluetooth speaker with deep bass",
     "price": 22999,
     "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1505740106531-4243f3831c78?q=80&w=1000&auto=format&fit=crop",
     "discount": 14
   },
   {
@@ -158,7 +158,7 @@
     "description": "Wireless headphones with active noise cancellation, 30-hour battery",
     "price": 15999,
     "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=1000&auto=format&fit=crop",
     "discount": 16
   },
   {
@@ -176,7 +176,7 @@
     "description": "Professional mirrorless camera with 33MP sensor, real-time tracking",
     "price": 349999,
     "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1000&auto=format&fit=crop",
     "discount": 9
   },
   {
@@ -185,7 +185,7 @@
     "description": "Versatile full-frame camera with dual processors, 4K UHD video",
     "price": 249999,
     "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
     "discount": 11
   },
   {
@@ -194,7 +194,7 @@
     "description": "Compact mirrorless camera perfect for content creation",
     "price": 79999,
     "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop",
     "discount": 6
   },
   {
@@ -203,7 +203,7 @@
     "description": "Action camera with 5.3K video, HyperSmooth stabilization",
     "price": 54999,
     "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1526178613552-2b45c6c302f0?q=80&w=1000&auto=format&fit=crop",
     "discount": 11
   },
   {
@@ -212,7 +212,7 @@
     "description": "Lightweight drone with 4K HDR video, obstacle avoidance",
     "price": 119999,
     "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=1000&auto=format&fit=crop",
     "discount": 7
   },
   {
@@ -230,7 +230,7 @@
     "description": "Powerful gaming console with 4K gaming, 1TB SSD, 120 FPS support",
     "price": 76999,
     "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?q=80&w=1000&auto=format&fit=crop",
     "discount": 4
   },
   {
@@ -239,7 +239,7 @@
     "description": "Hybrid gaming console with 7-inch OLED screen, handheld and docked modes",
     "price": 42999,
     "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1000&auto=format&fit=crop",
     "discount": 4
   },
   {
@@ -248,7 +248,7 @@
     "description": "Wireless gaming mouse with Focus Pro 30K sensor, 90-hour battery",
     "price": 14999,
     "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=1000&auto=format&fit=crop",
     "discount": 2
   },
   {
@@ -257,7 +257,7 @@
     "description": "Mechanical gaming keyboard with GX Blue switches, RGB lighting",
     "price": 16999,
     "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?q=80&w=1000&auto=format&fit=crop",
     "discount": 6
   },
   {
@@ -266,7 +266,7 @@
     "description": "Wireless gaming headset with 2.4GHz connection, 24-hour battery",
     "price": 19999,
     "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1599669454699-248893623440?q=80&w=1000&auto=format&fit=crop",
     "discount": 10
   },
   {
@@ -275,7 +275,7 @@
     "description": "Premium 4K Smart TV with Quantum Dot technology, HDR10+",
     "price": 329999,
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1593359677879-ead7fc711a63?q=80&w=1000&auto=format&fit=crop",
     "discount": 5
   },
   {
@@ -284,7 +284,7 @@
     "description": "Self-lit OLED pixels, Dolby Vision IQ, webOS smart platform",
     "price": 229999,
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?q=80&w=1000&auto=format&fit=crop",
     "discount": 12
   },
   {
@@ -293,7 +293,7 @@
     "description": "4K HDR TV with Triluminos Pro, Google TV, HDMI 2.1",
     "price": 149999,
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=1000&auto=format&fit=crop",
     "discount": 9
   },
   {
@@ -311,7 +311,7 @@
     "description": "Smart LED TV with PatchWall UI, 20W speakers, multiple ports",
     "price": 24999,
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1000&auto=format&fit=crop",
     "discount": 8
   },
   {
@@ -320,7 +320,7 @@
     "description": "Local brand HD TV with multiple connectivity options, energy efficient",
     "price": 16999,
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=1000&auto=format&fit=crop",
     "discount": 14
   },
   {
@@ -329,7 +329,7 @@
     "description": "High-capacity power bank with Power Delivery, fast charging",
     "price": 8999,
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1609592718967-c3c4b7d7f8c8?q=80&w=1000&auto=format&fit=crop",
     "discount": 21
   },
   {
@@ -338,7 +338,7 @@
     "description": "High-speed microSD card with A2 rating, 170MB/s read speed",
     "price": 3999,
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?q=80&w=1000&auto=format&fit=crop",
     "discount": 19
   },
   {
@@ -347,7 +347,7 @@
     "description": "Full HD 1080p webcam with auto-focus, built-in stereo mics",
     "price": 9999,
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1612538499389-c1609b1b8f20?q=80&w=1000&auto=format&fit=crop",
     "discount": 18
   },
   {
@@ -356,7 +356,7 @@
     "description": "Item tracker with Find My network, precision finding",
     "price": 11999,
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1617957743091-b83fbdf1bd3a?q=80&w=1000&auto=format&fit=crop",
     "discount": 12
   },
   {
@@ -374,7 +374,7 @@
     "description": "Multi-port hub with HDMI 4K, USB 3.0, SD card slots, PD charging",
     "price": 6999,
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=1000&auto=format&fit=crop",
     "discount": 21
   }
 ]
