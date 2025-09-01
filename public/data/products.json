@@ -77,8 +77,7 @@
     "stock": 18,
     "description": "Full-frame mirrorless, 4K video, Dual card slots",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=600&h=400&fit=crop&q=80"
-  },
+    "image": "https://res.cloudinary.com/dbi2rwlso/image/upload/v1756749586/IMG_9190_mbttql.png"},
   {
     "id": "9",
     "name": "PlayStation 5",
