@@ -17,7 +17,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-3">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
                              alt="TrendyMart Logo" 
                              class="w-12 h-12 rounded-lg object-cover shadow-md">
                         <span class="text-2xl font-bold text-gray-800">TrendyMart</span>
@@ -291,9 +291,11 @@
 
                     if (response && response.ok) {
                         if (success) {
-                            window.location.href = `/checkout/success?order=${orderId}`;
+                            // Clear pending order and show success
+                            localStorage.removeItem('pendingOrder');
+                            window.location.href = `/checkout/success.html?order=${orderId}`;
                         } else {
-                            window.location.href = '/checkout/failed';
+                            window.location.href = '/checkout/failed.html';
                         }
                     } else {
                         throw new Error('Payment processing failed');
@@ -308,13 +310,20 @@
 
         async function loadPaymentOrderSummary(orderId) {
             try {
-                const response = await apiRequest(`/api/orders/${orderId}`);
-                
+                // Try API first
+                const response = typeof apiRequest === 'function' ? await apiRequest(`/api/orders/${orderId}`) : null;
                 if (response && response.ok) {
                     const order = await response.json();
                     displayPaymentOrderSummary(order);
+                    return;
+                }
+                // Fallback to localStorage
+                const pending = localStorage.getItem('pendingOrder');
+                if (pending) {
+                    const order = JSON.parse(pending);
+                    displayPaymentOrderSummary(order);
                 } else {
-                    throw new Error('Failed to load order');
+                    throw new Error('No order available');
                 }
             } catch (error) {
                 console.error('Error loading order for payment:', error);
