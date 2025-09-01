@@ -326,7 +326,7 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="contact-icon bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6">
                         <i class="fas fa-phone text-2xl text-white"></i>
@@ -334,8 +334,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Phone Support</h3>
                     <p class="text-gray-600 mb-4">Call us anytime for immediate assistance</p>
                     <div class="space-y-2">
-                        <p class="text-lg font-semibold text-blue-600">+880 1234-567890</p>
-                        <p class="text-lg font-semibold text-blue-600">+880 1234-567891</p>
+                        <p class="text-lg font-semibold text-blue-600">+880 1853-617069</p>
                     </div>
                     <p class="text-sm text-gray-500 mt-4">Available 24/7</p>
                 </div>
@@ -347,8 +346,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Email Support</h3>
                     <p class="text-gray-600 mb-4">Send us an email for detailed inquiries</p>
                     <div class="space-y-2">
-                        <p class="text-lg font-semibold text-green-600">support@trendymart.com</p>
-                        <p class="text-lg font-semibold text-green-600">info@trendymart.com</p>
+                        <p class="text-lg font-semibold text-green-600">trendymart409@gmail.com</p>
                     </div>
                     <p class="text-sm text-gray-500 mt-4">Response within 2 hours</p>
                 </div>
@@ -372,9 +370,25 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Visit Us</h3>
                     <p class="text-gray-600 mb-4">Drop by our main office</p>
-                    <p class="text-lg font-semibold text-orange-600">House #123, Road #12</p>
-                    <p class="text-lg font-semibold text-orange-600">Banani, Dhaka 1213</p>
-                    <p class="text-sm text-gray-500 mt-4">Bangladesh</p>
+                    <p class="text-lg font-semibold text-orange-600">Faridgonj, Chandpur</p>
+                    <p class="text-lg font-semibold text-orange-600">Bangladesh</p>
+                    <p class="text-sm text-gray-500 mt-4">Main Office</p>
+                </div>
+                
+                <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="500">
+                    <div class="contact-icon bg-gradient-to-r from-green-500 to-emerald-600 mx-auto mb-6">
+                        <i class="fab fa-whatsapp text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">WhatsApp Support</h3>
+                    <p class="text-gray-600 mb-4">Quick chat support via WhatsApp</p>
+                    <div class="space-y-2">
+                        <p class="text-lg font-semibold text-green-600">+880 1853-617069</p>
+                    </div>
+                    <a href="https://wa.me/8801853617069" target="_blank" class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Chat Now
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">Instant Response</p>
                 </div>
             </div>
         </div>
@@ -787,5 +801,46 @@
             });
         });
     </script>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <a href="https://wa.me/8801853617069" 
+           target="_blank" 
+           class="whatsapp-float group">
+            <div class="relative">
+                <!-- Main Button -->
+                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-all duration-300 group-hover:shadow-green-500/50">
+                    <i class="fab fa-whatsapp text-3xl text-white"></i>
+                </div>
+                
+                <!-- Animated Ring -->
+                <div class="absolute inset-0 w-16 h-16 bg-green-400 rounded-full opacity-0 group-hover:opacity-30 animate-ping"></div>
+                
+                <!-- Pulse Ring -->
+                <div class="absolute inset-0 w-16 h-16 bg-green-500 rounded-full opacity-0 group-hover:opacity-20 animate-pulse"></div>
+                
+                <!-- Tooltip -->
+                <div class="absolute right-20 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Chat on WhatsApp
+                    <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <style>
+        .whatsapp-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .whatsapp-float:hover {
+            animation-play-state: paused;
+        }
+    </style>
 </body>
 </html>

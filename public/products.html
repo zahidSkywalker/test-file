@@ -830,5 +830,46 @@
             window.location.href = `/checkout/payment.html?order=${orderId}`;
         }
     </script>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <a href="https://wa.me/8801853617069" 
+           target="_blank" 
+           class="whatsapp-float group">
+            <div class="relative">
+                <!-- Main Button -->
+                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-110 transition-all duration-300 group-hover:shadow-green-500/50">
+                    <i class="fab fa-whatsapp text-3xl text-white"></i>
+                </div>
+                
+                <!-- Animated Ring -->
+                <div class="absolute inset-0 w-16 h-16 bg-green-400 rounded-full opacity-0 group-hover:opacity-30 animate-ping"></div>
+                
+                <!-- Pulse Ring -->
+                <div class="absolute inset-0 w-16 h-16 bg-green-500 rounded-full opacity-0 group-hover:opacity-20 animate-pulse"></div>
+                
+                <!-- Tooltip -->
+                <div class="absolute right-20 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Chat on WhatsApp
+                    <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <style>
+        .whatsapp-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .whatsapp-float:hover {
+            animation-play-state: paused;
+        }
+    </style>
 </body>
 </html>
