@@ -1,380 +1,422 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "name": "iPhone 14 Pro Max 256GB",
-    "description": "Latest Apple flagship with A16 Bionic chip, 48MP camera system, Dynamic Island",
-    "price": 189999,
     "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 2,
-    "name": "Samsung Galaxy S23 Ultra",
-    "description": "Premium Android flagship with S Pen, 200MP camera, 120Hz AMOLED display",
-    "price": 169999,
-    "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop",
-    "discount": 14
-  },
-  {
-    "id": 3,
-    "name": "Xiaomi 13 Pro 5G",
-    "description": "Flagship performance with Snapdragon 8 Gen 2, Leica camera system",
-    "price": 89999,
-    "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop",
-    "discount": 10
-  },
-  {
-    "id": 4,
-    "name": "OnePlus 11 5G 128GB",
-    "description": "Fast charging flagship with Hasselblad camera, 120Hz OLED display",
-    "price": 79999,
-    "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000&auto=format&fit=crop",
-    "discount": 9
-  },
-  {
-    "id": 5,
-    "name": "Realme GT 3 240W",
-    "description": "Ultra-fast charging smartphone with flagship performance",
-    "price": 54999,
-    "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?q=80&w=1000&auto=format&fit=crop",
-    "discount": 9
-  },
-  {
-    "id": 6,
-    "name": "Vivo V27 Pro 5G",
-    "description": "Portrait photography expert with 50MP selfie camera, color changing design",
-    "price": 64999,
-    "category": "smartphones",
-    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 7,
-    "name": "MacBook Pro 14\" M2 Pro",
-    "description": "Professional laptop with M2 Pro chip, Liquid Retina XDR display, 512GB SSD",
-    "price": 299999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 8,
-    "name": "ASUS ROG Strix G15 RTX 4060",
-    "description": "Gaming powerhouse with AMD Ryzen 7, RTX 4060, 144Hz display",
-    "price": 179999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?q=80&w=1000&auto=format&fit=crop",
-    "discount": 7
-  },
-  {
-    "id": 9,
-    "name": "Dell XPS 13 Plus Intel i7",
-    "description": "Ultra-portable premium laptop with InfinityEdge display, 16GB RAM",
-    "price": 189999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1000&auto=format&fit=crop",
-    "discount": 7
-  },
-  {
-    "id": 10,
-    "name": "HP Pavilion Gaming 15",
-    "description": "Affordable gaming laptop with GTX 1650, AMD Ryzen 5, 512GB SSD",
-    "price": 109999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 11,
-    "name": "Lenovo ThinkPad E14 Gen 4",
-    "description": "Business laptop with Intel i5, 8GB RAM, professional design",
-    "price": 89999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1000&auto=format&fit=crop",
-    "discount": 3
-  },
-  {
-    "id": 12,
-    "name": "Acer Aspire 5 Slim",
-    "description": "Everyday laptop with Intel i5, 8GB RAM, Full HD display, lightweight design",
-    "price": 69999,
-    "category": "laptops",
-    "image": "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=1000&auto=format&fit=crop",
-    "discount": 5
-  },
-  {
-    "id": 13,
-    "name": "Sony WH-1000XM5 Wireless",
-    "description": "Industry-leading noise canceling headphones with 30-hour battery",
-    "price": 39999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1518441902117-f576f57babd2?q=80&w=1000&auto=format&fit=crop",
-    "discount": 16
-  },
-  {
-    "id": 14,
-    "name": "AirPods Pro 2nd Generation",
-    "description": "Active noise cancellation with MagSafe charging case",
-    "price": 28999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1606229365485-9369fa0ecdc7?q=80&w=1000&auto=format&fit=crop",
-    "discount": 19
-  },
-  {
-    "id": 15,
-    "name": "JBL Flip 6 Portable Speaker",
-    "description": "Waterproof Bluetooth speaker with PartyBoost technology",
-    "price": 12999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1545127398-14699f92334e?q=80&w=1000&auto=format&fit=crop",
-    "discount": 8
-  },
-  {
-    "id": 16,
-    "name": "Audio-Technica ATH-M50x",
-    "description": "Professional studio monitor headphones with exceptional clarity",
-    "price": 18999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1000&auto=format&fit=crop",
-    "discount": 12
-  },
-  {
-    "id": 17,
-    "name": "Bose SoundLink Mini II",
-    "description": "Premium compact Bluetooth speaker with deep bass",
-    "price": 22999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1505740106531-4243f3831c78?q=80&w=1000&auto=format&fit=crop",
-    "discount": 14
-  },
-  {
-    "id": 18,
-    "name": "Sennheiser HD 450BT",
-    "description": "Wireless headphones with active noise cancellation, 30-hour battery",
-    "price": 15999,
-    "category": "audio",
-    "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=1000&auto=format&fit=crop",
-    "discount": 16
-  },
-  {
-    "id": 19,
-    "name": "Canon EOS R6 Mark II",
-    "description": "Full-frame mirrorless camera with 24.2MP sensor, 4K video",
-    "price": 299999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1519183071298-a2962be96f83?q=80&w=1000&auto=format&fit=crop",
-    "discount": 5
-  },
-  {
-    "id": 20,
-    "name": "Sony Alpha a7 IV",
-    "description": "Professional mirrorless camera with 33MP sensor, real-time tracking",
-    "price": 349999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=1000&auto=format&fit=crop",
-    "discount": 9
-  },
-  {
-    "id": 21,
-    "name": "Nikon Z6 II Body",
-    "description": "Versatile full-frame camera with dual processors, 4K UHD video",
-    "price": 249999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
-    "discount": 11
-  },
-  {
-    "id": 22,
-    "name": "Canon EOS M50 Mark II",
-    "description": "Compact mirrorless camera perfect for content creation",
-    "price": 79999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 23,
-    "name": "GoPro HERO12 Black",
-    "description": "Action camera with 5.3K video, HyperSmooth stabilization",
-    "price": 54999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1526178613552-2b45c6c302f0?q=80&w=1000&auto=format&fit=crop",
-    "discount": 11
-  },
-  {
-    "id": 24,
-    "name": "DJI Mini 3 Pro Drone",
-    "description": "Lightweight drone with 4K HDR video, obstacle avoidance",
-    "price": 119999,
-    "category": "cameras",
-    "image": "https://images.unsplash.com/photo-1507878866276-a947ef722fee?q=80&w=1000&auto=format&fit=crop",
-    "discount": 7
-  },
-  {
-    "id": 25,
-    "name": "PlayStation 5 Console",
-    "description": "Next-gen gaming console with ultra-high speed SSD, DualSense controller",
-    "price": 79999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1606813907291-76a5b2f0add8?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 26,
-    "name": "Xbox Series X Console",
-    "description": "Powerful gaming console with 4K gaming, 1TB SSD, 120 FPS support",
-    "price": 76999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?q=80&w=1000&auto=format&fit=crop",
-    "discount": 4
-  },
-  {
-    "id": 27,
-    "name": "Nintendo Switch OLED Model",
-    "description": "Hybrid gaming console with 7-inch OLED screen, handheld and docked modes",
-    "price": 42999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1000&auto=format&fit=crop",
-    "discount": 4
-  },
-  {
-    "id": 28,
-    "name": "Razer DeathAdder V3 Pro",
-    "description": "Wireless gaming mouse with Focus Pro 30K sensor, 90-hour battery",
-    "price": 14999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=1000&auto=format&fit=crop",
-    "discount": 2
-  },
-  {
-    "id": 29,
-    "name": "Logitech G Pro X Keyboard",
-    "description": "Mechanical gaming keyboard with GX Blue switches, RGB lighting",
-    "price": 16999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?q=80&w=1000&auto=format&fit=crop",
-    "discount": 6
-  },
-  {
-    "id": 30,
-    "name": "SteelSeries Arctis 7P",
-    "description": "Wireless gaming headset with 2.4GHz connection, 24-hour battery",
-    "price": 19999,
-    "category": "gaming",
-    "image": "https://images.unsplash.com/photo-1599669454699-248893623440?q=80&w=1000&auto=format&fit=crop",
-    "discount": 10
-  },
-  {
-    "id": 31,
-    "name": "Samsung 65\" QN90B Neo QLED",
-    "description": "Premium 4K Smart TV with Quantum Dot technology, HDR10+",
-    "price": 329999,
-    "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1593359677879-ead7fc711a63?q=80&w=1000&auto=format&fit=crop",
-    "discount": 5
-  },
-  {
-    "id": 32,
-    "name": "LG 55\" C2 OLED Smart TV",
-    "description": "Self-lit OLED pixels, Dolby Vision IQ, webOS smart platform",
-    "price": 229999,
-    "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?q=80&w=1000&auto=format&fit=crop",
-    "discount": 12
-  },
-  {
-    "id": 33,
-    "name": "Sony 50\" X90K 4K LED",
-    "description": "4K HDR TV with Triluminos Pro, Google TV, HDMI 2.1",
     "price": 149999,
-    "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=1000&auto=format&fit=crop",
-    "discount": 9
+    "stock": 25,
+    "description": "Latest iPhone with A16 Bionic chip, 48MP camera, and Dynamic Island",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
   },
   {
-    "id": 34,
-    "name": "TCL 43\" P635 4K UHD",
-    "description": "Smart Android TV with HDR10, Dolby Audio, voice remote",
+    "id": "2",
+    "name": "Samsung Galaxy S23 Ultra",
+    "category": "smartphones",
+    "price": 129999,
+    "stock": 30,
+    "description": "200MP camera, S Pen, 5G connectivity",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "3",
+    "name": "MacBook Pro 16-inch M2",
+    "category": "laptops",
+    "price": 299999,
+    "stock": 15,
+    "description": "Apple Silicon M2 chip, 16GB RAM, 512GB SSD",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "4",
+    "name": "Dell XPS 13 Plus",
+    "category": "laptops",
+    "price": 189999,
+    "stock": 20,
+    "description": "13th Gen Intel Core i7, 16GB RAM, 512GB SSD",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "5",
+    "name": "Sony WH-1000XM5",
+    "category": "audio",
+    "price": 45999,
+    "stock": 40,
+    "description": "Industry-leading noise cancellation, 30-hour battery",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "6",
+    "name": "AirPods Pro 2nd Gen",
+    "category": "audio",
+    "price": 29999,
+    "stock": 50,
+    "description": "Active noise cancellation, Spatial audio, MagSafe charging",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "7",
+    "name": "Canon EOS R6 Mark II",
+    "category": "cameras",
+    "price": 249999,
+    "stock": 12,
+    "description": "Full-frame mirrorless, 4K video, 20fps burst",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "8",
+    "name": "Nikon Z6 II",
+    "category": "cameras",
+    "price": 199999,
+    "stock": 18,
+    "description": "Full-frame mirrorless, 4K video, Dual card slots",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1510127034890-4a9a408aa3e7?w=400&h=400&fit=crop"
+  },
+  {
+    "id": "9",
+    "name": "PlayStation 5",
+    "category": "gaming",
+    "price": 59999,
+    "stock": 35,
+    "description": "Next-gen gaming console with 4K graphics",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "10",
+    "name": "Xbox Series X",
+    "category": "gaming",
     "price": 54999,
+    "stock": 30,
+    "description": "Most powerful Xbox ever, 4K gaming at 120fps",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "11",
+    "name": "Samsung QLED 4K TV 65\"",
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1583225272837-9f8ff0d9d0bf?q=80&w=1000&auto=format&fit=crop",
-    "discount": 15
+    "price": 159999,
+    "stock": 22,
+    "description": "Quantum dot technology, HDR10+, Smart TV",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
-    "id": 35,
-    "name": "Xiaomi Mi TV 4A 32\"",
-    "description": "Smart LED TV with PatchWall UI, 20W speakers, multiple ports",
-    "price": 24999,
+    "id": "12",
+    "name": "LG OLED C2 55\"",
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1000&auto=format&fit=crop",
-    "discount": 8
+    "price": 189999,
+    "stock": 18,
+    "description": "Perfect blacks, AI-powered picture quality",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
-    "id": 36,
-    "name": "Walton 24\" HD LED TV",
-    "description": "Local brand HD TV with multiple connectivity options, energy efficient",
-    "price": 16999,
+    "id": "13",
+    "name": "Apple Watch Series 8",
+    "category": "accessories",
+    "price": 49999,
+    "stock": 45,
+    "description": "Health monitoring, GPS, Always-on display",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "14",
+    "name": "iPad Air 5th Gen",
+    "category": "accessories",
+    "price": 79999,
+    "stock": 28,
+    "description": "M1 chip, 10.9-inch display, Apple Pencil support",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "15",
+    "name": "Google Pixel 7 Pro",
+    "category": "smartphones",
+    "price": 99999,
+    "stock": 25,
+    "description": "Google's flagship with advanced AI camera",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "16",
+    "name": "OnePlus 11",
+    "category": "smartphones",
+    "price": 89999,
+    "stock": 30,
+    "description": "Hasselblad camera, 100W charging, 5G",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "17",
+    "name": "HP Spectre x360",
+    "category": "laptops",
+    "price": 169999,
+    "stock": 16,
+    "description": "2-in-1 convertible, 13th Gen Intel, OLED display",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "18",
+    "name": "Lenovo ThinkPad X1 Carbon",
+    "category": "laptops",
+    "price": 199999,
+    "stock": 14,
+    "description": "Business laptop, 14-inch, Intel Evo platform",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "19",
+    "name": "Bose QuietComfort 45",
+    "category": "audio",
+    "price": 39999,
+    "stock": 35,
+    "description": "Premium noise cancellation, 24-hour battery",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "20",
+    "name": "JBL Flip 6",
+    "category": "audio",
+    "price": 15999,
+    "stock": 60,
+    "description": "Portable Bluetooth speaker, waterproof, 12-hour battery",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "21",
+    "name": "GoPro Hero 11 Black",
+    "category": "cameras",
+    "price": 59999,
+    "stock": 25,
+    "description": "Action camera, 5.3K video, HyperSmooth 5.0",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "22",
+    "name": "DJI Mini 3 Pro",
+    "category": "cameras",
+    "price": 89999,
+    "stock": 20,
+    "description": "Drone with 4K camera, obstacle avoidance",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "23",
+    "name": "Nintendo Switch OLED",
+    "category": "gaming",
+    "price": 39999,
+    "stock": 40,
+    "description": "7-inch OLED screen, enhanced audio, portable gaming",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "24",
+    "name": "Steam Deck",
+    "category": "gaming",
+    "price": 69999,
+    "stock": 15,
+    "description": "Portable PC gaming, Steam library access",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "25",
+    "name": "TCL 6-Series 75\"",
     "category": "tvs",
-    "image": "https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=1000&auto=format&fit=crop",
-    "discount": 14
+    "price": 129999,
+    "stock": 12,
+    "description": "Mini-LED technology, Dolby Vision, Roku TV",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
-    "id": 37,
-    "name": "Anker PowerCore 26800 PD",
-    "description": "High-capacity power bank with Power Delivery, fast charging",
-    "price": 8999,
-    "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1609592718967-c3c4b7d7f8c8?q=80&w=1000&auto=format&fit=crop",
-    "discount": 21
+    "id": "26",
+    "name": "Hisense U8H 65\"",
+    "category": "tvs",
+    "price": 149999,
+    "stock": 18,
+    "description": "ULED technology, Quantum dot, Android TV",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
-    "id": 38,
-    "name": "SanDisk Extreme Pro 128GB",
-    "description": "High-speed microSD card with A2 rating, 170MB/s read speed",
-    "price": 3999,
+    "id": "27",
+    "name": "Samsung Galaxy Tab S9",
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?q=80&w=1000&auto=format&fit=crop",
-    "discount": 19
+    "price": 89999,
+    "stock": 22,
+    "description": "Android tablet, S Pen included, 5G option",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop"
   },
   {
-    "id": 39,
-    "name": "Logitech C920 HD Webcam",
-    "description": "Full HD 1080p webcam with auto-focus, built-in stereo mics",
-    "price": 9999,
+    "id": "28",
+    "name": "Microsoft Surface Pro 9",
     "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1612538499389-c1609b1b8f20?q=80&w=1000&auto=format&fit=crop",
-    "discount": 18
+    "price": 129999,
+    "stock": 16,
+    "description": "2-in-1 tablet, Intel 12th Gen, Windows 11",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop"
   },
   {
-    "id": 40,
-    "name": "Apple AirTag 4-Pack",
-    "description": "Item tracker with Find My network, precision finding",
-    "price": 11999,
-    "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1617957743091-b83fbdf1bd3a?q=80&w=1000&auto=format&fit=crop",
-    "discount": 12
+    "id": "29",
+    "name": "Xiaomi 13 Ultra",
+    "category": "smartphones",
+    "price": 119999,
+    "stock": 20,
+    "description": "Leica optics, 1-inch sensor, 5G",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
   },
   {
-    "id": 41,
-    "name": "Baseus 100W GaN Charger",
-    "description": "Compact fast charger with multiple ports, GaN technology",
-    "price": 4999,
-    "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop",
-    "discount": 14
+    "id": "30",
+    "name": "Nothing Phone (2)",
+    "category": "smartphones",
+    "price": 69999,
+    "stock": 35,
+    "description": "Glyph interface, Snapdragon 8+ Gen 1",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
   },
   {
-    "id": 42,
-    "name": "UGREEN USB-C Hub 9-in-1",
-    "description": "Multi-port hub with HDMI 4K, USB 3.0, SD card slots, PD charging",
-    "price": 6999,
-    "category": "accessories",
-    "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=1000&auto=format&fit=crop",
-    "discount": 21
+    "id": "31",
+    "name": "ASUS ROG Zephyrus G14",
+    "category": "laptops",
+    "price": 249999,
+    "stock": 12,
+    "description": "Gaming laptop, AMD Ryzen 9, RTX 4060",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "32",
+    "name": "MSI GS66 Stealth",
+    "category": "laptops",
+    "price": 229999,
+    "stock": 14,
+    "description": "Slim gaming laptop, Intel i7, RTX 3070",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "33",
+    "name": "Sennheiser HD 660S",
+    "category": "audio",
+    "price": 34999,
+    "stock": 25,
+    "description": "Open-back headphones, audiophile quality",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "34",
+    "name": "Audio-Technica ATH-M50x",
+    "category": "audio",
+    "price": 19999,
+    "stock": 40,
+    "description": "Studio headphones, professional monitoring",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "35",
+    "name": "Fujifilm X-T5",
+    "category": "cameras",
+    "price": 179999,
+    "stock": 18,
+    "description": "APS-C mirrorless, 40MP sensor, 5-axis IBIS",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "36",
+    "name": "Sony A7 IV",
+    "category": "cameras",
+    "price": 229999,
+    "stock": 15,
+    "description": "Full-frame mirrorless, 33MP, 4K video",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "37",
+    "name": "Razer Blade 15",
+    "category": "laptops",
+    "price": 279999,
+    "stock": 10,
+    "description": "Gaming laptop, Intel i9, RTX 4080",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "38",
+    "name": "Alienware x17 R2",
+    "category": "laptops",
+    "price": 329999,
+    "stock": 8,
+    "description": "Premium gaming laptop, Intel i9, RTX 4090",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "39",
+    "name": "Beats Studio Pro",
+    "category": "audio",
+    "price": 37999,
+    "stock": 30,
+    "description": "Wireless headphones, Apple H1 chip",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "40",
+    "name": "Jabra Elite 85t",
+    "category": "audio",
+    "price": 25999,
+    "stock": 35,
+    "description": "True wireless earbuds, active noise cancellation",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "41",
+    "name": "Panasonic Lumix GH6",
+    "category": "cameras",
+    "price": 199999,
+    "stock": 12,
+    "description": "Micro Four Thirds, 5.7K video, unlimited recording",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
+  },
+  {
+    "id": "42",
+    "name": "Canon PowerShot G7 X Mark III",
+    "category": "cameras",
+    "price": 89999,
+    "stock": 20,
+    "description": "Compact camera, 1-inch sensor, 4K video",
+    "status": "active",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
   }
 ]

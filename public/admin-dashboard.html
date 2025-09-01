@@ -53,6 +53,35 @@
             gap: 1.5rem;
         }
 
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .product-list .admin-card {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .product-list .admin-card > div:first-child {
+            width: 120px;
+            height: 120px;
+            margin-right: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .product-list .admin-card > div:nth-child(2) {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .product-list .admin-card > div:last-child {
+            margin-left: auto;
+            margin-bottom: 0;
+        }
+
         .image-preview {
             width: 100%;
             height: 200px;
@@ -277,68 +306,176 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Product Management</h1>
+                    <p class="text-gray-600">Manage your product catalog, inventory, and pricing</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <input type="text" 
+                               id="global-search" 
+                               placeholder="Quick search..." 
+                               class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                    <button onclick="openAddProductModal()" class="btn-success">
+                        <i class="fas fa-plus mr-2"></i>Add Product
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Dashboard Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="total-products">0</div>
-                <div class="stat-label">Total Products</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-blue-100 text-sm font-medium">Total Products</p>
+                        <p class="text-3xl font-bold" id="total-products">0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-400/30 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-box text-2xl"></i>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="active-products">0</div>
-                <div class="stat-label">Active Products</div>
+            
+            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-green-100 text-sm font-medium">Active Products</p>
+                        <p class="text-3xl font-bold" id="active-products">0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-400/30 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-2xl"></i>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-categories">0</div>
-                <div class="stat-label">Categories</div>
+            
+            <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-100 text-sm font-medium">Categories</p>
+                        <p class="text-3xl font-bold" id="total-categories">0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-400/30 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-tags text-2xl"></i>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-value">৳0</div>
-                <div class="stat-label">Inventory Value</div>
+            
+            <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-orange-100 text-sm font-medium">Inventory Value</p>
+                        <p class="text-3xl font-bold" id="total-value">৳0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-400/30 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-dollar-sign text-2xl"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap gap-4 mb-8">
-            <button onclick="openAddProductModal()" class="btn-success">
-                <i class="fas fa-plus mr-2"></i>Add New Product
-            </button>
-            <button onclick="exportProducts()" class="btn-primary">
-                <i class="fas fa-download mr-2"></i>Export Products
-            </button>
-            <button onclick="importProducts()" class="btn-primary">
-                <i class="fas fa-upload mr-2"></i>Import Products
-            </button>
-            <input type="file" id="import-file" accept=".json" style="display: none;" onchange="handleImportFile(event)">
+        <!-- Action Bar -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Quick Actions</h3>
+                    <div class="h-6 w-px bg-gray-300"></div>
+                    <button onclick="exportProducts()" class="btn-primary">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                    <button onclick="importProducts()" class="btn-primary">
+                        <i class="fas fa-upload mr-2"></i>Import
+                    </button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;" onchange="handleImportFile(event)">
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm text-gray-500">View:</span>
+                    <button id="grid-view" onclick="setView('grid')" class="px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">
+                        <i class="fas fa-th-large mr-1"></i>Grid
+                    </button>
+                    <button id="list-view" onclick="setView('list')" class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium">
+                        <i class="fas fa-list mr-1"></i>List
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Search and Filter -->
-        <div class="admin-card p-6 mb-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <input type="text" id="search-input" placeholder="Search products..." class="form-input">
-                <select id="category-filter" class="form-select">
-                    <option value="">All Categories</option>
-                    <option value="smartphones">Smartphones</option>
-                    <option value="laptops">Laptops</option>
-                    <option value="audio">Audio</option>
-                    <option value="cameras">Cameras</option>
-                    <option value="gaming">Gaming</option>
-                    <option value="tvs">TVs</option>
-                    <option value="accessories">Accessories</option>
-                </select>
-                <select id="status-filter" class="form-select">
-                    <option value="">All Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-                <button onclick="clearFilters()" class="btn-primary">
-                    <i class="fas fa-times mr-2"></i>Clear Filters
+        <!-- Advanced Filters -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-800">Filters & Search</h3>
+                <button onclick="clearFilters()" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-times mr-1"></i>Clear All
                 </button>
             </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
+                    <input type="text" 
+                           id="search-input" 
+                           placeholder="Name, description..." 
+                           class="form-input">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <select id="category-filter" class="form-select">
+                        <option value="">All Categories</option>
+                        <option value="smartphones">Smartphones</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="audio">Audio</option>
+                        <option value="cameras">Cameras</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="tvs">TVs</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                    <select id="status-filter" class="form-select">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                    <select id="sort-filter" class="form-select">
+                        <option value="name">Name A-Z</option>
+                        <option value="name-desc">Name Z-A</option>
+                        <option value="price">Price Low-High</option>
+                        <option value="price-desc">Price High-Low</option>
+                        <option value="stock">Stock Low-High</option>
+                        <option value="stock-desc">Stock High-Low</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <!-- Products Grid -->
+        <!-- Products Container -->
         <div id="products-container" class="product-grid">
             <!-- Products will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-16">
+            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-box-open text-4xl text-gray-400"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
+            <p class="text-gray-500 mb-6">Start building your product catalog by adding your first product</p>
+            <button onclick="openAddProductModal()" class="btn-success">
+                <i class="fas fa-plus mr-2"></i>Add Your First Product
+            </button>
         </div>
     </main>
 
@@ -484,6 +621,8 @@
             document.getElementById('search-input').addEventListener('input', filterProducts);
             document.getElementById('category-filter').addEventListener('change', filterProducts);
             document.getElementById('status-filter').addEventListener('change', filterProducts);
+            document.getElementById('sort-filter').addEventListener('change', filterProducts);
+            document.getElementById('global-search').addEventListener('input', filterProducts);
             
             // Drag and drop for image upload
             const uploadArea = document.getElementById('image-upload-area');
@@ -535,18 +674,20 @@
         // Render products grid
         function renderProducts() {
             const container = document.getElementById('products-container');
+            const emptyState = document.getElementById('empty-state');
+            
             if (products.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
-                        <p class="text-gray-500">Start by adding your first product!</p>
-                    </div>
-                `;
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
                 return;
             }
 
-            container.innerHTML = products.map(product => `
+            emptyState.classList.add('hidden');
+            
+            // Apply sorting
+            const sortedProducts = sortProducts(products);
+            
+            container.innerHTML = sortedProducts.map(product => `
                 <div class="admin-card p-6" data-aos="fade-up">
                     <div class="relative mb-4">
                         <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
@@ -555,23 +696,32 @@
                                 ${product.status}
                             </span>
                         </div>
+                        <div class="absolute top-2 left-2">
+                            <span class="px-2 py-1 bg-gray-800 text-white text-xs rounded-full font-medium">
+                                ${product.category}
+                            </span>
+                        </div>
                     </div>
                     
                     <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
                     <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
                     
                     <div class="space-y-2 mb-4">
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-500">Category:</span>
-                            <span class="text-sm font-semibold text-gray-700">${product.category}</span>
-                        </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-500">Price:</span>
-                            <span class="text-lg font-bold text-blue-600">৳${product.price}</span>
+                            <span class="text-lg font-bold text-blue-600">৳${product.price.toLocaleString()}</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-500">Stock:</span>
-                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">${product.stock}</span>
+                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">
+                                ${product.stock} units
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Status:</span>
+                            <span class="text-xs px-2 py-1 rounded-full ${product.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${product.status}
+                            </span>
                         </div>
                     </div>
                     
@@ -590,36 +740,84 @@
         // Filter products
         function filterProducts() {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const globalSearch = document.getElementById('global-search').value.toLowerCase();
             const categoryFilter = document.getElementById('category-filter').value;
             const statusFilter = document.getElementById('status-filter').value;
 
             const filtered = products.filter(product => {
                 const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
                                     product.description.toLowerCase().includes(searchTerm);
+                const matchesGlobal = product.name.toLowerCase().includes(globalSearch) || 
+                                     product.description.toLowerCase().includes(globalSearch);
                 const matchesCategory = !categoryFilter || product.category === categoryFilter;
                 const matchesStatus = !statusFilter || product.status === statusFilter;
                 
-                return matchesSearch && matchesCategory && matchesStatus;
+                return matchesSearch && matchesGlobal && matchesCategory && matchesStatus;
             });
 
             renderFilteredProducts(filtered);
         }
 
+        // Sort products
+        function sortProducts(productsToSort) {
+            const sortBy = document.getElementById('sort-filter').value;
+            
+            return [...productsToSort].sort((a, b) => {
+                switch (sortBy) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    case 'price':
+                        return a.price - b.price;
+                    case 'price-desc':
+                        return b.price - a.price;
+                    case 'stock':
+                        return a.stock - b.stock;
+                    case 'stock-desc':
+                        return b.stock - a.stock;
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        // Set view mode (grid/list)
+        function setView(viewType) {
+            const container = document.getElementById('products-container');
+            const gridBtn = document.getElementById('grid-view');
+            const listBtn = document.getElementById('list-view');
+            
+            if (viewType === 'grid') {
+                container.className = 'product-grid';
+                gridBtn.className = 'px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium';
+                listBtn.className = 'px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium';
+            } else {
+                container.className = 'product-list';
+                listBtn.className = 'px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium';
+                gridBtn.className = 'px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium';
+            }
+            
+            renderProducts();
+        }
+
         // Render filtered products
         function renderFilteredProducts(filteredProducts) {
             const container = document.getElementById('products-container');
+            const emptyState = document.getElementById('empty-state');
+            
             if (filteredProducts.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
-                        <p class="text-gray-500">Try adjusting your search criteria</p>
-                    </div>
-                `;
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
                 return;
             }
 
-            container.innerHTML = filteredProducts.map(product => `
+            emptyState.classList.add('hidden');
+            
+            // Apply sorting
+            const sortedProducts = sortProducts(filteredProducts);
+            
+            container.innerHTML = sortedProducts.map(product => `
                 <div class="admin-card p-6" data-aos="fade-up">
                     <div class="relative mb-4">
                         <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
@@ -628,23 +826,32 @@
                                 ${product.status}
                             </span>
                         </div>
+                        <div class="absolute top-2 left-2">
+                            <span class="px-2 py-1 bg-gray-800 text-white text-xs rounded-full font-medium">
+                                ${product.category}
+                            </span>
+                        </div>
                     </div>
                     
                     <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
                     <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
                     
                     <div class="space-y-2 mb-4">
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-500">Category:</span>
-                            <span class="text-sm font-semibold text-gray-700">${product.category}</span>
-                        </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-500">Price:</span>
-                            <span class="text-lg font-bold text-blue-600">৳${product.price}</span>
+                            <span class="text-lg font-bold text-blue-600">৳${product.price.toLocaleString()}</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-500">Stock:</span>
-                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">${product.stock}</span>
+                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">
+                                ${product.stock} units
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Status:</span>
+                            <span class="text-xs px-2 py-1 rounded-full ${product.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${product.status}
+                            </span>
                         </div>
                     </div>
                     
