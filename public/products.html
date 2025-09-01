@@ -23,8 +23,17 @@
         
         .font-inter { font-family: 'Inter', sans-serif; }
         .font-poppins { font-family: 'Poppins', sans-serif; }
-        .glassmorphism-bg { background: linear-gradient(135deg, rgba(135,206,235,0.15) 0%, rgba(169,169,169,0.15) 100%); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.3); }
-        .hero-pattern { background-image: radial-gradient(circle at 25% 25%, rgba(135,206,235,0.15) 1px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(169,169,169,0.15) 1px, transparent 1px); background-size: 50px 50px; }
+        .glassmorphism-bg { 
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.9), rgba(71, 85, 105, 0.85)); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px); 
+            border: 1px solid rgba(148, 163, 184, 0.3); 
+        }
+        .hero-pattern { 
+            background-image: radial-gradient(circle at 25% 25%, rgba(148, 163, 184, 0.2) 1px, transparent 1px), 
+                             radial-gradient(circle at 75% 75%, rgba(71, 85, 105, 0.2) 1px, transparent 1px); 
+            background-size: 50px 50px; 
+        }
         
         .hamburger-line {
             transition: all 0.3s ease;
@@ -50,18 +59,33 @@
             background-clip: text;
         }
 
-        .product-card { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3); border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .product-card { 
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1); 
+            background: rgba(30, 41, 59, 0.8); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(148, 163, 184, 0.4); 
+            border-radius: 1rem; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); 
+        }
         
         .product-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: rgba(51, 65, 85, 0.9);
         }
 
-        .category-filter { transition: all 0.3s ease; background: rgba(255,255,255,0.8); border: 2px solid transparent; }
+        .category-filter { 
+            transition: all 0.3s ease; 
+            background: rgba(30, 41, 59, 0.9); 
+            border: 2px solid rgba(148, 163, 184, 0.4); 
+            color: rgba(148, 163, 184, 0.9);
+        }
         
         .category-filter:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            background: rgba(51, 65, 85, 0.95);
         }
         
         .category-filter.active {
