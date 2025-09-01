@@ -572,7 +572,7 @@
         // Load featured products
         async function loadFeaturedProducts() {
             try {
-                const response = await fetch('/api/products');
+                const response = await fetch('/data/products.json');
                 const products = await response.json();
                 
                 const featuredProductsContainer = document.getElementById('featured-products');

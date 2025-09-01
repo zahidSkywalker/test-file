@@ -605,8 +605,11 @@
                 productsGrid.classList.add('hidden');
                 noResults.classList.add('hidden');
                 
-                const response = await fetch(`/api/products${category !== 'all' ? `?category=${category}` : ''}`);
-                const products = await response.json();
+                const response = await fetch('/data/products.json');
+                let products = await response.json();
+                if (category !== 'all') {
+                    products = products.filter(p => p.category === category);
+                }
                 
                 loadingSkeleton.classList.add('hidden');
                 
