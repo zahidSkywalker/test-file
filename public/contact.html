@@ -1,1 +1,762 @@
-<!DOCTYPE html><html><head><title>Contact - TrendyMart</title></head><body><h1>Contact Us</h1><p>Get in touch with TrendyMart support team.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TrendyMart Bangladesh</title>
+    
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .hamburger-line {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .floating-animation {
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-animation:nth-child(2) {
+            animation-delay: -2s;
+        }
+        
+        .floating-animation:nth-child(3) {
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .contact-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-icon {
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .map-container {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="relative">
+                            <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                                 alt="TrendyMart Logo" 
+                                 class="w-12 h-12 rounded-xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            TrendyMart
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full group">
+                        <input type="text" placeholder="Search electronics..." 
+                               class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 group-hover:border-gray-300">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-search mr-1"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/products" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-shopping-bag mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Products
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/about" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-info-circle mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/contact" class="text-blue-600 font-semibold relative group">
+                        <i class="fas fa-envelope mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-600"></span>
+                    </a>
+                    <a href="/cart" class="text-gray-800 hover:text-blue-600 transition-colors relative font-semibold group">
+                        <i class="fas fa-shopping-cart mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Cart
+                        <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1">0</span>
+                    </a>
+                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Login
+                    </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 hidden transform transition-all duration-300">
+            <div class="px-6 py-6 space-y-4">
+                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="/products" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-bag mr-3"></i>Products
+                </a>
+                <a href="/about" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-3"></i>About
+                </a>
+                <a href="/contact" class="block text-blue-600 font-medium py-2 flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-cart mr-3"></i>Cart
+                </a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-50 to-purple-50 hero-pattern py-20 md:py-32 overflow-hidden relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute top-40 right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-pink-400/10 rounded-full blur-3xl floating-animation"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6">
+                    Get in <span class="gradient-text">Touch</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    We're here to help! Reach out to us for any questions, support, or feedback. Our team is ready to assist you 24/7.
+                </p>
+                
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mt-8" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        <li class="inline-flex items-center">
+                            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300">
+                                <i class="fas fa-home mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                                <span class="text-sm font-medium text-gray-500">Contact Us</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Contact <span class="gradient-text">Information</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Multiple ways to reach us. Choose the method that works best for you.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6">
+                        <i class="fas fa-phone text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Phone Support</h3>
+                    <p class="text-gray-600 mb-4">Call us anytime for immediate assistance</p>
+                    <div class="space-y-2">
+                        <p class="text-lg font-semibold text-blue-600">+880 1234-567890</p>
+                        <p class="text-lg font-semibold text-blue-600">+880 1234-567891</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">Available 24/7</p>
+                </div>
+                
+                <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon bg-gradient-to-r from-green-500 to-teal-600 mx-auto mb-6">
+                        <i class="fas fa-envelope text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Email Support</h3>
+                    <p class="text-gray-600 mb-4">Send us an email for detailed inquiries</p>
+                    <div class="space-y-2">
+                        <p class="text-lg font-semibold text-green-600">support@trendymart.com</p>
+                        <p class="text-lg font-semibold text-green-600">info@trendymart.com</p>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">Response within 2 hours</p>
+                </div>
+                
+                <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-icon bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mb-6">
+                        <i class="fas fa-comments text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Live Chat</h3>
+                    <p class="text-gray-600 mb-4">Chat with our support team in real-time</p>
+                    <button class="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-comment-dots mr-2"></i>
+                        Start Chat
+                    </button>
+                    <p class="text-sm text-gray-500 mt-4">Available 9 AM - 10 PM</p>
+                </div>
+                
+                <div class="contact-card p-8 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="contact-icon bg-gradient-to-r from-orange-500 to-red-600 mx-auto mb-6">
+                        <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Visit Us</h3>
+                    <p class="text-gray-600 mb-4">Drop by our main office</p>
+                    <p class="text-lg font-semibold text-orange-600">House #123, Road #12</p>
+                    <p class="text-lg font-semibold text-orange-600">Banani, Dhaka 1213</p>
+                    <p class="text-sm text-gray-500 mt-4">Bangladesh</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Form -->
+                <div data-aos="slide-in-left" data-aos-duration="800">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
+                        Send us a <span class="gradient-text">Message</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Fill out the form below and we'll get back to you as soon as possible.
+                    </p>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <i class="fas fa-user mr-2 text-blue-600"></i>
+                                    First Name
+                                </label>
+                                <input type="text" id="firstName" name="firstName" required
+                                       class="form-input focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-semibold text-gray-700 mb-2">
+                                    <i class="fas fa-user mr-2 text-blue-600"></i>
+                                    Last Name
+                                </label>
+                                <input type="text" id="lastName" name="lastName" required
+                                       class="form-input focus:border-blue-500">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-envelope mr-2 text-blue-600"></i>
+                                Email Address
+                            </label>
+                            <input type="email" id="email" name="email" required
+                                   class="form-input focus:border-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-phone mr-2 text-blue-600"></i>
+                                Phone Number
+                            </label>
+                            <input type="tel" id="phone" name="phone"
+                                   class="form-input focus:border-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-tag mr-2 text-blue-600"></i>
+                                Subject
+                            </label>
+                            <select id="subject" name="subject" required
+                                    class="form-input focus:border-blue-500">
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="sales">Sales Question</option>
+                                <option value="returns">Returns & Refunds</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-comment mr-2 text-blue-600"></i>
+                                Message
+                            </label>
+                            <textarea id="message" name="message" required
+                                      class="form-textarea focus:border-blue-500"
+                                      placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-2xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Map & Additional Info -->
+                <div class="space-y-8" data-aos="fade-up" data-aos-duration="800">
+                    <!-- Map -->
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902442430136!2d90.4068!3d23.7937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c14c8682a473%3A0xa6c74743d52adb88!2sBanani%2C%20Dhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1234567890"
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <!-- Business Hours -->
+                    <div class="contact-card p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-clock mr-3 text-blue-600"></i>
+                            Business Hours
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Monday - Friday</span>
+                                <span class="font-semibold text-gray-800">9:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Saturday</span>
+                                <span class="font-semibold text-gray-800">10:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Sunday</span>
+                                <span class="font-semibold text-gray-800">11:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="border-t pt-3 mt-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">24/7 Support</span>
+                                    <span class="font-semibold text-green-600">Available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="contact-card p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-share-alt mr-3 text-blue-600"></i>
+                            Follow Us
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="#" class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors duration-300">
+                                <i class="fab fa-facebook text-2xl text-blue-600 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Facebook</p>
+                                    <p class="text-sm text-gray-600">@TrendyMartBD</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors duration-300">
+                                <i class="fab fa-twitter text-2xl text-blue-400 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Twitter</p>
+                                    <p class="text-sm text-gray-600">@TrendyMartBD</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center p-4 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors duration-300">
+                                <i class="fab fa-instagram text-2xl text-pink-600 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Instagram</p>
+                                    <p class="text-sm text-gray-600">@TrendyMartBD</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors duration-300">
+                                <i class="fab fa-linkedin text-2xl text-blue-700 mr-3"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-800">LinkedIn</p>
+                                    <p class="text-sm text-gray-600">@TrendyMartBD</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Find quick answers to common questions about our services and policies.
+                </p>
+            </div>
+            
+            <div class="space-y-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <div class="contact-card p-6">
+                    <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold text-gray-800">How can I track my order?</h3>
+                        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden mt-4 text-gray-600">
+                        <p>You can track your order by logging into your account and visiting the "My Orders" section. You'll also receive tracking updates via email and SMS.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card p-6">
+                    <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold text-gray-800">What is your return policy?</h3>
+                        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden mt-4 text-gray-600">
+                        <p>We offer a 7-day return policy for most products. Items must be in original condition with all packaging intact. Some products may have different return terms.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card p-6">
+                    <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold text-gray-800">Do you offer warranty on products?</h3>
+                        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden mt-4 text-gray-600">
+                        <p>Yes, all our products come with manufacturer warranty. We also offer extended warranty options for additional protection.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card p-6">
+                    <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold text-gray-800">What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden mt-4 text-gray-600">
+                        <p>We accept all major credit cards, mobile banking (bKash, Nagad, Rocket), bank transfers, and cash on delivery.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card p-6">
+                    <button class="faq-toggle w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold text-gray-800">How long does delivery take?</h3>
+                        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden mt-4 text-gray-600">
+                        <p>Delivery typically takes 1-3 business days within Dhaka and 3-7 business days for other cities. Express delivery options are available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Still Have Questions?</h2>
+            <p class="text-xl mb-8 opacity-90">Our support team is here to help you with any questions or concerns you may have.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+8801234567890" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-phone mr-2"></i>
+                    Call Now
+                </a>
+                <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-comments mr-2"></i>
+                    Live Chat
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                             alt="TrendyMart Logo" 
+                             class="w-10 h-10 rounded-lg object-cover">
+                        <span class="text-xl font-bold">TrendyMart</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted destination for premium electronics in Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="/products" class="text-gray-400 hover:text-white transition-colors duration-300">Products</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/products?category=smartphones" class="text-gray-400 hover:text-white transition-colors duration-300">Smartphones</a></li>
+                        <li><a href="/products?category=laptops" class="text-gray-400 hover:text-white transition-colors duration-300">Laptops</a></li>
+                        <li><a href="/products?category=audio" class="text-gray-400 hover:text-white transition-colors duration-300">Audio</a></li>
+                        <li><a href="/products?category=cameras" class="text-gray-400 hover:text-white transition-colors duration-300">Cameras</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact Support</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Returns</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 TrendyMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message (in real app, you'd send this to server)
+            alert('Thank you for your message! We\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

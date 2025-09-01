@@ -1,1 +1,692 @@
-<!DOCTYPE html><html><head><title>About - TrendyMart</title></head><body><h1>About Us</h1><p>TrendyMart is Bangladesh premier electronics marketplace.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TrendyMart Bangladesh</title>
+    
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .hamburger-line {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .floating-animation {
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-animation:nth-child(2) {
+            animation-delay: -2s;
+        }
+        
+        .floating-animation:nth-child(3) {
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .stat-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .team-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="relative">
+                            <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                                 alt="TrendyMart Logo" 
+                                 class="w-12 h-12 rounded-xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            TrendyMart
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex flex-1 max-w-lg mx-8">
+                    <div class="relative w-full group">
+                        <input type="text" placeholder="Search electronics..." 
+                               class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 group-hover:border-gray-300">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-search mr-1"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/products" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-shopping-bag mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Products
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/about" class="text-blue-600 font-semibold relative group">
+                        <i class="fas fa-info-circle mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        About
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-600"></span>
+                    </a>
+                    <a href="/contact" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-envelope mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/cart" class="text-gray-800 hover:text-blue-600 transition-colors relative font-semibold group">
+                        <i class="fas fa-shopping-cart mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Cart
+                        <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1">0</span>
+                    </a>
+                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Login
+                    </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 hidden transform transition-all duration-300">
+            <div class="px-6 py-6 space-y-4">
+                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="/products" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-bag mr-3"></i>Products
+                </a>
+                <a href="/about" class="block text-blue-600 font-medium py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-3"></i>About
+                </a>
+                <a href="/contact" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-cart mr-3"></i>Cart
+                </a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-50 to-purple-50 hero-pattern py-20 md:py-32 overflow-hidden relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute top-40 right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-pink-400/10 rounded-full blur-3xl floating-animation"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="800">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6">
+                    About <span class="gradient-text">TrendyMart</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    Bangladesh's premier destination for premium electronics, where innovation meets affordability and quality meets convenience.
+                </p>
+                
+                <!-- Breadcrumb -->
+                <nav class="flex justify-center mt-8" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        <li class="inline-flex items-center">
+                            <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300">
+                                <i class="fas fa-home mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                                <span class="text-sm font-medium text-gray-500">About Us</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="slide-in-left" data-aos-duration="800">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
+                        Our <span class="gradient-text">Story</span>
+                    </h2>
+                    <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+                        <p>
+                            Founded in 2020, TrendyMart emerged from a simple vision: to make premium electronics accessible to every household in Bangladesh. What started as a small local shop in Dhaka has now grown into the country's most trusted online electronics marketplace.
+                        </p>
+                        <p>
+                            Our journey began with a team of passionate tech enthusiasts who believed that quality electronics shouldn't be a luxury. We started by offering a carefully curated selection of smartphones, laptops, and accessories, focusing on authentic products and exceptional customer service.
+                        </p>
+                        <p>
+                            Today, TrendyMart serves customers across all 64 districts of Bangladesh, with a network of over 50 authorized service centers and partnerships with leading global brands including Apple, Samsung, Sony, LG, and many more.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative" data-aos="fade-up" data-aos-duration="800">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-8 text-white">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold mb-2">50+</div>
+                                <div class="text-sm opacity-90">Service Centers</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold mb-2">15+</div>
+                                <div class="text-sm opacity-90">Global Brands</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold mb-2">64</div>
+                                <div class="text-sm opacity-90">Districts Covered</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold mb-2">1000+</div>
+                                <div class="text-sm opacity-90">Happy Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Our <span class="gradient-text">Mission</span> & Vision
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We're committed to transforming the electronics shopping experience in Bangladesh through innovation, quality, and customer-centric service.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="stat-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        To democratize access to premium electronics by providing authentic products, competitive prices, and exceptional customer service. We strive to make technology accessible to every Bangladeshi household while maintaining the highest standards of quality and reliability.
+                    </p>
+                </div>
+                
+                <div class="stat-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        To become the leading digital commerce platform in Bangladesh, setting industry standards for customer experience, product authenticity, and technological innovation. We envision a future where every Bangladeshi can easily access and afford the latest technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Our <span class="gradient-text">Values</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    These core values guide everything we do and shape our relationships with customers, partners, and employees.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-shield-alt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Trust & Authenticity</h3>
+                    <p class="text-gray-600">We guarantee 100% authentic products with manufacturer warranty and transparent pricing.</p>
+                </div>
+                
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-users text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Customer First</h3>
+                    <p class="text-gray-600">Every decision we make is centered around providing the best possible experience for our customers.</p>
+                </div>
+                
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-lightbulb text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Innovation</h3>
+                    <p class="text-gray-600">We continuously embrace new technologies and processes to improve our services and offerings.</p>
+                </div>
+                
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-heart text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Passion</h3>
+                    <p class="text-gray-600">We're passionate about technology and committed to sharing that passion with our customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Our <span class="gradient-text">Journey</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From a small local shop to Bangladesh's leading electronics marketplace - here's our story of growth and success.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-rocket text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">2020 - The Beginning</h3>
+                                <p class="text-gray-500">Founded in Dhaka</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">TrendyMart was established with a vision to make premium electronics accessible to everyone in Bangladesh. Started as a small local shop with just 5 employees.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-globe text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">2021 - Digital Expansion</h3>
+                                <p class="text-gray-500">Launched Online Platform</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Launched our e-commerce platform, expanding our reach beyond Dhaka. Partnered with major brands and established our first service center network.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-trophy text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">2022 - Market Leadership</h3>
+                                <p class="text-gray-500">Became Market Leader</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Achieved market leadership position with presence in all major cities. Expanded service network to 25 centers and reached 100,000+ customers.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">2023 - Innovation & Growth</h3>
+                                <p class="text-gray-500">Technology Innovation</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Introduced AI-powered recommendations, mobile app, and advanced logistics. Expanded to 50+ service centers and served 500,000+ customers.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-crown text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">2024 - Future Forward</h3>
+                                <p class="text-gray-500">Leading the Future</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Continuing to innovate with cutting-edge technology, expanding product categories, and maintaining our commitment to customer satisfaction and product authenticity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Meet Our <span class="gradient-text">Team</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our dedicated team of professionals is committed to providing you with the best shopping experience and customer service.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="team-card p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ahmed Rahman</h3>
+                    <p class="text-blue-600 font-semibold mb-3">CEO & Founder</p>
+                    <p class="text-gray-600 text-sm">Visionary leader with 15+ years of experience in e-commerce and technology.</p>
+                </div>
+                
+                <div class="team-card p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Fatima Khan</h3>
+                    <p class="text-green-600 font-semibold mb-3">CTO</p>
+                    <p class="text-gray-600 text-sm">Technology expert leading our digital transformation and innovation initiatives.</p>
+                </div>
+                
+                <div class="team-card p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Mohammed Ali</h3>
+                    <p class="text-purple-600 font-semibold mb-3">Head of Operations</p>
+                    <p class="text-gray-600 text-sm">Ensuring smooth operations and exceptional customer service across all touchpoints.</p>
+                </div>
+                
+                <div class="team-card p-6 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-24 h-24 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Aisha Begum</h3>
+                    <p class="text-orange-600 font-semibold mb-3">Head of Marketing</p>
+                    <p class="text-gray-600 text-sm">Creative marketing strategist driving brand awareness and customer engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Join the TrendyMart Family</h2>
+            <p class="text-xl mb-8 opacity-90">Experience the difference that quality, authenticity, and exceptional service can make in your electronics shopping journey.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/products" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-shopping-bag mr-2"></i>
+                    Shop Now
+                </a>
+                <a href="/contact" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                             alt="TrendyMart Logo" 
+                             class="w-10 h-10 rounded-lg object-cover">
+                        <span class="text-xl font-bold">TrendyMart</span>
+                    </div>
+                    <p class="text-gray-400">Your trusted destination for premium electronics in Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="/products" class="text-gray-400 hover:text-white transition-colors duration-300">Products</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/products?category=smartphones" class="text-gray-400 hover:text-white transition-colors duration-300">Smartphones</a></li>
+                        <li><a href="/products?category=laptops" class="text-gray-400 hover:text-white transition-colors duration-300">Laptops</a></li>
+                        <li><a href="/products?category=audio" class="text-gray-400 hover:text-white transition-colors duration-300">Audio</a></li>
+                        <li><a href="/products?category=cameras" class="text-gray-400 hover:text-white transition-colors duration-300">Cameras</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact Support</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Returns</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 TrendyMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

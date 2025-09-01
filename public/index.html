@@ -15,7 +15,7 @@
     <!-- CSS -->
     <link href="/css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Framer Motion -->
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
@@ -28,6 +28,7 @@
             --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
         }
         
         .font-inter { font-family: 'Inter', sans-serif; }
@@ -241,6 +242,67 @@
                 text-align: center !important;
             }
         }
+
+        /* Enhanced animations */
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Professional icon styles */
+        .icon-modern {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-modern:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-inter">
@@ -249,11 +311,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-4">
-                    <a href="/" class="flex items-center space-x-3">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="TrendyMart Logo" 
-                             class="w-12 h-12 rounded-lg object-cover shadow-md">
-                        <span class="text-2xl font-bold text-gray-800">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="relative">
+                            <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                                 alt="TrendyMart Logo" 
+                                 class="w-12 h-12 rounded-xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
                             TrendyMart
                         </span>
                     </a>
@@ -261,11 +326,12 @@
                 
                 <!-- Search Bar -->
                 <div class="hidden md:flex flex-1 max-w-lg mx-8">
-                    <div class="relative w-full">
+                    <div class="relative w-full group">
                         <input type="text" placeholder="Search electronics..." 
-                               class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all">
-                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-colors">
+                               class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 group-hover:border-gray-300">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-search mr-1"></i>
                             Search
                         </button>
                     </div>
@@ -273,32 +339,38 @@
                 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>
                         Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="/products" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-shopping-bag mr-2 group-hover:scale-110 transition-transform duration-300"></i>
                         Products
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="/about" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-info-circle mr-2 group-hover:scale-110 transition-transform duration-300"></i>
                         About
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="/contact" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-envelope mr-2 group-hover:scale-110 transition-transform duration-300"></i>
                         Contact
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                     <a href="/cart" class="text-gray-800 hover:text-blue-600 transition-colors relative font-semibold group">
-                        <i class="fas fa-shopping-cart mr-2 group-hover:scale-110 transition-transform"></i>Cart
-                        <span class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-1 hidden animate-pulse">0</span>
+                        <i class="fas fa-shopping-cart mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Cart
+                        <span class="cart-count absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1 hidden animate-pulse">0</span>
                     </a>
                     <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
                         Login
                     </a>
                 </div>
                 
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors">
+                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
@@ -310,12 +382,24 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 hidden transform transition-all duration-300">
             <div class="px-6 py-6 space-y-4">
-                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Home</a>
-                <a href="/products" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Products</a>
-                <a href="/about" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">About</a>
-                <a href="/contact" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Contact</a>
-                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Cart</a>
-                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">Login</a>
+                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="/products" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-bag mr-3"></i>Products
+                </a>
+                <a href="/about" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-3"></i>About
+                </a>
+                <a href="/contact" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-cart mr-3"></i>Cart
+                </a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </a>
             </div>
         </div>
     </nav>
@@ -324,9 +408,10 @@
     <section class="gradient-bg hero-pattern text-white py-20 md:py-32 overflow-hidden relative">
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
-            <div class="absolute top-40 right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-400/10 rounded-full blur-3xl"></div>
+            <div class="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute top-40 right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-400/10 rounded-full blur-3xl floating-animation"></div>
+            <div class="absolute top-1/2 right-1/3 w-16 h-16 bg-pink-400/10 rounded-full blur-3xl floating-animation"></div>
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -398,236 +483,139 @@
     <!-- Features Section -->
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-5xl font-black text-gray-900 mb-6 gradient-text">Why Choose TrendyMart?</h2>
-                <p class="text-2xl text-gray-600 font-medium">Your trusted partner for premium electronics</p>
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Why Choose <span class="gradient-text">TrendyMart</span>?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide the best shopping experience with premium products, fast delivery, and exceptional customer service.
+                </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="text-center p-10 rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
-                        <i class="fas fa-shipping-fast text-4xl text-white"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-shipping-fast text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Fast Delivery</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">Lightning-fast delivery across Bangladesh with real-time tracking and secure packaging.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Fast Delivery</h3>
+                    <p class="text-gray-600">Get your products delivered within 24-48 hours across Bangladesh</p>
                 </div>
                 
-                <div class="text-center p-10 rounded-3xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-2xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
-                        <i class="fas fa-shield-alt text-4xl text-white"></i>
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-shield-alt text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Secure Shopping</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">100% secure payment gateway with buyer protection and money-back guarantee.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Secure Payment</h3>
+                    <p class="text-gray-600">100% secure payment gateway with multiple payment options</p>
                 </div>
                 
-                <div class="text-center p-10 rounded-3xl bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-2xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
-                        <i class="fas fa-headset text-4xl text-white"></i>
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-medal text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6">24/7 Support</h3>
-                    <p class="text-gray-600 leading-relaxed text-lg">Round-the-clock customer support via phone, chat, and email for all your needs.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Premium Quality</h3>
+                    <p class="text-gray-600">All products are authentic and come with manufacturer warranty</p>
+                </div>
+                
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-headset text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600">Round-the-clock customer support for all your queries</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="py-24 bg-gradient-to-br from-gray-900 to-blue-900 relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/20"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-5xl font-black text-white mb-6">Shop by Category</h2>
-                <p class="text-2xl text-white/80 font-medium">Explore our wide range of electronics categories</p>
+    <!-- Featured Categories -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Shop by <span class="gradient-text">Category</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore our wide range of electronics categories with the latest products
+                </p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="category-card text-center p-8 rounded-3xl cursor-pointer group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-mobile-alt text-3xl text-white"></i>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-mobile-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Smartphones</h3>
-                    <p class="text-white/80 text-sm">Latest mobile devices</p>
+                    <h3 class="font-semibold text-gray-800">Smartphones</h3>
                 </div>
                 
-                <div class="category-card text-center p-8 rounded-3xl cursor-pointer group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-laptop text-3xl text-white"></i>
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-laptop text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Laptops</h3>
-                    <p class="text-white/80 text-sm">High-performance computers</p>
+                    <h3 class="font-semibold text-gray-800">Laptops</h3>
                 </div>
                 
-                <div class="category-card text-center p-8 rounded-3xl cursor-pointer group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-headphones text-3xl text-white"></i>
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-headphones text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Audio</h3>
-                    <p class="text-white/80 text-sm">Premium sound equipment</p>
+                    <h3 class="font-semibold text-gray-800">Audio</h3>
                 </div>
                 
-                <div class="category-card text-center p-8 rounded-3xl cursor-pointer group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-camera text-3xl text-white"></i>
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-camera text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Cameras</h3>
-                    <p class="text-white/80 text-sm">Professional photography</p>
+                    <h3 class="font-semibold text-gray-800">Cameras</h3>
+                </div>
+                
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-gamepad text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">Gaming</h3>
+                </div>
+                
+                <div class="category-card rounded-2xl p-6 text-center group cursor-pointer" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-tv text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800">TVs</h3>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Products Section -->
-    <section id="featured" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="featured" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    <i class="fas fa-star text-yellow-500 mr-3"></i>
-                    Featured Products
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Featured <span class="gradient-text">Products</span>
                 </h2>
-                <p class="text-xl text-gray-600">Hand-picked premium electronics with special offers</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our handpicked selection of premium electronics
+                </p>
             </div>
             
-            <!-- Loading Skeleton -->
-            <div id="featured-loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
-                    <div class="loading-skeleton h-4 rounded mb-2"></div>
-                    <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
-                    <div class="loading-skeleton h-6 rounded w-1/2"></div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
-                    <div class="loading-skeleton h-4 rounded mb-2"></div>
-                    <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
-                    <div class="loading-skeleton h-6 rounded w-1/2"></div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
-                    <div class="loading-skeleton h-4 rounded mb-2"></div>
-                    <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
-                    <div class="loading-skeleton h-6 rounded w-1/2"></div>
-                </div>
-                <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
-                    <div class="loading-skeleton h-4 rounded mb-2"></div>
-                    <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
-                    <div class="loading-skeleton h-6 rounded w-1/2"></div>
-                </div>
-            </div>
-            
-            <!-- Products Grid -->
-            <div id="featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 hidden">
-                <!-- Products will be loaded here -->
-            </div>
-            
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="/products" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 inline-flex items-center">
-                    <i class="fas fa-arrow-right mr-3"></i>
-                    View All Products
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Shop by Category</h2>
-                <p class="text-xl text-gray-600">Find exactly what you're looking for</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <a href="/products?category=Mobile%20Phones" class="category-card group" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-8 text-center hover:from-blue-200 hover:to-blue-300 transition-all">
-                        <i class="fas fa-mobile-alt text-blue-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="font-bold text-gray-900 text-lg">Smartphones</h3>
-                        <p class="text-sm text-gray-600 mt-2">Latest Models</p>
-                    </div>
-                </a>
-                
-                <a href="/products?category=Laptops%20%26%20Computers" class="category-card group" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl p-8 text-center hover:from-purple-200 hover:to-purple-300 transition-all">
-                        <i class="fas fa-laptop text-purple-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="font-bold text-gray-900 text-lg">Laptops</h3>
-                        <p class="text-sm text-gray-600 mt-2">High Performance</p>
-                    </div>
-                </a>
-                
-                <a href="/products?category=Audio%20%26%20Headphones" class="category-card group" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-gradient-to-br from-green-100 to-green-200 rounded-2xl p-8 text-center hover:from-green-200 hover:to-green-300 transition-all">
-                        <i class="fas fa-headphones text-green-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="font-bold text-gray-900 text-lg">Audio</h3>
-                        <p class="text-sm text-gray-600 mt-2">Premium Sound</p>
-                    </div>
-                </a>
-                
-                <a href="/products?category=Gaming%20Consoles" class="category-card group" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="bg-gradient-to-br from-red-100 to-red-200 rounded-2xl p-8 text-center hover:from-red-200 hover:to-red-300 transition-all">
-                        <i class="fas fa-gamepad text-red-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="font-bold text-gray-900 text-lg">Gaming</h3>
-                        <p class="text-sm text-gray-600 mt-2">Latest Consoles</p>
-                    </div>
-                </a>
-                
-                <a href="/products?category=Cameras%20%26%20Photography" class="category-card group" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl p-8 text-center hover:from-yellow-200 hover:to-yellow-300 transition-all">
-                        <i class="fas fa-camera text-yellow-600 text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                        <h3 class="font-bold text-gray-900 text-lg">Cameras</h3>
-                        <p class="text-sm text-gray-600 mt-2">Professional</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="stat-counter" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-5xl font-bold mb-2 text-yellow-400" data-count="15">0+</div>
-                    <div class="text-lg opacity-75">Premium Products</div>
-                </div>
-                <div class="stat-counter" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-5xl font-bold mb-2 text-blue-400" data-count="1000">0+</div>
-                    <div class="text-lg opacity-75">Happy Customers</div>
-                </div>
-                <div class="stat-counter" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-5xl font-bold mb-2 text-green-400" data-count="50">0+</div>
-                    <div class="text-lg opacity-75">Cities Covered</div>
-                </div>
-                <div class="stat-counter" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-5xl font-bold mb-2 text-pink-400" data-count="24">0/7</div>
-                    <div class="text-lg opacity-75">Support Available</div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="featured-products">
+                <!-- Products will be loaded dynamically -->
             </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
-    <section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <div class="bg-white rounded-3xl shadow-2xl p-12">
-                <div class="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-8">
-                    <i class="fas fa-envelope text-3xl text-white"></i>
-                </div>
-                
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Stay Updated</h2>
-                <p class="text-xl text-gray-600 mb-8">Get notified about new products, exclusive deals, and special offers</p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                    <input type="email" placeholder="Enter your email address" 
-                           class="flex-1 px-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none text-lg">
-                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105">
-                        Subscribe
-                    </button>
-                </div>
-                
-                <p class="text-sm text-gray-500 mt-4">
-                    <i class="fas fa-lock mr-2"></i>
-                    We respect your privacy. Unsubscribe anytime.
-                </p>
+    <section class="py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Stay Updated</h2>
+            <p class="text-xl mb-8 opacity-90">Get the latest deals and product updates delivered to your inbox</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" 
+                       class="flex-1 px-6 py-4 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+                    Subscribe
+                </button>
             </div>
         </div>
     </section>
@@ -636,123 +624,131 @@
     <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="space-y-6">
+                <div class="space-y-4">
                     <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-bolt text-white text-xl"></i>
-                        </div>
-                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                            TrendyMart
-                        </span>
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                             alt="TrendyMart Logo" 
+                             class="w-10 h-10 rounded-lg object-cover">
+                        <span class="text-xl font-bold">TrendyMart</span>
                     </div>
-                    <p class="text-gray-400 leading-relaxed">Your trusted partner for premium electronics in Bangladesh. Quality products, fast delivery, and exceptional service.</p>
-                    
+                    <p class="text-gray-400">Your trusted destination for premium electronics in Bangladesh.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
                         </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold text-lg mb-6">Quick Links</h4>
-                    <div class="space-y-3">
-                        <a href="/" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-home mr-2"></i>Home
-                        </a>
-                        <a href="/products" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-shopping-bag mr-2"></i>Products
-                        </a>
-                        <a href="/about" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-info-circle mr-2"></i>About
-                        </a>
-                        <a href="/contact" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-envelope mr-2"></i>Contact
-                        </a>
-                        <a href="/cart" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-shopping-cart mr-2"></i>Cart
-                        </a>
-                        <a href="/login" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-user mr-2"></i>Account
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-6">Categories</h4>
-                    <div class="space-y-3">
-                        <a href="/products?category=Mobile%20Phones" class="text-gray-400 hover:text-white block transition-colors">Smartphones</a>
-                        <a href="/products?category=Laptops%20%26%20Computers" class="text-gray-400 hover:text-white block transition-colors">Laptops</a>
-                        <a href="/products?category=Audio%20%26%20Headphones" class="text-gray-400 hover:text-white block transition-colors">Audio</a>
-                        <a href="/products?category=Gaming%20Consoles" class="text-gray-400 hover:text-white block transition-colors">Gaming</a>
-                    </div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="/products" class="text-gray-400 hover:text-white transition-colors duration-300">Products</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-6">Support</h4>
-                    <div class="space-y-3">
-                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-phone mr-2"></i>+880 1234-567890
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-envelope mr-2"></i>support@trendymart.com
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-headset mr-2"></i>Live Chat
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white block transition-colors">
-                            <i class="fas fa-question-circle mr-2"></i>Help Center
-                        </a>
-                    </div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/products?category=smartphones" class="text-gray-400 hover:text-white transition-colors duration-300">Smartphones</a></li>
+                        <li><a href="/products?category=laptops" class="text-gray-400 hover:text-white transition-colors duration-300">Laptops</a></li>
+                        <li><a href="/products?category=audio" class="text-gray-400 hover:text-white transition-colors duration-300">Audio</a></li>
+                        <li><a href="/products?category=cameras" class="text-gray-400 hover:text-white transition-colors duration-300">Cameras</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact Support</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Returns</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Shipping Info</a></li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">&copy; 2024 TrendyMart. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Info</a>
-                </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 TrendyMart. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="/js/products-data.js"></script>
-    <script src="/js/homepage.js"></script>
+    <!-- JavaScript -->
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 1000,
+            duration: 800,
+            easing: 'ease-out',
             once: true
         });
 
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Update cart count on load
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            const cartCountElements = document.querySelectorAll('.cart-count');
-            cartCountElements.forEach(element => {
-                element.textContent = totalItems;
-                element.style.display = totalItems > 0 ? 'block' : 'none';
-            });
+        // Load featured products
+        async function loadFeaturedProducts() {
+            try {
+                const response = await fetch('/api/products?featured=true&limit=8');
+                const products = await response.json();
+                
+                const container = document.getElementById('featured-products');
+                container.innerHTML = products.map(product => `
+                    <div class="product-card bg-white rounded-2xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="${Math.random() * 400}">
+                        <div class="relative mb-4">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-xl">
+                            ${product.discount ? `<div class="discount-badge absolute top-2 right-2 text-white px-2 py-1 rounded-lg text-sm font-bold">-${product.discount}%</div>` : ''}
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-4">${product.description.substring(0, 60)}...</p>
+                        <div class="flex justify-between items-center">
+                            <div class="price-gradient text-xl font-bold">৳${product.price}</div>
+                            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-shopping-cart mr-2"></i>Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading featured products:', error);
+            }
         }
 
-        updateCartCount();
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFeaturedProducts();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

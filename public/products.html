@@ -7,12 +7,23 @@
     
     <link href="/css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
         .hamburger-line {
             transition: all 0.3s ease;
             transform-origin: center;
@@ -36,44 +47,163 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .category-filter {
+            transition: all 0.3s ease;
+            background: white;
+            border: 2px solid transparent;
+        }
+        
+        .category-filter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-filter.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .price-gradient {
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .discount-badge {
+            background: var(--accent-gradient);
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation (same as index) -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50" id="navbar">
+<body class="bg-gray-50 font-inter">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-3">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="TrendyMart Logo" 
-                             class="w-12 h-12 rounded-lg object-cover shadow-md">
-                        <span class="text-2xl font-bold text-gray-800">TrendyMart</span>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="relative">
+                            <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                                 alt="TrendyMart Logo" 
+                                 class="w-12 h-12 rounded-xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            TrendyMart
+                        </span>
                     </a>
                 </div>
 
                 <div class="hidden md:flex flex-1 max-w-lg mx-8">
-                    <div class="relative w-full">
+                    <div class="relative w-full group">
                         <input type="text" id="searchInput" placeholder="Search for products..." 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                               class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:outline-none transition-all duration-300 group-hover:border-gray-300">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-search mr-1"></i>
+                            Search
+                        </button>
                     </div>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold">Home</a>
-                    <a href="/products" class="text-blue-600 font-semibold">Products</a>
-                    <a href="/about" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold">About</a>
-                    <a href="/contact" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold">Contact</a>
-                    <a href="/cart" class="text-gray-800 hover:text-blue-600 transition-colors relative font-semibold">
-                        <i class="fas fa-shopping-cart mr-2"></i>Cart
-                        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-1" id="cartCount">0</span>
+                    <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-home mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl font-semibold">Login</a>
+                    <a href="/products" class="text-blue-600 font-semibold relative group">
+                        <i class="fas fa-shopping-bag mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Products
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-600"></span>
+                    </a>
+                    <a href="/about" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-info-circle mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/contact" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold relative group">
+                        <i class="fas fa-envelope mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/cart" class="text-gray-800 hover:text-blue-600 transition-colors relative font-semibold group">
+                        <i class="fas fa-shopping-cart mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                        Cart
+                        <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full px-2 py-1" id="cartCount">0</span>
+                    </a>
+                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        Login
+                    </a>
                 </div>
                 
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors">
+                    <button id="mobile-menu-btn" class="hamburger p-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
                         <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
@@ -85,225 +215,519 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 hidden transform transition-all duration-300">
             <div class="px-6 py-6 space-y-4">
-                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Home</a>
-                <a href="/products" class="block text-blue-600 font-medium py-2">Products</a>
-                <a href="/about" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">About</a>
-                <a href="/contact" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Contact</a>
-                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2">Cart</a>
-                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">Login</a>
+                <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-home mr-3"></i>Home
+                </a>
+                <a href="/products" class="block text-blue-600 font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-bag mr-3"></i>Products
+                </a>
+                <a href="/about" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-info-circle mr-3"></i>About
+                </a>
+                <a href="/contact" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>Contact
+                </a>
+                <a href="/cart" class="block text-gray-800 hover:text-blue-600 transition-colors font-medium py-2 flex items-center">
+                    <i class="fas fa-shopping-cart mr-3"></i>Cart
+                </a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
     <section class="bg-gradient-to-r from-blue-50 to-purple-50 py-16 border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 gradient-text" data-aos="fade-up" data-aos-duration="800">
-                Discover Amazing Products
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="800">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+                Premium <span class="gradient-text">Electronics</span>
             </h1>
-            <p class="text-2xl text-gray-600 font-medium mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Explore our curated collection of premium electronics from verified sellers across Bangladesh
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover the latest smartphones, laptops, headphones, and gadgets with unbeatable prices and fast delivery across Bangladesh.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
-                    <span class="text-sm text-gray-500" id="productCount">Loading products...</span>
+            
+            <!-- Breadcrumb -->
+            <nav class="flex justify-center mt-8" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-300">
+                            <i class="fas fa-home mr-2"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                            <span class="text-sm font-medium text-gray-500">Products</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Filters and Products Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Filters Sidebar -->
+                <div class="lg:col-span-1" data-aos="slide-in-left" data-aos-duration="800">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-filter mr-3 text-blue-600"></i>
+                            Filters
+                        </h3>
+                        
+                        <!-- Category Filter -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-gray-700 mb-4 flex items-center">
+                                <i class="fas fa-tags mr-2 text-gray-500"></i>
+                                Categories
+                            </h4>
+                            <div class="space-y-3">
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 active" data-category="all">
+                                    <i class="fas fa-th-large mr-3"></i>
+                                    All Products
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="smartphones">
+                                    <i class="fas fa-mobile-alt mr-3"></i>
+                                    Smartphones
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="laptops">
+                                    <i class="fas fa-laptop mr-3"></i>
+                                    Laptops
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="audio">
+                                    <i class="fas fa-headphones mr-3"></i>
+                                    Audio
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="cameras">
+                                    <i class="fas fa-camera mr-3"></i>
+                                    Cameras
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="gaming">
+                                    <i class="fas fa-gamepad mr-3"></i>
+                                    Gaming
+                                </button>
+                                <button class="category-filter w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300" data-category="tvs">
+                                    <i class="fas fa-tv mr-3"></i>
+                                    TVs
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Filter -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-gray-700 mb-4 flex items-center">
+                                <i class="fas fa-dollar-sign mr-2 text-gray-500"></i>
+                                Price Range
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" value="0-10000" class="mr-3">
+                                    <span class="text-sm">Under ৳10,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" value="10000-30000" class="mr-3">
+                                    <span class="text-sm">৳10,000 - ৳30,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" value="30000-50000" class="mr-3">
+                                    <span class="text-sm">৳30,000 - ৳50,000</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="price" value="50000+" class="mr-3">
+                                    <span class="text-sm">Over ৳50,000</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Brand Filter -->
+                        <div class="mb-8">
+                            <h4 class="font-semibold text-gray-700 mb-4 flex items-center">
+                                <i class="fas fa-crown mr-2 text-gray-500"></i>
+                                Brands
+                            </h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="apple" class="mr-3">
+                                    <span class="text-sm">Apple</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="samsung" class="mr-3">
+                                    <span class="text-sm">Samsung</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="sony" class="mr-3">
+                                    <span class="text-sm">Sony</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="lg" class="mr-3">
+                                    <span class="text-sm">LG</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="hp" class="mr-3">
+                                    <span class="text-sm">HP</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="brand" value="dell" class="mr-3">
+                                    <span class="text-sm">Dell</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Clear Filters -->
+                        <button id="clearFilters" class="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-times mr-2"></i>
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
-                    <span class="text-sm text-gray-500">Premium Quality</span>
-                </div>
-                <div class="bg-white rounded-2xl px-6 py-3 shadow-lg">
-                    <span class="text-sm text-gray-500">Fast Delivery</span>
+                
+                <!-- Products Grid -->
+                <div class="lg:col-span-3">
+                    <!-- Sort and View Options -->
+                    <div class="flex flex-col sm:flex-row justify-between items-center mb-8" data-aos="fade-up" data-aos-duration="800">
+                        <div class="flex items-center space-x-4 mb-4 sm:mb-0">
+                            <span class="text-gray-700 font-medium">Sort by:</span>
+                            <select id="sortSelect" class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-blue-500 focus:outline-none transition-all duration-300">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name: A to Z</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <span class="text-gray-700 font-medium">View:</span>
+                            <button id="gridView" class="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-300">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button id="listView" class="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors duration-300">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Count -->
+                    <div class="mb-6" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                        <p class="text-gray-600">
+                            Showing <span id="resultsCount" class="font-semibold text-blue-600">0</span> products
+                        </p>
+                    </div>
+                    
+                    <!-- Loading Skeleton -->
+                    <div id="loadingSkeleton" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                        <div class="product-card p-6">
+                            <div class="loading-skeleton h-48 rounded-xl mb-4"></div>
+                            <div class="loading-skeleton h-4 rounded mb-2"></div>
+                            <div class="loading-skeleton h-4 rounded w-3/4 mb-4"></div>
+                            <div class="loading-skeleton h-6 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Grid -->
+                    <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                        <!-- Products will be loaded here -->
+                    </div>
+                    
+                    <!-- No Results -->
+                    <div id="noResults" class="text-center py-12 hidden" data-aos="fade-up" data-aos-duration="800">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-search text-3xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">No products found</h3>
+                        <p class="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+                        <button id="resetFilters" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-refresh mr-2"></i>
+                            Reset Filters
+                        </button>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12" data-aos="fade-up" data-aos-duration="800">
+                        <button id="loadMore" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hidden">
+                            <i class="fas fa-plus mr-2"></i>
+                            Load More Products
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Filters and Products -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col lg:flex-row gap-8">
-            <!-- Sidebar Filters -->
-            <div class="lg:w-1/4">
-                <div class="bg-white rounded-lg shadow-md p-6 sticky top-24">
-                    <h3 class="font-semibold text-lg mb-4">Filters</h3>
-                    
-                    <!-- Category Filter -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                        <select id="categoryFilter" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            <option value="">All Categories</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="clothing">Clothing</option>
-                            <option value="home">Home & Garden</option>
-                            <option value="sports">Sports</option>
-                            <option value="books">Books</option>
-                            <option value="toys">Toys</option>
-                            <option value="beauty">Beauty</option>
-                            <option value="automotive">Automotive</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <!-- Price Range -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
-                        <div class="flex space-x-2">
-                            <input type="number" id="minPrice" placeholder="Min" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            <input type="number" id="maxPrice" placeholder="Max" class="w-1/2 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                        </div>
-                    </div>
-
-                    <!-- Condition Filter -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Condition</label>
-                        <select id="conditionFilter" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            <option value="">All Conditions</option>
-                            <option value="new">New</option>
-                            <option value="like-new">Like New</option>
-                            <option value="good">Good</option>
-                            <option value="fair">Fair</option>
-                            <option value="poor">Poor</option>
-                        </select>
-                    </div>
-
-                    <!-- Sort Options -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
-                        <select id="sortFilter" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            <option value="createdAt-desc">Newest First</option>
-                            <option value="createdAt-asc">Oldest First</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
-                            <option value="views-desc">Most Popular</option>
-                            <option value="rating.average-desc">Highest Rated</option>
-                        </select>
-                    </div>
-
-                    <button id="applyFilters" class="w-full btn-primary">
-                        <i class="fas fa-filter mr-2"></i>
-                        Apply Filters
-                    </button>
-                    
-                    <button id="clearFilters" class="w-full btn-secondary mt-2">
-                        <i class="fas fa-times mr-2"></i>
-                        Clear All
-                    </button>
-                </div>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="lg:w-3/4">
-                <!-- View Toggle -->
-                <div class="flex justify-between items-center mb-6">
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm text-gray-600">View:</span>
-                        <button id="gridView" class="p-2 rounded-lg bg-primary-100 text-primary-600">
-                            <i class="fas fa-th-large"></i>
-                        </button>
-                        <button id="listView" class="p-2 rounded-lg text-gray-400 hover:bg-gray-100">
-                            <i class="fas fa-list"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm text-gray-600">Show:</span>
-                        <select id="limitFilter" class="border border-gray-300 rounded px-2 py-1 text-sm">
-                            <option value="12">12</option>
-                            <option value="24">24</option>
-                            <option value="48">48</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Loading State -->
-                <div id="loadingState" class="text-center py-12">
-                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
-                    <p class="mt-4 text-gray-600">Loading products...</p>
-                </div>
-
-                <!-- Products Container -->
-                <div id="productsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
-                    <!-- Products will be loaded dynamically -->
-                </div>
-
-                <!-- No Products Found -->
-                <div id="noProductsFound" class="text-center py-12 hidden">
-                    <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">No products found</h3>
-                    <p class="text-gray-500">Try adjusting your filters or search terms</p>
-                </div>
-
-                <!-- Pagination -->
-                <div id="pagination" class="mt-12 flex justify-center hidden">
-                    <!-- Pagination will be generated dynamically -->
-                </div>
+    <!-- Newsletter Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="800">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Stay Updated</h2>
+            <p class="text-xl mb-8 opacity-90">Get the latest deals and product updates delivered to your inbox</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" 
+                       class="flex-1 px-6 py-4 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105">
+                    Subscribe
+                </button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Quick View Modal -->
-    <div id="quickViewModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold">Quick View</h3>
-                        <button id="closeQuickView" class="text-gray-400 hover:text-gray-600">
-                            <i class="fas fa-times text-xl"></i>
-                        </button>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                             alt="TrendyMart Logo" 
+                             class="w-10 h-10 rounded-lg object-cover">
+                        <span class="text-xl font-bold">TrendyMart</span>
                     </div>
-                    <div id="quickViewContent">
-                        <!-- Quick view content will be loaded here -->
+                    <p class="text-gray-400">Your trusted destination for premium electronics in Bangladesh.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
                     </div>
                 </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="/products" class="text-gray-400 hover:text-white transition-colors duration-300">Products</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/products?category=smartphones" class="text-gray-400 hover:text-white transition-colors duration-300">Smartphones</a></li>
+                        <li><a href="/products?category=laptops" class="text-gray-400 hover:text-white transition-colors duration-300">Laptops</a></li>
+                        <li><a href="/products?category=audio" class="text-gray-400 hover:text-white transition-colors duration-300">Audio</a></li>
+                        <li><a href="/products?category=cameras" class="text-gray-400 hover:text-white transition-colors duration-300">Cameras</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact Support</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Returns</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors duration-300">Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 TrendyMart. All rights reserved.</p>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <script src="/js/auth.js"></script>
-    <script src="/js/cart.js"></script>
-    <script src="/js/products.js"></script>
-    <script src="/js/animations.js"></script>
-    
+    <!-- JavaScript -->
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
+            duration: 800,
+            easing: 'ease-out',
+            once: true
         });
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const hamburger = document.querySelector('.hamburger');
-
+        
         mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('hidden');
-            hamburger.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on links
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                hamburger.classList.remove('active');
+        // Category filter functionality
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        categoryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                categoryFilters.forEach(f => f.classList.remove('active'));
+                // Add active class to clicked filter
+                filter.classList.add('active');
+                
+                const category = filter.dataset.category;
+                filterProducts(category);
             });
         });
 
-        // Update cart count on load
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            const cartCountElements = document.querySelectorAll('.cart-count');
-            cartCountElements.forEach(element => {
-                element.textContent = totalItems;
-                element.style.display = totalItems > 0 ? 'block' : 'none';
-            });
+        // Load products
+        async function loadProducts(category = 'all') {
+            try {
+                const loadingSkeleton = document.getElementById('loadingSkeleton');
+                const productsGrid = document.getElementById('productsGrid');
+                const noResults = document.getElementById('noResults');
+                
+                loadingSkeleton.classList.remove('hidden');
+                productsGrid.classList.add('hidden');
+                noResults.classList.add('hidden');
+                
+                const response = await fetch(`/api/products${category !== 'all' ? `?category=${category}` : ''}`);
+                const products = await response.json();
+                
+                loadingSkeleton.classList.add('hidden');
+                
+                if (products.length === 0) {
+                    noResults.classList.remove('hidden');
+                    return;
+                }
+                
+                productsGrid.classList.remove('hidden');
+                displayProducts(products);
+                
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('loadingSkeleton').classList.add('hidden');
+                document.getElementById('noResults').classList.remove('hidden');
+            }
         }
 
-        updateCartCount();
+        // Display products
+        function displayProducts(products) {
+            const container = document.getElementById('productsGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            resultsCount.textContent = products.length;
+            
+            container.innerHTML = products.map(product => `
+                <div class="product-card p-6" data-aos="fade-up" data-aos-delay="${Math.random() * 400}">
+                    <div class="relative mb-4">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-xl">
+                        ${product.discount ? `<div class="discount-badge absolute top-2 right-2 text-white px-2 py-1 rounded-lg text-sm font-bold">-${product.discount}%</div>` : ''}
+                        <button class="absolute top-2 left-2 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-300">
+                            <i class="fas fa-heart text-gray-600 hover:text-red-500 transition-colors duration-300"></i>
+                        </button>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${product.description.substring(0, 80)}...</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="price-gradient text-xl font-bold">৳${product.price}</div>
+                        <div class="flex items-center text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <span class="ml-1 text-sm text-gray-600">4.5</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-shopping-cart mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            loadProducts(category);
+        }
+
+        // Clear filters
+        document.getElementById('clearFilters').addEventListener('click', () => {
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            categoryFilters[0].classList.add('active'); // All products
+            loadProducts('all');
+        });
+
+        // Reset filters
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            categoryFilters[0].classList.add('active'); // All products
+            loadProducts('all');
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const query = e.target.value.trim();
+                if (query) {
+                    // Implement search functionality
+                    console.log('Searching for:', query);
+                } else {
+                    loadProducts('all');
+                }
+            }, 500);
+        });
+
+        // Sort functionality
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            const sortBy = e.target.value;
+            // Implement sorting functionality
+            console.log('Sorting by:', sortBy);
+        });
+
+        // View toggle
+        document.getElementById('gridView').addEventListener('click', () => {
+            document.getElementById('gridView').classList.add('bg-blue-100', 'text-blue-600');
+            document.getElementById('gridView').classList.remove('bg-gray-100', 'text-gray-600');
+            document.getElementById('listView').classList.remove('bg-blue-100', 'text-blue-600');
+            document.getElementById('listView').classList.add('bg-gray-100', 'text-gray-600');
+            // Implement grid view
+        });
+
+        document.getElementById('listView').addEventListener('click', () => {
+            document.getElementById('listView').classList.add('bg-blue-100', 'text-blue-600');
+            document.getElementById('listView').classList.remove('bg-gray-100', 'text-gray-600');
+            document.getElementById('gridView').classList.remove('bg-blue-100', 'text-blue-600');
+            document.getElementById('gridView').classList.add('bg-gray-100', 'text-gray-600');
+            // Implement list view
+        });
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+        });
     </script>
 </body>
 </html>
