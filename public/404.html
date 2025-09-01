@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - TrendyMart Bangladesh</title>
+    
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .glassmorphism-bg {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(169, 169, 169, 0.15) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body class="glassmorphism-bg font-inter min-h-screen">
+    <!-- Navigation -->
+    <nav class="glassmorphism-bg backdrop-blur-md shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-3 group">
+                        <div class="relative">
+                            <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                                 alt="TrendyMart Logo" 
+                                 class="w-14 h-14 rounded-2xl object-cover shadow-xl group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-3xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                            TrendyMart
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold text-lg">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="/products" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold text-lg">
+                        <i class="fas fa-shopping-bag mr-2"></i>Products
+                    </a>
+                    <a href="/services" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold text-lg">
+                        <i class="fas fa-cogs mr-2"></i>Services
+                    </a>
+                    <a href="/about" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold text-lg">
+                        <i class="fas fa-info-circle mr-2"></i>About
+                    </a>
+                    <a href="/contact" class="text-gray-800 hover:text-blue-600 transition-colors font-semibold text-lg">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </a>
+                    <a href="/login" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 text-lg">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <section class="py-32 text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative">
+                <!-- Floating Elements -->
+                <div class="absolute top-20 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl floating-animation"></div>
+                <div class="absolute top-40 right-20 w-40 h-40 bg-purple-400/10 rounded-full blur-3xl floating-animation"></div>
+                <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-pink-400/10 rounded-full blur-3xl floating-animation"></div>
+                
+                <div class="relative z-10">
+                    <div class="mb-8">
+                        <i class="fas fa-exclamation-triangle text-8xl text-yellow-500 mb-6"></i>
+                    </div>
+                    
+                    <h1 class="text-6xl md:text-8xl font-bold text-gray-800 mb-6">
+                        4<span class="gradient-text">0</span>4
+                    </h1>
+                    
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-700 mb-6">
+                        Oops! Page Not Found
+                    </h2>
+                    
+                    <p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+                        The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="/" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">
+                            <i class="fas fa-home mr-2"></i>
+                            Go Home
+                        </a>
+                        <a href="/products" class="border-2 border-blue-600 text-blue-600 px-10 py-4 rounded-2xl font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105 text-lg">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Browse Products
+                        </a>
+                    </div>
+                    
+                    <div class="mt-16 p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Popular Pages</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <a href="/products" class="block p-4 bg-white/20 rounded-2xl hover:bg-white/30 transition-all duration-300 group">
+                                <i class="fas fa-shopping-bag text-2xl text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
+                                <h4 class="font-semibold text-gray-800">Products</h4>
+                                <p class="text-sm text-gray-600">Browse our electronics</p>
+                            </a>
+                            <a href="/about" class="block p-4 bg-white/20 rounded-2xl hover:bg-white/30 transition-all duration-300 group">
+                                <i class="fas fa-info-circle text-2xl text-purple-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
+                                <h4 class="font-semibold text-gray-800">About Us</h4>
+                                <p class="text-sm text-gray-600">Learn about TrendyMart</p>
+                            </a>
+                            <a href="/contact" class="block p-4 bg-white/20 rounded-2xl hover:bg-white/30 transition-all duration-300 group">
+                                <i class="fas fa-envelope text-2xl text-green-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
+                                <h4 class="font-semibold text-gray-800">Contact</h4>
+                                <p class="text-sm text-gray-600">Get in touch with us</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glassmorphism-bg text-gray-800 py-16 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj4320MT1k1DL-J2UYiZEd-IRbVtVXysdyygY.png_czmfzn.jpg" 
+                     alt="TrendyMart Logo" 
+                     class="w-12 h-12 rounded-xl object-cover">
+                <span class="text-2xl font-bold">TrendyMart</span>
+            </div>
+            <p class="text-gray-600 mb-6">Your trusted destination for premium electronics in Bangladesh.</p>
+            <div class="flex justify-center space-x-4 mb-6">
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-facebook text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+            </div>
+            <div class="border-t border-gray-300 pt-6">
+                <p class="text-gray-600">&copy; 2024 TrendyMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
