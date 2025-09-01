@@ -459,14 +459,14 @@ async function checkImageUrl(url) {
 function findBetterImage(productName, category) {
     // Map of product names to better image URLs
     const imageMap = {
-        "iPhone 14 Pro Max 256GB": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop",
-        "Samsung Galaxy S23 Ultra": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=300&fit=crop",
-        "MacBook Pro 16-inch M2": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
+        "iPhone 14 Pro Max 256GB": "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&h=400&fit=crop&q=80",
+        "Samsung Galaxy S23 Ultra": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&h=400&fit=crop&q=80",
+        "MacBook Pro 16-inch M2": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&h=400&fit=crop&q=80",
         "Dell XPS 13 Plus": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop",
-        "Sony WH-1000XM5": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
+        "Sony WH-1000XM5": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&h=400&fit=crop&q=80",
         "AirPods Pro 2nd Gen": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=300&fit=crop",
         "Canon EOS R6 Mark II": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop",
-        "Nikon Z6 II": "https://images.unsplash.com/photo-1510127034890-4a9a408aa3e7?w=400&h=400&fit=crop",
+        "Nikon Z6 II": "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=600&h=400&fit=crop&q=80",
         "PlayStation 5": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop",
         "Xbox Series X": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop",
         "Samsung QLED 4K TV 65\"": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop",

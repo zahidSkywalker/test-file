@@ -37,7 +37,7 @@
     "stock": 20,
     "description": "13th Gen Intel Core i7, 16GB RAM, 512GB SSD",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop"
   },
   {
     "id": "5",
@@ -57,7 +57,7 @@
     "stock": 50,
     "description": "Active noise cancellation, Spatial audio, MagSafe charging",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=400&h=300&fit=crop"
   },
   {
     "id": "7",
@@ -67,7 +67,7 @@
     "stock": 12,
     "description": "Full-frame mirrorless, 4K video, 20fps burst",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
   },
   {
     "id": "8",
@@ -87,7 +87,7 @@
     "stock": 35,
     "description": "Next-gen gaming console with 4K graphics",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
   },
   {
     "id": "10",
@@ -97,7 +97,7 @@
     "stock": 30,
     "description": "Most powerful Xbox ever, 4K gaming at 120fps",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop"
   },
   {
     "id": "11",
@@ -107,7 +107,7 @@
     "stock": 22,
     "description": "Quantum dot technology, HDR10+, Smart TV",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
     "id": "12",
@@ -117,7 +117,7 @@
     "stock": 18,
     "description": "Perfect blacks, AI-powered picture quality",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop"
   },
   {
     "id": "13",
@@ -127,7 +127,7 @@
     "stock": 45,
     "description": "Health monitoring, GPS, Always-on display",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400&h=300&fit=crop"
   },
   {
     "id": "14",
@@ -137,7 +137,7 @@
     "stock": 28,
     "description": "M1 chip, 10.9-inch display, Apple Pencil support",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop"
   },
   {
     "id": "15",
@@ -147,7 +147,7 @@
     "stock": 25,
     "description": "Google's flagship with advanced AI camera",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop"
   },
   {
     "id": "16",
@@ -187,7 +187,7 @@
     "stock": 35,
     "description": "Premium noise cancellation, 24-hour battery",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
   },
   {
     "id": "20",
@@ -227,7 +227,7 @@
     "stock": 40,
     "description": "7-inch OLED screen, enhanced audio, portable gaming",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
   },
   {
     "id": "24",
@@ -237,7 +237,7 @@
     "stock": 15,
     "description": "Portable PC gaming, Steam library access",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&h=300&fit=crop"
   },
   {
     "id": "25",
@@ -277,7 +277,7 @@
     "stock": 16,
     "description": "2-in-1 tablet, Intel 12th Gen, Windows 11",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop"
   },
   {
     "id": "29",
@@ -327,7 +327,7 @@
     "stock": 25,
     "description": "Open-back headphones, audiophile quality",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1558756520-22cfe5d382ca?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
   },
   {
     "id": "34",
@@ -347,7 +347,7 @@
     "stock": 18,
     "description": "APS-C mirrorless, 40MP sensor, 5-axis IBIS",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
   },
   {
     "id": "36",
@@ -357,7 +357,7 @@
     "stock": 15,
     "description": "Full-frame mirrorless, 33MP, 4K video",
     "status": "active",
-    "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=400&fit=crop&q=80"
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop"
   },
   {
     "id": "37",
