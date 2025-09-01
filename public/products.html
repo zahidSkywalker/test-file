@@ -154,6 +154,47 @@
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
         }
+
+        .animated-brand span {
+            animation: letterFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+
+        .animated-brand span:nth-child(1) { --i: 1; }
+        .animated-brand span:nth-child(2) { --i: 2; }
+        .animated-brand span:nth-child(3) { --i: 3; }
+        .animated-brand span:nth-child(4) { --i: 4; }
+        .animated-brand span:nth-child(5) { --i: 5; }
+        .animated-brand span:nth-child(6) { --i: 6; }
+        .animated-brand span:nth-child(7) { --i: 7; }
+        .animated-brand span:nth-child(8) { --i: 8; }
+        .animated-brand span:nth-child(9) { --i: 9; }
+        .animated-brand span:nth-child(10) { --i: 10; }
+
+        @keyframes letterFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 1; 
+            }
+            25% { 
+                transform: translateY(-2px) rotate(1deg); 
+                opacity: 0.9; 
+            }
+            50% { 
+                transform: translateY(-1px) rotate(-1deg); 
+                opacity: 1; 
+            }
+            75% { 
+                transform: translateY(-3px) rotate(0.5deg); 
+                opacity: 0.95; 
+            }
+        }
+
+        .animated-brand:hover span {
+            animation-play-state: paused;
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
         
 
     </style>
@@ -173,8 +214,17 @@
                             <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center text-white font-bold text-lg shadow-md relative z-10" style="display:none;">TM</div>
                         </div>
                                                         <div class="relative">
-                                    <span class="text-2xl font-semibold text-slate-800 group-hover:text-blue-600 transition-all duration-300 tracking-wide font-poppins">
-                                        TrendyMart
+                                    <span class="text-2xl font-semibold text-slate-800 group-hover:text-blue-600 transition-all duration-300 tracking-wide font-poppins animated-brand">
+                                        <span class="inline-block">T</span>
+                                        <span class="inline-block">r</span>
+                                        <span class="inline-block">e</span>
+                                        <span class="inline-block">n</span>
+                                        <span class="inline-block">d</span>
+                                        <span class="inline-block">y</span>
+                                        <span class="inline-block">M</span>
+                                        <span class="inline-block">a</span>
+                                        <span class="inline-block">r</span>
+                                        <span class="inline-block">t</span>
                                     </span>
                                     <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-600 group-hover:w-full transition-all duration-500 rounded-full"></div>
                                 </div>
