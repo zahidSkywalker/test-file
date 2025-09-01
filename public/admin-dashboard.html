@@ -5,605 +5,882 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - TrendyMart</title>
     
-    <link href="/css/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 2px dashed #e5e7eb;
+        }
+
+        .image-preview.has-image {
+            border: 2px solid #10b981;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactive {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #374151;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+<body class="bg-gray-50 font-inter">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-3">
-                        <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
-                             alt="TrendyMart Logo" 
-                             class="w-12 h-12 rounded-lg object-cover shadow-md">
-                        <span class="text-2xl font-bold text-gray-800">TrendyMart</span>
+                <div class="flex items-center space-x-3">
+                    <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
+                         alt="TrendyMart Logo" 
+                         class="w-10 h-10 rounded-lg object-cover">
+                    <span class="text-xl font-bold text-gray-800">TrendyMart Admin</span>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">Welcome, Admin</span>
+                    <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="fas fa-home mr-2"></i>View Site
                     </a>
-                </div>
-
-                <div class="flex items-center space-x-6">
-                    <a href="/" class="nav-link">
-                        <i class="fas fa-home mr-1"></i>
-                        Home
-                    </a>
-                    <a href="/products" class="nav-link">
-                        <i class="fas fa-search mr-1"></i>
-                        Browse
-                    </a>
-                    <div class="relative">
-                        <button class="nav-link flex items-center" id="userMenuBtn">
-                            <i class="fas fa-user mr-2"></i>
-                            <span id="userMenuText">Admin</span>
-                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                        </button>
-                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden" id="userMenu">
-                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                            <hr class="my-2">
-                            <button class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutBtn">Logout</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Dashboard Layout -->
-    <div class="flex">
-        <!-- Sidebar -->
-        <div class="w-64 bg-white shadow-lg h-screen sticky top-0">
-            <div class="p-6">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-crown text-red-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-gray-900">Admin Dashboard</h3>
-                        <p class="text-sm text-gray-600">Full Control Panel</p>
-                    </div>
-                </div>
-
-                <nav class="space-y-2">
-                    <a href="#overview" class="sidebar-link active flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="overview">
-                        <i class="fas fa-chart-line mr-3"></i>
-                        Overview
-                    </a>
-                    <a href="#products" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="products">
-                        <i class="fas fa-box mr-3"></i>
-                        Products
-                    </a>
-                    <a href="#orders" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="orders">
-                        <i class="fas fa-shopping-bag mr-3"></i>
-                        Orders
-                    </a>
-                    <a href="#users" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="users">
-                        <i class="fas fa-users mr-3"></i>
-                        Users
-                    </a>
-                    <a href="#analytics" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="analytics">
-                        <i class="fas fa-chart-bar mr-3"></i>
-                        Analytics
-                    </a>
-                    <a href="#settings" class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-lg" data-section="settings">
-                        <i class="fas fa-cog mr-3"></i>
-                        Settings
-                    </a>
-                </nav>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="flex-1 overflow-x-hidden">
-            <!-- Overview Section -->
-            <div id="overviewSection" class="dashboard-section p-8">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Admin Overview</h1>
-                    <p class="text-gray-600">Platform performance and key metrics</p>
-                </div>
-
-                <!-- Key Metrics -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-600">Total Users</p>
-                                <p class="text-2xl font-bold text-gray-900" id="totalUsers">1,247</p>
-                                <p class="text-sm text-green-600">+12% this month</p>
-                            </div>
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-users text-blue-600 text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-600">Total Products</p>
-                                <p class="text-2xl font-bold text-gray-900" id="adminTotalProducts">5,832</p>
-                                <p class="text-sm text-green-600">+8% this month</p>
-                            </div>
-                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-box text-green-600 text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-600">Total Orders</p>
-                                <p class="text-2xl font-bold text-gray-900" id="adminTotalOrders">12,456</p>
-                                <p class="text-sm text-green-600">+15% this month</p>
-                            </div>
-                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-shopping-cart text-yellow-600 text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-600">Revenue</p>
-                                <p class="text-2xl font-bold text-gray-900" id="totalRevenue">$284,567</p>
-                                <p class="text-sm text-green-600">+22% this month</p>
-                            </div>
-                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts and Recent Activity -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Revenue Trend</h3>
-                        <canvas id="revenueChart" class="w-full h-64"></canvas>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
-                        <div id="recentActivities" class="space-y-4 max-h-64 overflow-y-auto">
-                            <!-- Recent activities will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Products Management Section -->
-            <div id="productsSection" class="dashboard-section p-8 hidden">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Products Management</h1>
-                        <p class="text-gray-600">Manage all products on the platform</p>
-                    </div>
-                    <div class="flex space-x-3">
-                        <button id="bulkActionsBtn" class="btn-secondary">
-                            <i class="fas fa-tasks mr-2"></i>
-                            Bulk Actions
-                        </button>
-                        <button id="exportProductsBtn" class="btn-secondary">
-                            <i class="fas fa-download mr-2"></i>
-                            Export
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Advanced Filters -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <select id="adminProductCategory" class="input-field">
-                            <option value="">All Categories</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="clothing">Clothing</option>
-                            <option value="home">Home & Garden</option>
-                            <option value="sports">Sports</option>
-                            <option value="books">Books</option>
-                            <option value="toys">Toys</option>
-                            <option value="beauty">Beauty</option>
-                            <option value="automotive">Automotive</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <select id="adminProductStatus" class="input-field">
-                            <option value="">All Status</option>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                            <option value="sold">Sold</option>
-                            <option value="pending">Pending Review</option>
-                        </select>
-                        <input type="text" id="adminProductSearch" placeholder="Search products..." class="input-field">
-                        <button id="adminFilterProducts" class="btn-primary">
-                            <i class="fas fa-search mr-2"></i>
-                            Search
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Products Table -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left">
-                                        <input type="checkbox" id="selectAllProducts" class="rounded">
-                                    </th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Featured</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminProductsTableBody" class="bg-white divide-y divide-gray-200">
-                                <!-- Products will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Products Pagination -->
-                <div id="adminProductsPagination" class="mt-6 flex justify-center">
-                    <!-- Pagination will be generated here -->
-                </div>
-            </div>
-
-            <!-- Orders Management Section -->
-            <div id="ordersSection" class="dashboard-section p-8 hidden">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Orders Management</h1>
-                        <p class="text-gray-600">Monitor and manage all platform orders</p>
-                    </div>
-                    <button id="exportOrdersBtn" class="btn-secondary">
-                        <i class="fas fa-download mr-2"></i>
-                        Export Orders
+                    <button onclick="logout()" class="text-red-600 hover:text-red-800 transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
                     </button>
                 </div>
-
-                <!-- Orders Filter -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <select id="adminOrderStatus" class="input-field">
-                            <option value="">All Status</option>
-                            <option value="pending">Pending</option>
-                            <option value="confirmed">Confirmed</option>
-                            <option value="processing">Processing</option>
-                            <option value="shipped">Shipped</option>
-                            <option value="delivered">Delivered</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                        <input type="date" id="adminOrderDateFrom" class="input-field">
-                        <input type="date" id="adminOrderDateTo" class="input-field">
-                        <button id="adminFilterOrders" class="btn-primary">
-                            <i class="fas fa-filter mr-2"></i>
-                            Filter
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Orders Table -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminOrdersTableBody" class="bg-white divide-y divide-gray-200">
-                                <!-- Orders will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
+        </div>
+    </header>
 
-            <!-- Users Management Section -->
-            <div id="usersSection" class="dashboard-section p-8 hidden">
-                <div class="flex justify-between items-center mb-8">
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dashboard Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="total-products">0</div>
+                <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="active-products">0</div>
+                <div class="stat-label">Active Products</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-categories">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-value">৳0</div>
+                <div class="stat-label">Inventory Value</div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 mb-8">
+            <button onclick="openAddProductModal()" class="btn-success">
+                <i class="fas fa-plus mr-2"></i>Add New Product
+            </button>
+            <button onclick="exportProducts()" class="btn-primary">
+                <i class="fas fa-download mr-2"></i>Export Products
+            </button>
+            <button onclick="importProducts()" class="btn-primary">
+                <i class="fas fa-upload mr-2"></i>Import Products
+            </button>
+            <input type="file" id="import-file" accept=".json" style="display: none;" onchange="handleImportFile(event)">
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="admin-card p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input type="text" id="search-input" placeholder="Search products..." class="form-input">
+                <select id="category-filter" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="smartphones">Smartphones</option>
+                    <option value="laptops">Laptops</option>
+                    <option value="audio">Audio</option>
+                    <option value="cameras">Cameras</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="tvs">TVs</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+                <select id="status-filter" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+                <button onclick="clearFilters()" class="btn-primary">
+                    <i class="fas fa-times mr-2"></i>Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-container" class="product-grid">
+            <!-- Products will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6" id="modal-title">Add New Product</h2>
+            
+            <form id="product-form" class="space-y-6">
+                <input type="hidden" id="product-id">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Users Management</h1>
-                        <p class="text-gray-600">Manage platform users and permissions</p>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Product Name *</label>
+                        <input type="text" id="product-name" class="form-input" required>
                     </div>
-                    <button id="addUserBtn" class="btn-primary">
-                        <i class="fas fa-user-plus mr-2"></i>
-                        Add User
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
+                        <select id="product-category" class="form-select" required>
+                            <option value="">Select Category</option>
+                            <option value="smartphones">Smartphones</option>
+                            <option value="laptops">Laptops</option>
+                            <option value="audio">Audio</option>
+                            <option value="cameras">Cameras</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="tvs">TVs</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Price (৳) *</label>
+                        <input type="number" id="product-price" class="form-input" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Stock Quantity *</label>
+                        <input type="number" id="product-stock" class="form-input" min="0" required>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Product Description *</label>
+                    <textarea id="product-description" class="form-textarea" required></textarea>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Product Image *</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                        <input type="file" id="product-image" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                        <div id="image-upload-area" class="cursor-pointer">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                            <p class="text-gray-600">Click to upload image or drag and drop</p>
+                            <p class="text-sm text-gray-500 mt-2">PNG, JPG, GIF up to 5MB</p>
+                        </div>
+                        <img id="image-preview" class="image-preview mt-4" style="display: none;">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+                    <select id="product-status" class="form-select">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div class="flex justify-end space-x-4 pt-4">
+                    <button type="button" onclick="closeProductModal()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-success">
+                        <i class="fas fa-save mr-2"></i>Save Product
                     </button>
                 </div>
+            </form>
+        </div>
+    </div>
 
-                <!-- Users Filter -->
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <select id="adminUserRole" class="input-field">
-                            <option value="">All Roles</option>
-                            <option value="buyer">Buyers</option>
-                            <option value="seller">Sellers</option>
-                            <option value="admin">Admins</option>
-                        </select>
-                        <select id="adminUserStatus" class="input-field">
-                            <option value="">All Status</option>
-                            <option value="verified">Verified</option>
-                            <option value="unverified">Unverified</option>
-                        </select>
-                        <input type="text" id="adminUserSearch" placeholder="Search users..." class="input-field">
-                        <button id="adminFilterUsers" class="btn-primary">
-                            <i class="fas fa-search mr-2"></i>
-                            Search
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Users Table -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminUsersTableBody" class="bg-white divide-y divide-gray-200">
-                                <!-- Users will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Analytics Section -->
-            <div id="analyticsSection" class="dashboard-section p-8 hidden">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Platform Analytics</h1>
-                    <p class="text-gray-600">Comprehensive insights and reports</p>
-                </div>
-
-                <!-- Analytics Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h4 class="font-semibold text-gray-900 mb-4">Sales Performance</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Today</span>
-                                <span class="font-semibold text-green-600">$12,450</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">This Week</span>
-                                <span class="font-semibold">$87,230</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">This Month</span>
-                                <span class="font-semibold">$284,567</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h4 class="font-semibold text-gray-900 mb-4">User Growth</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">New Users Today</span>
-                                <span class="font-semibold text-blue-600">23</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">This Week</span>
-                                <span class="font-semibold">156</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">This Month</span>
-                                <span class="font-semibold">847</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h4 class="font-semibold text-gray-900 mb-4">Top Categories</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Electronics</span>
-                                <div class="flex items-center">
-                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 65%"></div>
-                                    </div>
-                                    <span class="text-sm">65%</span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Clothing</span>
-                                <div class="flex items-center">
-                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 35%"></div>
-                                    </div>
-                                    <span class="text-sm">35%</span>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600">Home</span>
-                                <div class="flex items-center">
-                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                                        <div class="bg-primary-600 h-2 rounded-full" style="width: 25%"></div>
-                                    </div>
-                                    <span class="text-sm">25%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">Category Distribution</h3>
-                        <canvas id="categoryChart" class="w-full h-64"></canvas>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-4">User Registration Trend</h3>
-                        <canvas id="userRegistrationChart" class="w-full h-64"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Settings Section -->
-            <div id="settingsSection" class="dashboard-section p-8 hidden">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-display font-bold text-gray-900 mb-2">Platform Settings</h1>
-                    <p class="text-gray-600">Configure platform-wide settings</p>
-                </div>
-
-                <div class="space-y-8">
-                    <!-- General Settings -->
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-6">General Settings</h3>
-                        <form id="generalSettingsForm" class="space-y-4">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
-                                    <input type="text" value="ResellerHub" class="input-field">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Support Email</label>
-                                    <input type="email" value="support@resellerhub.com" class="input-field">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Platform Description</label>
-                                <textarea rows="3" class="input-field">Your trusted marketplace for quality pre-owned items.</textarea>
-                            </div>
-                            <button type="submit" class="btn-primary">
-                                <i class="fas fa-save mr-2"></i>
-                                Save Settings
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Payment Settings -->
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-6">Payment Settings</h3>
-                        <form id="paymentSettingsForm" class="space-y-4">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">SSLCommerz Store ID</label>
-                                    <input type="text" id="sslcommerzStoreId" class="input-field" placeholder="Enter store ID">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Commission Rate (%)</label>
-                                    <input type="number" value="5" min="0" max="50" step="0.1" class="input-field">
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2" checked>
-                                    <span class="text-sm">Enable SSLCommerz</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="checkbox" class="mr-2" checked>
-                                    <span class="text-sm">Enable Cash on Delivery</span>
-                                </label>
-                            </div>
-                            <button type="submit" class="btn-primary">
-                                <i class="fas fa-save mr-2"></i>
-                                Save Payment Settings
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Email Settings -->
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-lg font-semibold mb-6">Email Settings</h3>
-                        <form id="emailSettingsForm" class="space-y-4">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Host</label>
-                                    <input type="text" class="input-field" placeholder="smtp.gmail.com">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Port</label>
-                                    <input type="number" value="587" class="input-field">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Username</label>
-                                    <input type="text" class="input-field" placeholder="your-email@gmail.com">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">SMTP Password</label>
-                                    <input type="password" class="input-field" placeholder="Your app password">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-primary">
-                                <i class="fas fa-save mr-2"></i>
-                                Save Email Settings
-                            </button>
-                        </form>
-                    </div>
-                </div>
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Confirm Delete</h2>
+            <p class="text-gray-600 mb-6">Are you sure you want to delete this product? This action cannot be undone.</p>
+            <div class="flex justify-end space-x-4">
+                <button onclick="closeDeleteModal()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="confirmDelete()" class="btn-danger">
+                    <i class="fas fa-trash mr-2"></i>Delete Product
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Product Details Modal -->
-    <div id="productDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-semibold">Product Details</h3>
-                        <button id="closeProductDetailsModal" class="text-gray-400 hover:text-gray-600">
-                            <i class="fas fa-times text-xl"></i>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Global variables
+        let products = [];
+        let currentProductId = null;
+        let deleteProductId = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication first
+            if (!checkAuth()) {
+                window.location.href = '/admin-login.html';
+                return;
+            }
+            
+            loadProducts();
+            updateStats();
+            setupEventListeners();
+        });
+
+        // Check if user is authenticated
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
+            return isLoggedIn === 'true';
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('admin_logged_in');
+            localStorage.removeItem('admin_username');
+            sessionStorage.removeItem('admin_logged_in');
+            sessionStorage.removeItem('admin_username');
+            window.location.href = '/admin-login.html';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('search-input').addEventListener('input', filterProducts);
+            document.getElementById('category-filter').addEventListener('change', filterProducts);
+            document.getElementById('status-filter').addEventListener('change', filterProducts);
+            
+            // Drag and drop for image upload
+            const uploadArea = document.getElementById('image-upload-area');
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('drop', handleDrop);
+        }
+
+        // Load products from localStorage
+        function loadProducts() {
+            const stored = localStorage.getItem('trendymart_products');
+            if (stored) {
+                products = JSON.parse(stored);
+            } else {
+                // Load default products if none exist
+                loadDefaultProducts();
+            }
+            renderProducts();
+        }
+
+        // Load default products from the existing products.json
+        async function loadDefaultProducts() {
+            try {
+                const response = await fetch('/data/products.json');
+                const defaultProducts = await response.json();
+                products = defaultProducts.map(product => ({
+                    ...product,
+                    id: generateId(),
+                    status: 'active',
+                    stock: Math.floor(Math.random() * 100) + 10
+                }));
+                saveProducts();
+            } catch (error) {
+                console.log('No default products found, starting with empty array');
+                products = [];
+            }
+        }
+
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('trendymart_products', JSON.stringify(products));
+            updateStats();
+        }
+
+        // Generate unique ID
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        // Render products grid
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
+                        <p class="text-gray-500">Start by adding your first product!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = products.map(product => `
+                <div class="admin-card p-6" data-aos="fade-up">
+                    <div class="relative mb-4">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
+                        <div class="absolute top-2 right-2">
+                            <span class="status-badge ${product.status === 'active' ? 'status-active' : 'status-inactive'}">
+                                ${product.status}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Category:</span>
+                            <span class="text-sm font-semibold text-gray-700">${product.category}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Price:</span>
+                            <span class="text-lg font-bold text-blue-600">৳${product.price}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Stock:</span>
+                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">${product.stock}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="editProduct('${product.id}')" class="btn-primary flex-1">
+                            <i class="fas fa-edit mr-2"></i>Edit
+                        </button>
+                        <button onclick="deleteProduct('${product.id}')" class="btn-danger">
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>
-                    <div id="productDetailsContent">
-                        <!-- Product details will be loaded here -->
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `).join('');
+        }
 
-    <!-- User Details Modal -->
-    <div id="userDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-semibold">User Details</h3>
-                        <button id="closeUserDetailsModal" class="text-gray-400 hover:text-gray-600">
-                            <i class="fas fa-times text-xl"></i>
+        // Filter products
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            const statusFilter = document.getElementById('status-filter').value;
+
+            const filtered = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || product.category === categoryFilter;
+                const matchesStatus = !statusFilter || product.status === statusFilter;
+                
+                return matchesSearch && matchesCategory && matchesStatus;
+            });
+
+            renderFilteredProducts(filtered);
+        }
+
+        // Render filtered products
+        function renderFilteredProducts(filteredProducts) {
+            const container = document.getElementById('products-container');
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
+                        <p class="text-gray-500">Try adjusting your search criteria</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredProducts.map(product => `
+                <div class="admin-card p-6" data-aos="fade-up">
+                    <div class="relative mb-4">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
+                        <div class="absolute top-2 right-2">
+                            <span class="status-badge ${product.status === 'active' ? 'status-active' : 'status-inactive'}">
+                                ${product.status}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Category:</span>
+                            <span class="text-sm font-semibold text-gray-700">${product.category}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Price:</span>
+                            <span class="text-lg font-bold text-blue-600">৳${product.price}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-500">Stock:</span>
+                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">${product.stock}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button onclick="editProduct('${product.id}')" class="btn-primary flex-1">
+                            <i class="fas fa-edit mr-2"></i>Edit
+                        </button>
+                        <button onclick="deleteProduct('${product.id}')" class="btn-danger">
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>
-                    <div id="userDetailsContent">
-                        <!-- User details will be loaded here -->
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            `).join('');
+        }
 
-    <script src="/js/auth.js"></script>
-    <script src="/js/cart.js"></script>
-    <script src="/js/admin-dashboard.js"></script>
-    <script src="/js/animations.js"></script>
+        // Clear filters
+        function clearFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('status-filter').value = '';
+            renderProducts();
+        }
+
+        // Update dashboard stats
+        function updateStats() {
+            const totalProducts = products.length;
+            const activeProducts = products.filter(p => p.status === 'active').length;
+            const categories = [...new Set(products.map(p => p.category))].length;
+            const totalValue = products.reduce((sum, p) => sum + (p.price * p.stock), 0);
+
+            document.getElementById('total-products').textContent = totalProducts;
+            document.getElementById('active-products').textContent = activeProducts;
+            document.getElementById('total-categories').textContent = categories;
+            document.getElementById('total-value').textContent = `৳${totalValue.toLocaleString()}`;
+        }
+
+        // Open add product modal
+        function openAddProductModal() {
+            currentProductId = null;
+            document.getElementById('modal-title').textContent = 'Add New Product';
+            document.getElementById('product-form').reset();
+            document.getElementById('image-preview').style.display = 'none';
+            document.getElementById('image-upload-area').style.display = 'block';
+            document.getElementById('product-modal').classList.add('show');
+        }
+
+        // Open edit product modal
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            currentProductId = productId;
+            document.getElementById('modal-title').textContent = 'Edit Product';
+            document.getElementById('product-id').value = product.id;
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-stock').value = product.stock;
+            document.getElementById('product-description').value = product.description;
+            document.getElementById('product-status').value = product.status;
+
+            // Show existing image
+            document.getElementById('image-preview').src = product.image;
+            document.getElementById('image-preview').style.display = 'block';
+            document.getElementById('image-upload-area').style.display = 'none';
+
+            document.getElementById('product-modal').classList.add('show');
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.remove('show');
+        }
+
+        // Handle image upload
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image-preview').src = e.target.result;
+                    document.getElementById('image-preview').style.display = 'block';
+                    document.getElementById('image-upload-area').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Handle drag and drop
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.style.borderColor = '#667eea';
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.style.borderColor = '#e5e7eb';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('product-image').files = files;
+                handleImageUpload({ target: { files: files } });
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                id: currentProductId || generateId(),
+                name: document.getElementById('product-name').value,
+                category: document.getElementById('product-category').value,
+                price: parseFloat(document.getElementById('product-price').value),
+                stock: parseInt(document.getElementById('product-stock').value),
+                description: document.getElementById('product-description').value,
+                status: document.getElementById('product-status').value,
+                image: document.getElementById('image-preview').style.display !== 'none' 
+                    ? document.getElementById('image-preview').src 
+                    : 'https://via.placeholder.com/400x300?text=No+Image'
+            };
+
+            if (currentProductId) {
+                // Edit existing product
+                const index = products.findIndex(p => p.id === currentProductId);
+                if (index !== -1) {
+                    products[index] = { ...products[index], ...formData };
+                }
+            } else {
+                // Add new product
+                products.push(formData);
+            }
+
+            saveProducts();
+            renderProducts();
+            closeProductModal();
+            
+            // Show success message
+            showNotification('Product saved successfully!', 'success');
+        });
+
+        // Delete product
+        function deleteProduct(productId) {
+            deleteProductId = productId;
+            document.getElementById('delete-modal').classList.add('show');
+        }
+
+        // Close delete modal
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').classList.remove('show');
+            deleteProductId = null;
+        }
+
+        // Confirm delete
+        function confirmDelete() {
+            if (deleteProductId) {
+                products = products.filter(p => p.id !== deleteProductId);
+                saveProducts();
+                renderProducts();
+                closeDeleteModal();
+                showNotification('Product deleted successfully!', 'success');
+            }
+        }
+
+        // Export products
+        function exportProducts() {
+            const dataStr = JSON.stringify(products, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'trendymart-products.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Import products
+        function importProducts() {
+            document.getElementById('import-file').click();
+        }
+
+        // Handle import file
+        function handleImportFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedProducts = JSON.parse(e.target.result);
+                        if (Array.isArray(importedProducts)) {
+                            products = importedProducts.map(p => ({
+                                ...p,
+                                id: p.id || generateId(),
+                                status: p.status || 'active',
+                                stock: p.stock || 0
+                            }));
+                            saveProducts();
+                            renderProducts();
+                            showNotification('Products imported successfully!', 'success');
+                        } else {
+                            showNotification('Invalid file format!', 'error');
+                        }
+                    } catch (error) {
+                        showNotification('Error importing products!', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white font-semibold z-50 ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            }`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const productModal = document.getElementById('product-modal');
+            const deleteModal = document.getElementById('delete-modal');
+            
+            if (event.target === productModal) {
+                closeProductModal();
+            }
+            if (event.target === deleteModal) {
+                closeDeleteModal();
+            }
+        }
+    </script>
 </body>
 </html>
