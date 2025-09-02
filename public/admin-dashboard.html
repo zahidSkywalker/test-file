@@ -279,7 +279,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 font-inter">
+<body class="bg-gray-50 font-inter" data-theme="light">
     <!-- Header -->
     <header class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -296,6 +296,9 @@
                     <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
                         <i class="fas fa-home mr-2"></i>View Site
                     </a>
+                    <button id="theme-toggle" class="text-gray-600 hover:text-gray-800 transition-colors mr-2">
+                        <i class="fas fa-moon mr-2"></i>Theme
+                    </button>
                     <button onclick="logout()" class="text-red-600 hover:text-red-800 transition-colors">
                         <i class="fas fa-sign-out-alt mr-2"></i>Logout
                     </button>
@@ -576,6 +579,31 @@
     </div>
 
     <script>
+        // Theme Toggle (Dark/Light)
+        (function setupThemeToggle(){
+            const root = document.documentElement;
+            const body = document.body;
+            const saved = localStorage.getItem('admin_theme') || 'light';
+            applyTheme(saved);
+            const btn = document.getElementById('theme-toggle');
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    const next = (body.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+                    applyTheme(next);
+                    localStorage.setItem('admin_theme', next);
+                });
+            }
+            function applyTheme(mode){
+                body.setAttribute('data-theme', mode);
+                if (mode === 'dark') {
+                    root.style.setProperty('color-scheme','dark');
+                    body.classList.add('dark');
+                } else {
+                    root.style.setProperty('color-scheme','light');
+                    body.classList.remove('dark');
+                }
+            }
+        })();
         // Initialize AOS
         AOS.init({
             duration: 800,

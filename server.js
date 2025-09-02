@@ -153,7 +153,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'products-enhanced.html'));
+  res.sendFile(path.join(__dirname, 'public', 'products-dynamic.html'));
 });
 
 app.get('/product/:id', (req, res) => {
