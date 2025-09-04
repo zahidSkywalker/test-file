@@ -1,15 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - TrendyMart</title>
     
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- SEO Meta Tags -->
+    <title>Admin Dashboard - TrendyMart | E-commerce Management Platform</title>
+    <meta name="description" content="Comprehensive admin dashboard for TrendyMart e-commerce platform. Manage products, orders, users, and analytics with modern interface.">
+    <meta name="keywords" content="admin dashboard, e-commerce management, product management, order tracking, user management, analytics">
+    <meta name="author" content="TrendyMart">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Admin Dashboard - TrendyMart">
+    <meta property="og:description" content="Modern admin dashboard for e-commerce management">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trendymart.vercel.app/admin-dashboard">
+    <meta property="og:image" content="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Admin Dashboard - TrendyMart">
+    <meta name="twitter:description" content="Modern admin dashboard for e-commerce management">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Animation Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <link href="/css/output.css" rel="stylesheet">
     
     <style>
         :root {
@@ -17,6 +56,26 @@
             --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --warning-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --danger-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #475569;
+        }
+        
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
         }
         
         .font-inter { font-family: 'Inter', sans-serif; }
@@ -36,10 +95,11 @@
         }
 
         .admin-card {
-            background: white;
+            background: var(--bg-primary);
             border-radius: 1rem;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
         }
         
         .admin-card:hover {
@@ -47,9 +107,97 @@
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
         }
 
+        .sidebar {
+            background: var(--bg-primary);
+            border-right: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-link {
+            transition: all 0.3s ease;
+            border-radius: 0.75rem;
+            margin: 0.25rem 0;
+        }
+
+        .sidebar-link:hover {
+            background: var(--bg-tertiary);
+            transform: translateX(4px);
+        }
+
+        .sidebar-link.active {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-success {
+            background: var(--success-gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(67, 233, 123, 0.3);
+        }
+
+        .btn-warning {
+            background: var(--warning-gradient);
+            color: #92400e;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background: var(--danger-gradient);
+            color: #dc2626;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
@@ -86,12 +234,14 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 0.5rem;
-            border: 2px dashed #e5e7eb;
+            border-radius: 0.75rem;
+            border: 2px dashed var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .image-preview.has-image {
             border: 2px solid #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
 
         .status-badge {
@@ -100,102 +250,22 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .status-active {
-            background: #dcfce7;
-            color: #166534;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
         }
 
         .status-inactive {
-            background: #fef2f2;
-            color: #991b1b;
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            min-height: 120px;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            background: white;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
         }
 
         .modal {
@@ -217,7 +287,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: var(--bg-primary);
             border-radius: 1rem;
             padding: 2rem;
             max-width: 600px;
@@ -225,6 +295,7 @@
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            border: 1px solid var(--border-color);
         }
 
         .close {
@@ -233,39 +304,94 @@
             top: 1rem;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #6b7280;
+            color: var(--text-secondary);
             transition: color 0.3s ease;
         }
 
         .close:hover {
-            color: #374151;
+            color: var(--text-primary);
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            color: #667eea;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: #6b7280;
+            color: var(--text-secondary);
             font-weight: 500;
+        }
+
+        .chart-container {
+            background: var(--bg-primary);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .toast {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: var(--success-gradient);
+        }
+
+        .toast.error {
+            background: var(--danger-gradient);
+        }
+
+        .toast.warning {
+            background: var(--warning-gradient);
+            color: #92400e;
+        }
+
+        .loading-spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -276,846 +402,543 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 280px;
+                z-index: 1000;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 font-inter" data-theme="light">
-    <!-- Header -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3">
-                    <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
-                         alt="TrendyMart Logo" 
-                         class="w-10 h-10 rounded-lg object-cover">
-                    <span class="text-xl font-bold text-gray-800">TrendyMart Admin</span>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm text-gray-600">Welcome, Admin</span>
-                    <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
-                        <i class="fas fa-home mr-2"></i>View Site
-                    </a>
-                    <button id="theme-toggle" class="text-gray-600 hover:text-gray-800 transition-colors mr-2">
-                        <i class="fas fa-moon mr-2"></i>Theme
-                    </button>
-                    <button onclick="logout()" class="text-red-600 hover:text-red-800 transition-colors">
-                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                    </button>
+<body class="font-inter bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <p class="text-gray-600 font-medium">Loading Dashboard...</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="fixed top-4 left-4 z-50 lg:hidden bg-white shadow-lg rounded-lg p-3">
+        <i class="fas fa-bars text-gray-600"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar fixed lg:static inset-y-0 left-0 z-40 w-64 h-full lg:translate-x-0">
+        <div class="flex flex-col h-full">
+            <!-- Logo -->
+            <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200 dark:border-gray-700">
+                <img src="https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg" 
+                     alt="TrendyMart Logo" 
+                     class="w-10 h-10 rounded-lg object-cover">
+                <span class="ml-3 text-xl font-bold text-gray-800 dark:text-white">TrendyMart</span>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="#overview" class="sidebar-link active flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="overview">
+                    <i class="fas fa-chart-pie mr-3"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#products" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="products">
+                    <i class="fas fa-box mr-3"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#orders" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="orders">
+                    <i class="fas fa-shopping-cart mr-3"></i>
+                    <span>Orders</span>
+                </a>
+                <a href="#users" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="users">
+                    <i class="fas fa-users mr-3"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#analytics" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="analytics">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#settings" class="sidebar-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-300" data-section="settings">
+                    <i class="fas fa-cog mr-3"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <!-- User Info -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-800 dark:text-white">Admin User</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Administrator</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </aside>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Page Header -->
-        <div class="mb-8">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Product Management</h1>
-                    <p class="text-gray-600">Manage your product catalog, inventory, and pricing</p>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <div class="relative">
-                        <input type="text" 
-                               id="global-search" 
-                               placeholder="Quick search..." 
-                               class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+    <main class="lg:ml-64 min-h-screen">
+        <!-- Header -->
+        <header class="bg-white dark:bg-slate-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white" id="page-title">Dashboard Overview</h1>
                     </div>
-                    <button onclick="openAddProductModal()" class="btn-success">
-                        <i class="fas fa-plus mr-2"></i>Add Product
-                    </button>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- Search -->
+                        <div class="relative hidden md:block">
+                            <input type="text" 
+                                   id="global-search" 
+                                   placeholder="Search..." 
+                                   class="pl-10 pr-4 py-2 w-64 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+
+                        <!-- Theme Toggle -->
+                        <button id="theme-toggle" class="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:inline"></i>
+                        </button>
+
+                        <!-- Notifications -->
+                        <button class="relative p-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+
+                        <!-- Quick Actions -->
+                        <div class="relative">
+                            <button id="quick-actions-btn" class="btn-primary">
+                                <i class="fas fa-plus mr-2"></i>Quick Actions
+                            </button>
+                        </div>
+
+                        <!-- Logout -->
+                        <button onclick="logout()" class="text-red-600 hover:text-red-800 transition-colors">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- Dashboard Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
-                <div class="flex items-center justify-between">
+        <!-- Dashboard Content -->
+        <div class="p-4 sm:p-6 lg:p-8">
+            <!-- Overview Section -->
+            <div id="overviewSection" class="dashboard-section">
+                <!-- Stats Grid -->
+                <div class="stats-grid mb-8">
+                    <div class="stat-card p-6 fade-in">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="stat-label">Total Products</p>
+                                <p class="stat-number" id="total-products">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-box text-2xl text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card p-6 fade-in">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="stat-label">Active Products</p>
+                                <p class="stat-number" id="active-products">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card p-6 fade-in">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="stat-label">Total Orders</p>
+                                <p class="stat-number" id="total-orders">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-2xl text-purple-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card p-6 fade-in">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="stat-label">Total Revenue</p>
+                                <p class="stat-number" id="total-revenue">৳0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-2xl text-orange-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Sales Overview</h3>
+                        <canvas id="salesChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Product Categories</h3>
+                        <canvas id="categoryChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="admin-card p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Recent Activity</h3>
+                    <div id="recent-activity" class="space-y-3">
+                        <!-- Activity items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div id="productsSection" class="dashboard-section hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                     <div>
-                        <p class="text-blue-100 text-sm font-medium">Total Products</p>
-                        <p class="text-3xl font-bold" id="total-products">0</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Product Management</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Manage your product catalog and inventory</p>
                     </div>
-                    <div class="w-12 h-12 bg-blue-400/30 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-box text-2xl"></i>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="exportProducts()" class="btn-primary">
+                            <i class="fas fa-download mr-2"></i>Export
+                        </button>
+                        <button onclick="importProducts()" class="btn-primary">
+                            <i class="fas fa-upload mr-2"></i>Import
+                        </button>
+                        <button onclick="openAddProductModal()" class="btn-success">
+                            <i class="fas fa-plus mr-2"></i>Add Product
+                        </button>
                     </div>
                 </div>
+
+                <!-- Filters -->
+                <div class="admin-card p-6 mb-6">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <div class="flex items-center space-x-2">
+                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">View:</label>
+                            <button id="grid-view" class="p-2 bg-blue-100 text-blue-600 rounded-lg">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button id="list-view" class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <label class="text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</label>
+                            <select id="category-filter" class="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
+                                <option value="">All Categories</option>
+                            </select>
+                            <select id="status-filter" class="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Grid/List -->
+                <div id="products-container" class="product-grid">
+                    <!-- Products will be loaded here -->
+                </div>
             </div>
-            
-            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
-                <div class="flex items-center justify-between">
+
+            <!-- Orders Section -->
+            <div id="ordersSection" class="dashboard-section hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                     <div>
-                        <p class="text-green-100 text-sm font-medium">Active Products</p>
-                        <p class="text-3xl font-bold" id="active-products">0</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Order Management</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Track and manage customer orders</p>
                     </div>
-                    <div class="w-12 h-12 bg-green-400/30 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-check-circle text-2xl"></i>
+                </div>
+
+                <div class="admin-card p-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Order ID</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Customer</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Amount</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Status</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Date</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            
-            <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white">
-                <div class="flex items-center justify-between">
+
+            <!-- Users Section -->
+            <div id="usersSection" class="dashboard-section hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                     <div>
-                        <p class="text-purple-100 text-sm font-medium">Categories</p>
-                        <p class="text-3xl font-bold" id="total-categories">0</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">User Management</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Manage platform users and permissions</p>
                     </div>
-                    <div class="w-12 h-12 bg-purple-400/30 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-tags text-2xl"></i>
+                </div>
+
+                <div class="admin-card p-6">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">User</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Email</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Role</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Status</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Joined</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-800 dark:text-white">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            
-            <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-6 text-white">
-                <div class="flex items-center justify-between">
+
+            <!-- Analytics Section -->
+            <div id="analyticsSection" class="dashboard-section hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                     <div>
-                        <p class="text-orange-100 text-sm font-medium">Inventory Value</p>
-                        <p class="text-3xl font-bold" id="total-value">৳0</p>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Analytics & Reports</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Detailed insights and performance metrics</p>
                     </div>
-                    <div class="w-12 h-12 bg-orange-400/30 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-dollar-sign text-2xl"></i>
+                    <div class="flex items-center space-x-3">
+                        <select id="analytics-period" class="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
+                            <option value="7">Last 7 days</option>
+                            <option value="30">Last 30 days</option>
+                            <option value="90">Last 90 days</option>
+                            <option value="365">Last year</option>
+                        </select>
+                        <button onclick="exportAnalytics()" class="btn-primary">
+                            <i class="fas fa-download mr-2"></i>Export Report
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Revenue Trend</h3>
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Top Products</h3>
+                        <canvas id="topProductsChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">User Growth</h3>
+                        <canvas id="userGrowthChart" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Action Bar -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                <div class="flex items-center space-x-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Quick Actions</h3>
-                    <div class="h-6 w-px bg-gray-300"></div>
-                    <button onclick="exportProducts()" class="btn-primary">
-                        <i class="fas fa-download mr-2"></i>Export
-                    </button>
-                    <button onclick="importProducts()" class="btn-primary">
-                        <i class="fas fa-upload mr-2"></i>Import
-                    </button>
-                    <input type="file" id="import-file" accept=".json" style="display: none;" onchange="handleImportFile(event)">
+            <!-- Settings Section -->
+            <div id="settingsSection" class="dashboard-section hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Settings</h2>
+                        <p class="text-gray-600 dark:text-gray-400">Configure platform settings and preferences</p>
+                    </div>
                 </div>
-                
-                <div class="flex items-center space-x-3">
-                    <span class="text-sm text-gray-500">View:</span>
-                    <button id="grid-view" onclick="setView('grid')" class="px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium">
-                        <i class="fas fa-th-large mr-1"></i>Grid
-                    </button>
-                    <button id="list-view" onclick="setView('list')" class="px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium">
-                        <i class="fas fa-list mr-1"></i>List
-                    </button>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="admin-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">General Settings</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Site Name</label>
+                                <input type="text" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white" value="TrendyMart">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Site Description</label>
+                                <textarea class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white" rows="3">Modern e-commerce platform for reselling</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Security Settings</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white">Two-Factor Authentication</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Add an extra layer of security</p>
+                                </div>
+                                <button class="btn-primary">Enable</button>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-medium text-gray-800 dark:text-white">Session Timeout</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Auto-logout after inactivity</p>
+                                </div>
+                                <button class="btn-primary">Configure</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Advanced Filters -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-gray-800">Filters & Search</h3>
-                <button onclick="clearFilters()" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
-                    <i class="fas fa-times mr-1"></i>Clear All
-                </button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
-                    <input type="text" 
-                           id="search-input" 
-                           placeholder="Name, description..." 
-                           class="form-input">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                    <select id="category-filter" class="form-select">
-                        <option value="">All Categories</option>
-                        <option value="smartphones">Smartphones</option>
-                        <option value="laptops">Laptops</option>
-                        <option value="audio">Audio</option>
-                        <option value="cameras">Cameras</option>
-                        <option value="gaming">Gaming</option>
-                        <option value="tvs">TVs</option>
-                        <option value="accessories">Accessories</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                    <select id="status-filter" class="form-select">
-                        <option value="">All Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
-                    <select id="sort-filter" class="form-select">
-                        <option value="name">Name A-Z</option>
-                        <option value="name-desc">Name Z-A</option>
-                        <option value="price">Price Low-High</option>
-                        <option value="price-desc">Price High-Low</option>
-                        <option value="stock">Stock Low-High</option>
-                        <option value="stock-desc">Stock High-Low</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Products Container -->
-        <div id="products-container" class="product-grid">
-            <!-- Products will be loaded here -->
-        </div>
-
-        <!-- Empty State -->
-        <div id="empty-state" class="hidden text-center py-16">
-            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fas fa-box-open text-4xl text-gray-400"></i>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-600 mb-2">No Products Found</h3>
-            <p class="text-gray-500 mb-6">Start building your product catalog by adding your first product</p>
-            <button onclick="openAddProductModal()" class="btn-success">
-                <i class="fas fa-plus mr-2"></i>Add Your First Product
-            </button>
         </div>
     </main>
 
-    <!-- Add/Edit Product Modal -->
-    <div id="product-modal" class="modal">
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeProductModal()">&times;</span>
-            <h2 class="text-2xl font-bold text-gray-800 mb-6" id="modal-title">Add New Product</h2>
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Add New Product</h2>
             
-            <form id="product-form" class="space-y-6">
-                <input type="hidden" id="product-id">
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form id="addProductForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Product Name *</label>
-                        <input type="text" id="product-name" class="form-input" required>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Product Name</label>
+                        <input type="text" name="name" required class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
                     </div>
-                    
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
-                        <select id="product-category" class="form-select" required>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+                        <select name="category" required class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
                             <option value="">Select Category</option>
-                            <option value="smartphones">Smartphones</option>
-                            <option value="laptops">Laptops</option>
-                            <option value="audio">Audio</option>
-                            <option value="cameras">Cameras</option>
-                            <option value="gaming">Gaming</option>
-                            <option value="tvs">TVs</option>
-                            <option value="accessories">Accessories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Home & Garden">Home & Garden</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Books">Books</option>
                         </select>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Price (৳) *</label>
-                        <input type="number" id="product-price" class="form-input" min="0" step="0.01" required>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Price (৳)</label>
+                        <input type="number" name="price" required class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
                     </div>
-                    
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Stock Quantity *</label>
-                        <input type="number" id="product-stock" class="form-input" min="0" required>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Stock Quantity</label>
+                        <input type="number" name="stock" required class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white">
                     </div>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Product Description *</label>
-                    <textarea id="product-description" class="form-textarea" required></textarea>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
+                    <textarea name="description" rows="4" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"></textarea>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Product Image *</label>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <input type="file" id="product-image" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-                        <div id="image-upload-area" class="cursor-pointer">
-                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
-                            <p class="text-gray-600">Click to upload image or drag and drop</p>
-                            <p class="text-sm text-gray-500 mt-2">PNG, JPG, GIF up to 5MB</p>
-                        </div>
-                        <img id="image-preview" class="image-preview mt-4" style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Product Images</label>
+                    <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                        <input type="file" id="product-images" multiple accept="image/*" class="hidden">
+                        <button type="button" onclick="document.getElementById('product-images').click()" class="btn-primary">
+                            <i class="fas fa-upload mr-2"></i>Upload Images
+                        </button>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Click to upload or drag and drop</p>
                     </div>
+                    <div id="image-preview-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4"></div>
                 </div>
                 
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
-                    <select id="product-status" class="form-select">
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </div>
-                
-                <div class="flex justify-end space-x-4 pt-4">
-                    <button type="button" onclick="closeProductModal()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeAddProductModal()" class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                         Cancel
                     </button>
                     <button type="submit" class="btn-success">
-                        <i class="fas fa-save mr-2"></i>Save Product
+                        <i class="fas fa-plus mr-2"></i>Add Product
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div id="delete-modal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Confirm Delete</h2>
-            <p class="text-gray-600 mb-6">Are you sure you want to delete this product? This action cannot be undone.</p>
-            <div class="flex justify-end space-x-4">
-                <button onclick="closeDeleteModal()" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
-                    Cancel
-                </button>
-                <button onclick="confirmDelete()" class="btn-danger">
-                    <i class="fas fa-trash mr-2"></i>Delete Product
-                </button>
-            </div>
-        </div>
-    </div>
-
+    <!-- Scripts -->
+    <script src="/js/admin-dashboard.js"></script>
     <script>
-        // Theme Toggle (Dark/Light)
-        (function setupThemeToggle(){
-            const root = document.documentElement;
-            const body = document.body;
-            const saved = localStorage.getItem('admin_theme') || 'light';
-            applyTheme(saved);
-            const btn = document.getElementById('theme-toggle');
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    const next = (body.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
-                    applyTheme(next);
-                    localStorage.setItem('admin_theme', next);
-                });
-            }
-            function applyTheme(mode){
-                body.setAttribute('data-theme', mode);
-                if (mode === 'dark') {
-                    root.style.setProperty('color-scheme','dark');
-                    body.classList.add('dark');
-                } else {
-                    root.style.setProperty('color-scheme','light');
-                    body.classList.remove('dark');
-                }
-            }
-        })();
-        // Initialize AOS
+        // Initialize AOS animations
         AOS.init({
             duration: 800,
-            easing: 'ease-out',
+            easing: 'ease-in-out',
             once: true
         });
 
-        // Global variables
-        let products = [];
-        let currentProductId = null;
-        let deleteProductId = null;
+        // Initialize theme
+        function initializeTheme() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeIcon(theme);
+        }
 
-        // Initialize dashboard
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('#theme-toggle i');
+            if (theme === 'light') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+
+        // Initialize mobile menu
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
+
+        // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', function() {
-            // Check authentication first
-            if (!checkAuth()) {
-                window.location.href = '/admin-login.html';
-                return;
-            }
+            initializeTheme();
+            initializeMobileMenu();
             
-            loadProducts();
-            updateStats();
-            setupEventListeners();
-        });
-
-        // Check if user is authenticated
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
-            return isLoggedIn === 'true';
-        }
-
-        // Logout function
-        function logout() {
-            localStorage.removeItem('admin_logged_in');
-            localStorage.removeItem('admin_username');
-            sessionStorage.removeItem('admin_logged_in');
-            sessionStorage.removeItem('admin_username');
-            window.location.href = '/admin-login.html';
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            document.getElementById('search-input').addEventListener('input', filterProducts);
-            document.getElementById('category-filter').addEventListener('change', filterProducts);
-            document.getElementById('status-filter').addEventListener('change', filterProducts);
-            document.getElementById('sort-filter').addEventListener('change', filterProducts);
-            document.getElementById('global-search').addEventListener('input', filterProducts);
-            
-            // Drag and drop for image upload
-            const uploadArea = document.getElementById('image-upload-area');
-            uploadArea.addEventListener('dragover', handleDragOver);
-            uploadArea.addEventListener('drop', handleDrop);
-        }
-
-        // Load products from localStorage
-        function loadProducts() {
-            const stored = localStorage.getItem('trendymart_products');
-            if (stored) {
-                products = JSON.parse(stored);
-            } else {
-                // Load default products if none exist
-                loadDefaultProducts();
-            }
-            renderProducts();
-        }
-
-        // Load default products from the existing products.json
-        async function loadDefaultProducts() {
-            try {
-                const response = await fetch('/data/products.json');
-                const defaultProducts = await response.json();
-                products = defaultProducts.map(product => ({
-                    ...product,
-                    id: generateId(),
-                    status: 'active',
-                    stock: Math.floor(Math.random() * 100) + 10
-                }));
-                saveProducts();
-            } catch (error) {
-                console.log('No default products found, starting with empty array');
-                products = [];
-            }
-        }
-
-        // Save products to localStorage
-        function saveProducts() {
-            localStorage.setItem('trendymart_products', JSON.stringify(products));
-            updateStats();
-        }
-
-        // Generate unique ID
-        function generateId() {
-            return Date.now().toString(36) + Math.random().toString(36).substr(2);
-        }
-
-        // Render products grid
-        function renderProducts() {
-            const container = document.getElementById('products-container');
-            const emptyState = document.getElementById('empty-state');
-            
-            if (products.length === 0) {
-                container.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            
-            // Apply sorting
-            const sortedProducts = sortProducts(products);
-            
-            container.innerHTML = sortedProducts.map(product => `
-                <div class="admin-card p-6" data-aos="fade-up">
-                    <div class="relative mb-4">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
-                        <div class="absolute top-2 right-2">
-                            <span class="status-badge ${product.status === 'active' ? 'status-active' : 'status-inactive'}">
-                                ${product.status}
-                            </span>
-                        </div>
-                        <div class="absolute top-2 left-2">
-                            <span class="px-2 py-1 bg-gray-800 text-white text-xs rounded-full font-medium">
-                                ${product.category}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
-                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
-                    
-                    <div class="space-y-2 mb-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Price:</span>
-                            <span class="text-lg font-bold text-blue-600">৳${product.price.toLocaleString()}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Stock:</span>
-                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">
-                                ${product.stock} units
-                            </span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Status:</span>
-                            <span class="text-xs px-2 py-1 rounded-full ${product.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                ${product.status}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-2">
-                        <button onclick="editProduct('${product.id}')" class="btn-primary flex-1">
-                            <i class="fas fa-edit mr-2"></i>Edit
-                        </button>
-                        <button onclick="deleteProduct('${product.id}')" class="btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Filter products
-        function filterProducts() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const globalSearch = document.getElementById('global-search').value.toLowerCase();
-            const categoryFilter = document.getElementById('category-filter').value;
-            const statusFilter = document.getElementById('status-filter').value;
-
-            const filtered = products.filter(product => {
-                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
-                                    product.description.toLowerCase().includes(searchTerm);
-                const matchesGlobal = product.name.toLowerCase().includes(globalSearch) || 
-                                     product.description.toLowerCase().includes(globalSearch);
-                const matchesCategory = !categoryFilter || product.category === categoryFilter;
-                const matchesStatus = !statusFilter || product.status === statusFilter;
-                
-                return matchesSearch && matchesGlobal && matchesCategory && matchesStatus;
-            });
-
-            renderFilteredProducts(filtered);
-        }
-
-        // Sort products
-        function sortProducts(productsToSort) {
-            const sortBy = document.getElementById('sort-filter').value;
-            
-            return [...productsToSort].sort((a, b) => {
-                switch (sortBy) {
-                    case 'name':
-                        return a.name.localeCompare(b.name);
-                    case 'name-desc':
-                        return b.name.localeCompare(a.name);
-                    case 'price':
-                        return a.price - b.price;
-                    case 'price-desc':
-                        return b.price - a.price;
-                    case 'stock':
-                        return a.stock - b.stock;
-                    case 'stock-desc':
-                        return b.stock - a.stock;
-                    default:
-                        return 0;
-                }
-            });
-        }
-
-        // Set view mode (grid/list)
-        function setView(viewType) {
-            const container = document.getElementById('products-container');
-            const gridBtn = document.getElementById('grid-view');
-            const listBtn = document.getElementById('list-view');
-            
-            if (viewType === 'grid') {
-                container.className = 'product-grid';
-                gridBtn.className = 'px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium';
-                listBtn.className = 'px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium';
-            } else {
-                container.className = 'product-list';
-                listBtn.className = 'px-3 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium';
-                gridBtn.className = 'px-3 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium';
-            }
-            
-            renderProducts();
-        }
-
-        // Render filtered products
-        function renderFilteredProducts(filteredProducts) {
-            const container = document.getElementById('products-container');
-            const emptyState = document.getElementById('empty-state');
-            
-            if (filteredProducts.length === 0) {
-                container.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            
-            // Apply sorting
-            const sortedProducts = sortProducts(filteredProducts);
-            
-            container.innerHTML = sortedProducts.map(product => `
-                <div class="admin-card p-6" data-aos="fade-up">
-                    <div class="relative mb-4">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-lg">
-                        <div class="absolute top-2 right-2">
-                            <span class="status-badge ${product.status === 'active' ? 'status-active' : 'status-inactive'}">
-                                ${product.status}
-                            </span>
-                        </div>
-                        <div class="absolute top-2 left-2">
-                            <span class="px-2 py-1 bg-gray-800 text-white text-xs rounded-full font-medium">
-                                ${product.category}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
-                    <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
-                    
-                    <div class="space-y-2 mb-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Price:</span>
-                            <span class="text-lg font-bold text-blue-600">৳${product.price.toLocaleString()}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Stock:</span>
-                            <span class="text-sm font-semibold ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}">
-                                ${product.stock} units
-                            </span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">Status:</span>
-                            <span class="text-xs px-2 py-1 rounded-full ${product.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                ${product.status}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-2">
-                        <button onclick="editProduct('${product.id}')" class="btn-primary flex-1">
-                            <i class="fas fa-edit mr-2"></i>Edit
-                        </button>
-                        <button onclick="deleteProduct('${product.id}')" class="btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Clear filters
-        function clearFilters() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('category-filter').value = '';
-            document.getElementById('status-filter').value = '';
-            renderProducts();
-        }
-
-        // Update dashboard stats
-        function updateStats() {
-            const totalProducts = products.length;
-            const activeProducts = products.filter(p => p.status === 'active').length;
-            const categories = [...new Set(products.map(p => p.category))].length;
-            const totalValue = products.reduce((sum, p) => sum + (p.price * p.stock), 0);
-
-            document.getElementById('total-products').textContent = totalProducts;
-            document.getElementById('active-products').textContent = activeProducts;
-            document.getElementById('total-categories').textContent = categories;
-            document.getElementById('total-value').textContent = `৳${totalValue.toLocaleString()}`;
-        }
-
-        // Open add product modal
-        function openAddProductModal() {
-            currentProductId = null;
-            document.getElementById('modal-title').textContent = 'Add New Product';
-            document.getElementById('product-form').reset();
-            document.getElementById('image-preview').style.display = 'none';
-            document.getElementById('image-upload-area').style.display = 'block';
-            document.getElementById('product-modal').classList.add('show');
-        }
-
-        // Open edit product modal
-        function editProduct(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            currentProductId = productId;
-            document.getElementById('modal-title').textContent = 'Edit Product';
-            document.getElementById('product-id').value = product.id;
-            document.getElementById('product-name').value = product.name;
-            document.getElementById('product-category').value = product.category;
-            document.getElementById('product-price').value = product.price;
-            document.getElementById('product-stock').value = product.stock;
-            document.getElementById('product-description').value = product.description;
-            document.getElementById('product-status').value = product.status;
-
-            // Show existing image
-            document.getElementById('image-preview').src = product.image;
-            document.getElementById('image-preview').style.display = 'block';
-            document.getElementById('image-upload-area').style.display = 'none';
-
-            document.getElementById('product-modal').classList.add('show');
-        }
-
-        // Close product modal
-        function closeProductModal() {
-            document.getElementById('product-modal').classList.remove('show');
-        }
-
-        // Handle image upload
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('image-preview').src = e.target.result;
-                    document.getElementById('image-preview').style.display = 'block';
-                    document.getElementById('image-upload-area').style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Handle drag and drop
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.currentTarget.style.borderColor = '#667eea';
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            e.currentTarget.style.borderColor = '#e5e7eb';
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                document.getElementById('product-image').files = files;
-                handleImageUpload({ target: { files: files } });
-            }
-        }
-
-        // Handle form submission
-        document.getElementById('product-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                id: currentProductId || generateId(),
-                name: document.getElementById('product-name').value,
-                category: document.getElementById('product-category').value,
-                price: parseFloat(document.getElementById('product-price').value),
-                stock: parseInt(document.getElementById('product-stock').value),
-                description: document.getElementById('product-description').value,
-                status: document.getElementById('product-status').value,
-                image: document.getElementById('image-preview').style.display !== 'none' 
-                    ? document.getElementById('image-preview').src 
-                    : 'https://via.placeholder.com/400x300?text=No+Image'
-            };
-
-            if (currentProductId) {
-                // Edit existing product
-                const index = products.findIndex(p => p.id === currentProductId);
-                if (index !== -1) {
-                    products[index] = { ...products[index], ...formData };
-                }
-            } else {
-                // Add new product
-                products.push(formData);
-            }
-
-            saveProducts();
-            renderProducts();
-            closeProductModal();
-            
-            // Show success message
-            showNotification('Product saved successfully!', 'success');
-        });
-
-        // Delete product
-        function deleteProduct(productId) {
-            deleteProductId = productId;
-            document.getElementById('delete-modal').classList.add('show');
-        }
-
-        // Close delete modal
-        function closeDeleteModal() {
-            document.getElementById('delete-modal').classList.remove('show');
-            deleteProductId = null;
-        }
-
-        // Confirm delete
-        function confirmDelete() {
-            if (deleteProductId) {
-                products = products.filter(p => p.id !== deleteProductId);
-                saveProducts();
-                renderProducts();
-                closeDeleteModal();
-                showNotification('Product deleted successfully!', 'success');
-            }
-        }
-
-        // Export products
-        function exportProducts() {
-            const dataStr = JSON.stringify(products, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'trendymart-products.json';
-            link.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Import products
-        function importProducts() {
-            document.getElementById('import-file').click();
-        }
-
-        // Handle import file
-        function handleImportFile(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const importedProducts = JSON.parse(e.target.result);
-                        if (Array.isArray(importedProducts)) {
-                            products = importedProducts.map(p => ({
-                                ...p,
-                                id: p.id || generateId(),
-                                status: p.status || 'active',
-                                stock: p.stock || 0
-                            }));
-                            saveProducts();
-                            renderProducts();
-                            showNotification('Products imported successfully!', 'success');
-                        } else {
-                            showNotification('Invalid file format!', 'error');
-                        }
-                    } catch (error) {
-                        showNotification('Error importing products!', 'error');
-                    }
-                };
-                reader.readAsText(file);
-            }
-        }
-
-        // Show notification
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 p-4 rounded-lg text-white font-semibold z-50 ${
-                type === 'success' ? 'bg-green-500' : 'bg-red-500'
-            }`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
+            // Hide loading overlay
             setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
+                document.getElementById('loading-overlay').style.display = 'none';
+            }, 1000);
+        });
 
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const productModal = document.getElementById('product-modal');
-            const deleteModal = document.getElementById('delete-modal');
-            
-            if (event.target === productModal) {
-                closeProductModal();
-            }
-            if (event.target === deleteModal) {
-                closeDeleteModal();
-            }
-        }
+        // Theme toggle event listener
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     </script>
 </body>
 </html>

@@ -1,0 +1,29 @@
+{
+  "name": "TrendyMart - Modern E-commerce Platform",
+  "short_name": "TrendyMart",
+  "description": "Professional e-commerce platform for reselling with modern UI/UX",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dbi2rwlso/image/upload/v1756472087/att.hk_FHAeVj432oMT1k1DL-J2UYiZEdIRbVtVXysdyygY.png_czmfzn.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "business", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://trendymart.vercel.app/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin-dashboard
+Disallow: /admin-login
+Disallow: /seller-dashboard
+Disallow: /api/
+Disallow: /uploads/
+Disallow: /checkout/
+Disallow: /cart
+
+# Allow important pages
+Allow: /products
+Allow: /about
+Allow: /contact
+Allow: /services
+Allow: /blog
+
+# Crawl delay
+Crawl-delay: 1
