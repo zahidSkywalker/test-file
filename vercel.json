@@ -83,10 +83,5 @@
     { "source": "/manifest.json", "destination": "/public/manifest.json" },
     { "source": "/:path*.html", "destination": "/public/:path*.html" },
     { "source": "/:path*", "destination": "/public/:path*" }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
