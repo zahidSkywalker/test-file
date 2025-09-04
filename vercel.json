@@ -51,7 +51,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(html|htm))",
+      "source": "/:path*\\.(html|htm)",
       "headers": [
         {
           "key": "Cache-Control",
