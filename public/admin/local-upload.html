@@ -56,12 +56,17 @@
   <script src="/js/local-products.js"></script>
   <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="/js/animations.js"></script>
+  <script src="/js/admin-auth.js"></script>
   <script>
-    document.getElementById('local-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      await window.LocalProducts.handleCreate(this);
-    });
-    window.AppAnimations && window.AppAnimations.init();
+    (function() {
+      window.AdminAuth.requireAdmin().then(() => {
+        document.getElementById('local-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          await window.LocalProducts.handleCreate(this);
+        });
+        window.AppAnimations && window.AppAnimations.init();
+      });
+    })();
   </script>
 </body>
 </html>

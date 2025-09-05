@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="/admin/login.html">
+  <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+    <h1 class="text-2xl font-bold mb-6 text-center">Admin Login</h1>
+    <form id="login-form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">Email</label>
+        <input name="email" type="email" required class="w-full border rounded px-3 py-2" placeholder="admin@example.com">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Password</label>
+        <input name="password" type="password" required class="w-full border rounded px-3 py-2" placeholder="********">
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
+    </form>
+    <p id="error" class="text-red-600 text-sm mt-3 hidden"></p>
+  </div>
+
+  <script src="/js/admin-auth.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = new FormData(this);
+      const body = { email: form.get('email'), password: form.get('password') };
+      const res = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const json = await res.json();
+      if (!res.ok) {
+        document.getElementById('error').textContent = json.message || 'Login failed';
+        document.getElementById('error').classList.remove('hidden');
+        return;
+      }
+      window.AdminAuth.setToken(json.token);
+      const next = new URLSearchParams(location.search).get('next') || '/admin/products-local.html';
+      location.href = next;
+    });
+  </script>
+</body>
+</html>
+

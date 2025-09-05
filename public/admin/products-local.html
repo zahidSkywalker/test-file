@@ -29,18 +29,21 @@
   <script src="/js/local-products.js"></script>
   <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="/js/animations.js"></script>
+  <script src="/js/admin-auth.js"></script>
   <script>
     (function() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get('id');
-      const container = document.getElementById('product-list');
-      if (id) {
-        container.className = '';
-        window.LocalProducts.renderDetail(container, id);
-      } else {
-        window.LocalProducts.renderList(container);
-      }
-      window.AppAnimations && window.AppAnimations.init();
+      window.AdminAuth.requireAdmin().then(() => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const container = document.getElementById('product-list');
+        if (id) {
+          container.className = '';
+          window.LocalProducts.renderDetail(container, id);
+        } else {
+          window.LocalProducts.renderList(container);
+        }
+        window.AppAnimations && window.AppAnimations.init();
+      });
     })();
   </script>
 </body>
