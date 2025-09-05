@@ -1,4 +1,8 @@
 {
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node" },
+    { "src": "public/**", "use": "@vercel/static" }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
