@@ -1,3 +1,76 @@
+(function(){
+  if (!window.Store) return;
+  const loading = document.getElementById('cart-loading');
+  const content = document.getElementById('cart-content');
+  const itemsContainer = document.getElementById('cart-items-container');
+  const itemsCount = document.getElementById('cart-items-count');
+  const subtotalEl = document.getElementById('subtotal-amount');
+  const shippingEl = document.getElementById('shipping-amount');
+  const taxEl = document.getElementById('tax-amount');
+  const totalEl = document.getElementById('total-amount');
+
+  function priceNum(s){ return parseFloat(String(s||'').replace(/[^\d.-]/g, '')) || 0; }
+
+  function recalc(){
+    const items = Store.getCart();
+    const subtotal = items.reduce((sum, it)=> sum + (priceNum(it.price) * it.quantity), 0);
+    const shipping = items.length ? 100 : 0; // flat example
+    const tax = subtotal * 0.0;
+    const total = subtotal + shipping + tax;
+    subtotalEl.textContent = '৳' + subtotal.toFixed(2);
+    shippingEl.textContent = '৳' + shipping.toFixed(2);
+    taxEl.textContent = '৳' + tax.toFixed(2);
+    totalEl.textContent = '৳' + total.toFixed(2);
+  }
+
+  function render(){
+    const items = Store.getCart();
+    itemsCount.textContent = String(items.length);
+    itemsContainer.innerHTML = items.map(function(it){
+      return '<div class="cart-item bg-white rounded-2xl shadow-lg p-6 flex items-center space-x-4">'
+        + (it.image ? '<img src="'+it.image+'" class="w-24 h-24 object-cover rounded-xl"/>' : '<div class="w-24 h-24 bg-gray-100 rounded-xl"></div>')
+        + '<div class="flex-1">'
+          + '<h3 class="text-lg font-semibold text-gray-900">'+(it.name||'')+'</h3>'
+          + '<div class="text-blue-600 font-bold">'+(it.price||'')+'</div>'
+        + '</div>'
+        + '<div class="flex items-center space-x-3">'
+          + '<button data-id="'+it.id+'" class="qty-dec w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">-</button>'
+          + '<span class="w-8 text-center">'+it.quantity+'</span>'
+          + '<button data-id="'+it.id+'" class="qty-inc w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">+</button>'
+          + '<button data-id="'+it.id+'" class="remove ml-4 text-red-600">Remove</button>'
+        + '</div>'
+      + '</div>';
+    }).join('');
+    recalc();
+  }
+
+  document.addEventListener('click', function(e){
+    const dec = e.target.closest('.qty-dec');
+    const inc = e.target.closest('.qty-inc');
+    const rem = e.target.closest('.remove');
+    if (dec || inc || rem) {
+      const id = (dec||inc||rem).getAttribute('data-id');
+      const items = Store.getCart();
+      const idx = items.findIndex(i => String(i.id) === String(id));
+      if (idx >= 0) {
+        if (dec) items[idx].quantity = Math.max(1, items[idx].quantity - 1);
+        if (inc) items[idx].quantity += 1;
+        if (rem) items.splice(idx, 1);
+        localStorage.setItem('cart_items_v1', JSON.stringify(items));
+        render();
+      }
+    }
+  });
+
+  function init(){
+    if (loading) loading.classList.add('hidden');
+    if (content) content.classList.remove('hidden');
+    render();
+  }
+
+  init();
+})();
+
 // Cart management functionality
 class CartManager {
     constructor() {
