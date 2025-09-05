@@ -73,29 +73,9 @@
       ]
     }
   ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/products", "destination": "/products.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/services", "destination": "/services.html" },
-    { "source": "/blog", "destination": "/blog.html" },
-    { "source": "/login", "destination": "/login.html" },
-    { "source": "/register", "destination": "/register.html" },
-    { "source": "/admin-dashboard", "destination": "/admin-dashboard.html" },
-    { "source": "/admin-login", "destination": "/admin-login.html" },
-    { "source": "/seller-dashboard", "destination": "/seller-dashboard.html" },
-    { "source": "/checkout", "destination": "/checkout/index.html" },
-    { "source": "/checkout/:path*", "destination": "/checkout/:path*" },
-    { "source": "/css/:path*", "destination": "/css/:path*" },
-    { "source": "/js/:path*", "destination": "/js/:path*" },
-    { "source": "/images/:path*", "destination": "/images/:path*" },
-    { "source": "/uploads/:path*", "destination": "/uploads/:path*" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/manifest.json", "destination": "/manifest.json" },
-    { "source": "/:path*.html", "destination": "/:path*.html" },
-    { "source": "/:path*", "destination": "/:path*" }
+  "routes": [
+    { "src": "^/api/(.*)", "dest": "/api/$1" },
+    { "src": "^/$", "dest": "public/index.html" },
+    { "src": "^(.*)$", "dest": "public$1" }
   ]
 }
