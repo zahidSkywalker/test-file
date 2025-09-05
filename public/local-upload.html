@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add Local Product</title>
+  <link rel="canonical" href="/local-upload.html">
   <link href="/css/output.css" rel="stylesheet">
   <meta name="description" content="Add a product locally without database.">
 </head>
@@ -52,11 +53,14 @@
   </main>
 
   <script src="/js/local-products.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="/js/animations.js"></script>
   <script>
     document.getElementById('local-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       await window.LocalProducts.handleCreate(this);
     });
+    window.AppAnimations && window.AppAnimations.init();
   </script>
 </body>
 </html>

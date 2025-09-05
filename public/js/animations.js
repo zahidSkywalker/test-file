@@ -1,3 +1,34 @@
+(function() {
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function initBasicAnimations() {
+    if (typeof gsap === 'undefined' || prefersReducedMotion()) return;
+
+    // Fade in body
+    gsap.from(document.body, { autoAlpha: 0, duration: 0.4 });
+
+    // Animate elements with data-animate="fade-up"
+    const fadeUps = document.querySelectorAll('[data-animate="fade-up"]');
+    gsap.set(fadeUps, { y: 20, autoAlpha: 0 });
+    fadeUps.forEach((el, i) => {
+      gsap.to(el, { y: 0, autoAlpha: 1, duration: 0.6, delay: 0.05 * i, ease: 'power2.out' });
+    });
+
+    // Stagger cards
+    const cards = document.querySelectorAll('[data-animate="card"]');
+    if (cards.length) {
+      gsap.set(cards, { y: 10, autoAlpha: 0 });
+      gsap.to(cards, { y: 0, autoAlpha: 1, duration: 0.5, ease: 'power2.out', stagger: 0.06, delay: 0.2 });
+    }
+  }
+
+  window.AppAnimations = {
+    init: initBasicAnimations
+  };
+})();
+
 // Animation utilities using GSAP and Framer Motion concepts
 class AnimationManager {
     constructor() {
