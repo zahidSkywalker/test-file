@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://trendymart.vercel.app/</loc>
+        <loc>https://trendymart-woad.vercel.app/</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/products</loc>
+        <loc>https://trendymart-woad.vercel.app/products</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/about</loc>
+        <loc>https://trendymart-woad.vercel.app/about</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/contact</loc>
+        <loc>https://trendymart-woad.vercel.app/contact</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/services</loc>
+        <loc>https://trendymart-woad.vercel.app/services</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/blog</loc>
+        <loc>https://trendymart-woad.vercel.app/blog</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/login</loc>
+        <loc>https://trendymart-woad.vercel.app/login</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://trendymart.vercel.app/register</loc>
+        <loc>https://trendymart-woad.vercel.app/register</loc>
         <lastmod>2024-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>

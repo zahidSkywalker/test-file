@@ -2,13 +2,14 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://trendymart.vercel.app/sitemap.xml
+Sitemap: https://trendymart-woad.vercel.app/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin-dashboard
 Disallow: /admin-login
 Disallow: /seller-dashboard
 Disallow: /api/
+Disallow: /admin/
 Disallow: /uploads/
 Disallow: /checkout/
 Disallow: /cart
