@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Local Product</title>
+  <link href="/css/output.css" rel="stylesheet">
+  <meta name="description" content="Add a product locally without database.">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <header class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-bold">TrendyMart</a>
+      <nav class="flex gap-4 text-sm">
+        <a href="/products-local.html" class="hover:text-blue-600">Local Products</a>
+        <a href="/local-upload.html" class="text-blue-600">Add Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6">Add Local Product (No Database)</h1>
+    <div class="bg-white rounded-lg shadow p-6">
+      <form id="local-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Name</label>
+          <input name="name" type="text" class="w-full border rounded px-3 py-2" placeholder="Product name" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Price</label>
+          <input name="price" type="text" class="w-full border rounded px-3 py-2" placeholder="৳0.00" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Category</label>
+          <input name="category" type="text" class="w-full border rounded px-3 py-2" placeholder="Category (optional)" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Description</label>
+          <textarea name="description" rows="4" class="w-full border rounded px-3 py-2" placeholder="Short description..."></textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Images</label>
+          <input name="images" type="file" accept="image/*" multiple class="block" />
+          <p class="text-xs text-gray-500 mt-1">Images are stored in your browser as base64 (client-only).</p>
+        </div>
+        <div class="pt-2">
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Locally</button>
+          <a href="/products-local.html" class="ml-3 text-blue-600">View Local Products</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/local-products.js"></script>
+  <script>
+    document.getElementById('local-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      await window.LocalProducts.handleCreate(this);
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Products</title>
+  <link href="/css/output.css" rel="stylesheet">
+  <meta name="description" content="Create and manage products locally in your browser (no database).">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <header class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-bold">TrendyMart</a>
+      <nav class="flex gap-4 text-sm">
+        <a href="/products-local.html" class="text-blue-600">Local Products</a>
+        <a href="/local-upload.html" class="hover:text-blue-600">Add Product</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-4">Your Local Products</h1>
+    <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script src="/js/local-products.js"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const container = document.getElementById('product-list');
+      if (id) {
+        container.className = '';
+        window.LocalProducts.renderDetail(container, id);
+      } else {
+        window.LocalProducts.renderList(container);
+      }
+    })();
+  </script>
+</body>
+</html>
+
