@@ -130,7 +130,8 @@
   window.LocalProducts = {
     handleCreate,
     renderList,
-    renderDetail
+    renderDetail,
+    getAll: readProducts
   };
 })();
 

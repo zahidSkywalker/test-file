@@ -22,7 +22,10 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Local Products</h1>
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold">Local Products</h1>
+      <button id="publish-btn" class="bg-blue-600 text-white px-4 py-2 rounded">Publish</button>
+    </div>
     <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
   </main>
 
@@ -43,6 +46,22 @@
           window.LocalProducts.renderList(container);
         }
         window.AppAnimations && window.AppAnimations.init();
+
+        document.getElementById('publish-btn').addEventListener('click', async () => {
+          const products = window.LocalProducts.getAll();
+          try {
+            const res = await window.AdminAuth.fetchWithAuth('/api/admin/publish', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ products })
+            });
+            const json = await res.json();
+            if (!res.ok) throw new Error(json.message || 'Publish failed');
+            alert('Published! Feed URL: ' + json.feed_url);
+          } catch (e) {
+            alert('Publish failed: ' + e.message);
+          }
+        });
       });
     })();
   </script>
