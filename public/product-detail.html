@@ -462,7 +462,39 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/js/products-data.js"></script>
-    <script src="/js/product-detail-main.js"></script>
+    <script src="/js/store.js"></script>
+    <script>
+      (function(){
+        async function load(){
+          try {
+            const params = new URLSearchParams(location.search);
+            const id = params.get('id');
+            const product = await Store.getProductById(id);
+            if (!product) throw new Error('not found');
+            const main = document.getElementById('main-image');
+            main.src = (product.images && product.images[0]) || product.image || '';
+            document.getElementById('product-title').textContent = product.name || '';
+            document.getElementById('price-amount').textContent = product.price || '';
+            document.getElementById('category-badge').textContent = product.category || '';
+            document.getElementById('description-text').textContent = product.description || '';
+            const thumbs = (product.images || (product.image ? [product.image] : [])).map(function(src, i){
+              return '<img src="'+src+'" class="w-20 h-20 object-cover rounded-lg thumbnail '+(i===0?'active':'')+'"/>';
+            }).join('');
+            document.getElementById('thumbnails-container').innerHTML = thumbs;
+            document.getElementById('loading-skeleton').classList.add('hidden');
+            document.getElementById('product-content').classList.remove('hidden');
+            document.getElementById('shareBtn').addEventListener('click', function(){
+              const url = Store.getShareUrl(product);
+              if (navigator.share) navigator.share({ title: product.name, url: url }); else { navigator.clipboard.writeText(url); alert('Link copied'); }
+            });
+            document.getElementById('addToCartBtn').addEventListener('click', function(){ Store.addToCart(product, 1); alert('Product added to cart'); });
+          } catch (e) {
+            document.getElementById('loading-skeleton').classList.add('hidden');
+            document.getElementById('product-content').classList.remove('hidden');
+          }
+        }
+        load();
+      })();
+    </script>
 </body>
 </html>
