@@ -61,6 +61,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/", "destination": "/public/index.html" },
     { "source": "/products", "destination": "/public/products.html" },
     { "source": "/about", "destination": "/public/about.html" },
