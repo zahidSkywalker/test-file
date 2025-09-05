@@ -14,6 +14,7 @@
     
     <!-- CSS -->
     <link href="/css/output.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -177,7 +178,7 @@
 
             <!-- Cart Items -->
             <div id="cart-content" class="hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="cart-layout grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Cart Items List -->
                     <div class="lg:col-span-2">
                         <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
@@ -186,7 +187,7 @@
                                 Your Items (<span id="cart-items-count">0</span>)
                             </h2>
                             
-                            <div id="cart-items-container" class="space-y-4">
+                            <div id="cart-items-container" class="cart-items space-y-4">
                                 <!-- Cart items will be loaded here -->
                             </div>
                         </div>
