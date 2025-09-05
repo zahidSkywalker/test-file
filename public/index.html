@@ -44,8 +44,17 @@
     
     <!-- Stylesheets -->
     <link href="/css/output.css" rel="stylesheet">
+    <link rel="preload" as="style" href="/css/output.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('img[loading="lazy"]').forEach(function(img){
+          if (!img.getAttribute('width')) img.setAttribute('width', img.naturalWidth || 600);
+          if (!img.getAttribute('height')) img.setAttribute('height', img.naturalHeight || 400);
+        });
+      });
+    </script>
     
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
