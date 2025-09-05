@@ -13,12 +13,8 @@
     <h1 class="text-2xl font-bold mb-6 text-center">Admin Login</h1>
     <form id="login-form" class="space-y-4">
       <div>
-        <label class="block text-sm font-medium mb-1">Email</label>
-        <input name="email" type="email" required class="w-full border rounded px-3 py-2" placeholder="admin@example.com">
-      </div>
-      <div>
-        <label class="block text-sm font-medium mb-1">Password</label>
-        <input name="password" type="password" required class="w-full border rounded px-3 py-2" placeholder="********">
+        <label class="block text-sm font-medium mb-1">Admin Passcode</label>
+        <input name="passcode" type="password" required class="w-full border rounded px-3 py-2" placeholder="Enter admin passcode">
       </div>
       <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
     </form>
@@ -30,8 +26,8 @@
     document.getElementById('login-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const form = new FormData(this);
-      const body = { email: form.get('email'), password: form.get('password') };
-      const res = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const body = { passcode: form.get('passcode') };
+      const res = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const json = await res.json();
       if (!res.ok) {
         document.getElementById('error').textContent = json.message || 'Login failed';

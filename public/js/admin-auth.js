@@ -22,7 +22,7 @@
 
   async function requireAdmin() {
     try {
-      const res = await fetchWithAuth('/api/auth/me');
+      const res = await fetchWithAuth('/api/admin/me');
       if (!res.ok) throw new Error('unauthorized');
       const user = await res.json();
       if (!user || (user.role !== 'admin')) throw new Error('forbidden');
