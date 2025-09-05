@@ -21,49 +21,88 @@
   </header>
 
   <main class="max-w-2xl mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-6">Add Local Product (No Database)</h1>
+    <h1 id="product-form-title" class="text-2xl font-bold mb-6">Add New Product</h1>
     <div class="bg-white rounded-lg shadow p-6">
-      <form id="local-form" class="space-y-4">
+      <form id="product-form" class="space-y-4">
         <div>
           <label class="block text-sm font-medium mb-1">Name</label>
           <input name="name" type="text" class="w-full border rounded px-3 py-2" placeholder="Product name" required />
         </div>
         <div>
           <label class="block text-sm font-medium mb-1">Price</label>
-          <input name="price" type="text" class="w-full border rounded px-3 py-2" placeholder="৳0.00" required />
+          <input name="price" type="number" step="0.01" class="w-full border rounded px-3 py-2" placeholder="৳0.00" required />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Original Price (Optional)</label>
+          <input name="original_price" type="number" step="0.01" class="w-full border rounded px-3 py-2" placeholder="৳0.00" />
         </div>
         <div>
           <label class="block text-sm font-medium mb-1">Category</label>
-          <input name="category" type="text" class="w-full border rounded px-3 py-2" placeholder="Category (optional)" />
+          <select name="category" class="w-full border rounded px-3 py-2" required>
+            <option value="">Select Category</option>
+            <option value="smartphones">Smartphones</option>
+            <option value="laptops">Laptops</option>
+            <option value="audio">Audio</option>
+            <option value="accessories">Accessories</option>
+            <option value="gaming">Gaming</option>
+            <option value="home">Home & Kitchen</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Brand</label>
+          <input name="brand" type="text" class="w-full border rounded px-3 py-2" placeholder="Brand name" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Model</label>
+          <input name="model" type="text" class="w-full border rounded px-3 py-2" placeholder="Model number" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Stock Quantity</label>
+          <input name="stock" type="number" class="w-full border rounded px-3 py-2" placeholder="0" value="0" />
         </div>
         <div>
           <label class="block text-sm font-medium mb-1">Description</label>
-          <textarea name="description" rows="4" class="w-full border rounded px-3 py-2" placeholder="Short description..."></textarea>
+          <textarea name="description" rows="4" class="w-full border rounded px-3 py-2" placeholder="Product description..."></textarea>
         </div>
         <div>
-          <label class="block text-sm font-medium mb-1">Images</label>
-          <input name="images" type="file" accept="image/*" multiple class="block" />
-          <p class="text-xs text-gray-500 mt-1">Images are stored in your browser as base64 (client-only).</p>
+          <label class="block text-sm font-medium mb-1">Image URLs (one per line)</label>
+          <textarea name="images" rows="3" class="w-full border rounded px-3 py-2" placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Features (one per line)</label>
+          <textarea name="features" rows="3" class="w-full border rounded px-3 py-2" placeholder="Feature 1&#10;Feature 2&#10;Feature 3"></textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Specifications (JSON format)</label>
+          <textarea name="specs" rows="4" class="w-full border rounded px-3 py-2" placeholder='{"screen": "6.1 inch", "storage": "128GB"}'></textarea>
+        </div>
+        <div class="flex items-center space-x-4">
+          <label class="flex items-center">
+            <input name="featured" type="checkbox" class="mr-2" />
+            <span class="text-sm">Featured Product</span>
+          </label>
+          <label class="flex items-center">
+            <input name="published" type="checkbox" class="mr-2" />
+            <span class="text-sm">Published</span>
+          </label>
         </div>
         <div class="pt-2">
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Locally</button>
-          <a href="/admin/products-local.html" class="ml-3 text-blue-600">View Local Products</a>
+          <button type="submit" id="submit-btn" class="bg-blue-600 text-white px-4 py-2 rounded">Create Product</button>
+          <a href="/admin/products-local.html" class="ml-3 text-blue-600">View Products</a>
         </div>
       </form>
     </div>
   </main>
 
-  <script src="/js/local-products.js"></script>
+  <script src="/js/admin-sqlite.js"></script>
   <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="/js/animations.js"></script>
   <script src="/js/admin-auth.js"></script>
   <script>
     (function() {
       window.AdminAuth.requireAdmin().then(() => {
-        document.getElementById('local-form').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          await window.LocalProducts.handleCreate(this);
-        });
+        // Form submission is now handled by admin-sqlite.js
         window.AppAnimations && window.AppAnimations.init();
       });
     })();
