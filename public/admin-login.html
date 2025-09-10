@@ -338,7 +338,10 @@
         window.addEventListener('load', function() {
             const isLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
             if (isLoggedIn === 'true') {
-                window.location.href = '/admin-dashboard.html';
+                // Add a small delay to show the page briefly
+                setTimeout(() => {
+                    window.location.href = '/admin-dashboard.html';
+                }, 500);
             }
         });
 

@@ -17,14 +17,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeAdminDashboard() {
     // Check authentication
     if (!isLoggedIn()) {
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        window.location.href = '/admin-login.html';
         return;
     }
 
     const user = getCurrentUser();
     if (!user || user.role !== 'admin') {
         showToast('Access denied. Admin privileges required.', 'error');
-        window.location.href = '/';
+        window.location.href = '/admin-login.html';
         return;
     }
 
@@ -186,9 +186,10 @@ async function loadAdminDashboardData() {
 
 async function loadProducts() {
     try {
-        const response = await fetch('/api/products');
+        const response = await fetch('/api/admin/products');
         if (response.ok) {
-            products = await response.json();
+            const data = await response.json();
+            products = data.data || data.products || [];
             populateCategoryFilter();
         } else {
             // Fallback to localStorage
@@ -286,17 +287,20 @@ function renderProducts() {
 function createProductCard(product, isGrid = true) {
     const statusClass = product.status === 'active' ? 'status-active' : 'status-inactive';
     const statusText = product.status === 'active' ? 'Active' : 'Inactive';
+    const productId = product._id || product.id;
+    const productName = product.title || product.name;
+    const productImage = product.images?.[0]?.url || product.images?.[0] || '/images/placeholder.svg';
     
     if (isGrid) {
         return `
-            <div class="admin-card p-6 fade-in" data-product-id="${product.id}">
+            <div class="admin-card p-6 fade-in" data-product-id="${productId}">
                 <div class="mb-4">
-                    <img src="${product.images?.[0] || '/images/placeholder.svg'}" 
-                         alt="${product.name}" 
-                         class="image-preview ${product.images?.[0] ? 'has-image' : ''}">
+                    <img src="${productImage}" 
+                         alt="${productName}" 
+                         class="image-preview ${productImage !== '/images/placeholder.svg' ? 'has-image' : ''}">
                 </div>
                 <div class="mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">${product.name}</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">${productName}</h3>
                     <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">${product.category}</p>
                     <p class="text-gray-500 dark:text-gray-500 text-sm line-clamp-2">${product.description || 'No description'}</p>
                 </div>
@@ -307,10 +311,10 @@ function createProductCard(product, isGrid = true) {
                 <div class="flex items-center justify-between">
                     <span class="text-sm text-gray-600 dark:text-gray-400">Stock: ${product.stock || 0}</span>
                     <div class="flex space-x-2">
-                        <button onclick="editProduct('${product.id}')" class="btn-primary text-sm px-3 py-1">
+                        <button onclick="editProduct('${productId}')" class="btn-primary text-sm px-3 py-1">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button onclick="deleteProduct('${product.id}')" class="btn-danger text-sm px-3 py-1">
+                        <button onclick="deleteProduct('${productId}')" class="btn-danger text-sm px-3 py-1">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -319,15 +323,15 @@ function createProductCard(product, isGrid = true) {
         `;
     } else {
         return `
-            <div class="admin-card p-6 fade-in" data-product-id="${product.id}">
+            <div class="admin-card p-6 fade-in" data-product-id="${productId}">
                 <div class="flex items-center">
                     <div class="w-20 h-20 mr-4">
-                        <img src="${product.images?.[0] || '/images/placeholder.svg'}" 
-                             alt="${product.name}" 
+                        <img src="${productImage}" 
+                             alt="${productName}" 
                              class="w-full h-full object-cover rounded-lg">
                     </div>
                     <div class="flex-1">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">${product.name}</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-1">${productName}</h3>
                         <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">${product.category}</p>
                         <p class="text-gray-500 dark:text-gray-500 text-sm">${product.description || 'No description'}</p>
                     </div>
@@ -338,10 +342,10 @@ function createProductCard(product, isGrid = true) {
                     <div class="flex flex-col items-end space-y-2">
                         <span class="status-badge ${statusClass}">${statusText}</span>
                         <div class="flex space-x-2">
-                            <button onclick="editProduct('${product.id}')" class="btn-primary text-sm px-3 py-1">
+                            <button onclick="editProduct('${productId}')" class="btn-primary text-sm px-3 py-1">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button onclick="deleteProduct('${product.id}')" class="btn-danger text-sm px-3 py-1">
+                            <button onclick="deleteProduct('${productId}')" class="btn-danger text-sm px-3 py-1">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -358,12 +362,16 @@ function getFilteredProducts() {
     const searchTerm = document.getElementById('global-search')?.value.toLowerCase();
 
     return products.filter(product => {
+        const productName = (product.title || product.name || '').toLowerCase();
+        const productDescription = (product.description || '').toLowerCase();
+        const productCategory = (product.category || '').toLowerCase();
+        
         const matchesCategory = !categoryFilter || product.category === categoryFilter;
         const matchesStatus = !statusFilter || product.status === statusFilter;
         const matchesSearch = !searchTerm || 
-            product.name.toLowerCase().includes(searchTerm) ||
-            product.description?.toLowerCase().includes(searchTerm) ||
-            product.category.toLowerCase().includes(searchTerm);
+            productName.includes(searchTerm) ||
+            productDescription.includes(searchTerm) ||
+            productCategory.includes(searchTerm);
 
         return matchesCategory && matchesStatus && matchesSearch;
     });
@@ -424,24 +432,47 @@ function handleAddProduct(e) {
     
     const formData = new FormData(e.target);
     const productData = {
-        id: generateId(),
-        name: formData.get('name'),
+        title: formData.get('name'),
         category: formData.get('category'),
         price: parseFloat(formData.get('price')),
         stock: parseInt(formData.get('stock')),
         description: formData.get('description'),
         status: 'active',
-        images: getUploadedImages(),
-        createdAt: new Date().toISOString()
+        condition: 'new',
+        brand: formData.get('brand') || '',
+        model: formData.get('model') || '',
+        features: [],
+        specifications: {}
     };
 
-    products.push(productData);
-    localStorage.setItem('products', JSON.stringify(products));
-    
-    showToast('Product added successfully!', 'success');
-    closeAddProductModal();
-    renderProducts();
-    updateDashboardStats();
+    // Create product via API
+    createProductAPI(productData);
+}
+
+async function createProductAPI(productData) {
+    try {
+        const response = await fetch('/api/admin/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData)
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            showToast('Product added successfully!', 'success');
+            closeAddProductModal();
+            loadProducts(); // Reload products
+            updateDashboardStats();
+        } else {
+            const error = await response.json();
+            showToast(`Error: ${error.message || 'Failed to create product'}`, 'error');
+        }
+    } catch (error) {
+        console.error('Error creating product:', error);
+        showToast('Error creating product. Please try again.', 'error');
+    }
 }
 
 function editProduct(productId) {
@@ -487,13 +518,28 @@ function handleEditProduct(e, productId) {
     }
 }
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
     if (confirm('Are you sure you want to delete this product?')) {
-        products = products.filter(p => p.id !== productId);
-        localStorage.setItem('products', JSON.stringify(products));
-        showToast('Product deleted successfully!', 'success');
-        renderProducts();
-        updateDashboardStats();
+        try {
+            const response = await fetch(`/api/admin/products/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (response.ok) {
+                showToast('Product deleted successfully!', 'success');
+                loadProducts(); // Reload products
+                updateDashboardStats();
+            } else {
+                const error = await response.json();
+                showToast(`Error: ${error.message || 'Failed to delete product'}`, 'error');
+            }
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            showToast('Error deleting product. Please try again.', 'error');
+        }
     }
 }
 
@@ -858,20 +904,22 @@ function exportAnalytics() {
     showToast('Analytics exported successfully!', 'success');
 }
 
-// Authentication Functions (placeholder implementations)
+// Authentication Functions
 function isLoggedIn() {
-    return localStorage.getItem('user') !== null;
+    return localStorage.getItem('admin_logged_in') === 'true' || sessionStorage.getItem('admin_logged_in') === 'true';
 }
 
 function getCurrentUser() {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    const username = localStorage.getItem('admin_username') || sessionStorage.getItem('admin_username');
+    return username ? { username, role: 'admin' } : null;
 }
 
 function logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    window.location.href = '/login';
+    localStorage.removeItem('admin_logged_in');
+    localStorage.removeItem('admin_username');
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_username');
+    window.location.href = '/admin-login.html';
 }
 
 // Placeholder functions for order and user management

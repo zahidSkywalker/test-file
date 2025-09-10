@@ -72,6 +72,7 @@ const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/users');
 const paymentRoutes = require('./routes/payments');
 const electronicsRoutes = require('./routes/electronics');
+const adminProductsRoutes = require('./routes/admin-products');
 
 // API routes
 app.use('/api/auth', authRoutes);
@@ -80,6 +81,11 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/electronics', electronicsRoutes);
+
+// Admin API routes
+app.use('/api/admin/products', adminProductsRoutes);
+app.use('/api/admin/login', require('./api/admin/login'));
+app.use('/api/admin/me', require('./api/admin/me'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -199,6 +205,18 @@ app.get('/seller-dashboard', (req, res) => {
 
 app.get('/admin-dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin-dashboard.html'));
+});
+
+app.get('/admin-login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
+});
+
+app.get('/admin-dashboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin-dashboard.html'));
+});
+
+app.get('/admin-login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
 });
 
 app.get('/login', (req, res) => {

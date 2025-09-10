@@ -85,6 +85,36 @@ module.exports = async (req, res) => {
       });
     }
 
+    if (req.method === 'DELETE') {
+      // Delete product
+      const productId = req.url.split('/').pop();
+      
+      if (!productId) {
+        return res.status(400).json({
+          success: false,
+          message: 'Product ID is required'
+        });
+      }
+
+      const deleteProduct = db.prepare(`
+        DELETE FROM products WHERE id = ?
+      `);
+
+      const result = deleteProduct.run(productId);
+
+      if (result.changes === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product not found'
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: 'Product deleted successfully'
+      });
+    }
+
     return res.status(405).json({
       success: false,
       message: 'Method not allowed'
