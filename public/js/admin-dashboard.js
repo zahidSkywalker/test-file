@@ -858,20 +858,37 @@ function exportAnalytics() {
     showToast('Analytics exported successfully!', 'success');
 }
 
-// Authentication Functions (placeholder implementations)
+// Authentication Functions
 function isLoggedIn() {
-    return localStorage.getItem('user') !== null;
+    // Check for admin login state or regular user login
+    const adminLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
+    const userLoggedIn = localStorage.getItem('user') !== null;
+    return adminLoggedIn === 'true' || userLoggedIn;
 }
 
 function getCurrentUser() {
+    // First check for admin login
+    const adminLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
+    if (adminLoggedIn === 'true') {
+        const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+    }
+    
+    // Fallback to regular user login
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
 }
 
 function logout() {
+    // Clear all login states
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    localStorage.removeItem('admin_logged_in');
+    localStorage.removeItem('admin_username');
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_username');
+    window.location.href = '/admin-login.html';
 }
 
 // Placeholder functions for order and user management
