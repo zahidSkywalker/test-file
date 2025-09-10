@@ -306,13 +306,24 @@
                 // Show success message
                 document.getElementById('success-message').style.display = 'block';
                 
-                // Store login state
+                // Store login state in the format expected by the dashboard
+                const adminUser = {
+                    id: 'admin',
+                    name: 'Admin User',
+                    email: 'admin@trendymart.com',
+                    role: 'admin',
+                    status: 'active',
+                    createdAt: new Date().toISOString()
+                };
+                
                 if (rememberMe) {
                     localStorage.setItem('admin_logged_in', 'true');
                     localStorage.setItem('admin_username', username);
+                    localStorage.setItem('user', JSON.stringify(adminUser));
                 } else {
                     sessionStorage.setItem('admin_logged_in', 'true');
                     sessionStorage.setItem('admin_username', username);
+                    sessionStorage.setItem('user', JSON.stringify(adminUser));
                 }
 
                 // Redirect to dashboard after 1.5 seconds
@@ -336,9 +347,14 @@
 
         // Check if already logged in
         window.addEventListener('load', function() {
-            const isLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
-            if (isLoggedIn === 'true') {
-                window.location.href = '/admin-dashboard.html';
+            const adminLoggedIn = localStorage.getItem('admin_logged_in') || sessionStorage.getItem('admin_logged_in');
+            const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+            
+            if (adminLoggedIn === 'true' && user) {
+                const userData = JSON.parse(user);
+                if (userData.role === 'admin') {
+                    window.location.href = '/admin-dashboard.html';
+                }
             }
         });
 
